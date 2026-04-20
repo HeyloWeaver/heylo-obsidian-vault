@@ -4,11 +4,10 @@ Frontend:
 - components are custom but also well organized
 - service layer is clean (`services` + shared client in `lib/api.ts`)
 - caseload beta is still fixture-backed with a TODO to move to GraphQL
-- Zustand for the beta scheduling flow feels like a good fit
-- I think `redux`/`jotai` deps might be dead weight right now
-- no frontend tests yet (worth adding at least a smoke path)
+- Frontend automated tests are not yet standardized; linting is currently the primary quality gate.
+- I think `redux`/`jotai` deps might be dead weight
 - `middleware.ts` centralizes auth + role redirects cleanly
-- middleware is also doing Segment page tracking, which is convenient but mixes concerns
+- middleware is doing Segment page tracking, which is convenient but mixes concerns
 
 Backend:
 - Not everything is lambdas - core API is NestJS modules/controllers/services
