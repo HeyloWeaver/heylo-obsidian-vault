@@ -205,8 +205,9 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "694e8da4ebc14318",
+  "active": "0522c9e7beb4631a",
   "lastOpenFiles": [
+    "README.md",
     "_Engineering/Frontend/High Level Overview.md",
     "_Engineering/Backend/High Level Overview.md",
     "go/backend/appsync/schema.graphql",
