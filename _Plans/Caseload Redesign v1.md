@@ -13,13 +13,15 @@ related:
 
 Ship the first pass of the redesigned Caseload Management experience as a **new, separate page** (new file, new URL) so it can evolve alongside the existing `/caseload-management` page without regressing the admin flow currently in production.
 
-This first milestone is **view-only**: a super user (admin) lands on the new page, picks a month, filters by site and/or user, and sees the agency's schedule for that month. Day cells show who is scheduled, when, and where, ordered by user. Mutations (create/edit/delete schedule) are explicitly out of scope.
+This first milestone is **view-only, super-admin-only**: a super user lands on the new page, picks a month, filters by site and/or user, and sees the agency's schedule for that month. Day cells show who is scheduled, when, and where, ordered by user. Mutations (create/edit/delete schedule) are explicitly out of scope.
 
 ## Definition of Done
 
-Pulled verbatim from the ticket so we check the boxes on merge:
+Pulled from the ticket so we check the boxes on merge:
 
-- As a super user, clicking a new "Caseload management" item in the left sidebar opens the new UX.
+- Route is `/caseload-management/beta`, nested under the existing caseload-management tree.
+- The new sidebar entry renders **only for `superAdmin`** — it is hidden for `admin`, `supportProfessional`, and `resident`.
+- Clicking it opens the new UX.
 - Month picker is present; selecting a month shows the agency schedule for that month.
 - Site filter is present and functional.
 - User filter is present and functional.
@@ -36,68 +38,96 @@ Pulled verbatim from the ticket so we check the boxes on merge:
 - No mobile-specific layout in v1. We design the DOM so a mobile pass is feasible in v2, but we don't ship it.
 - Not touching the legacy `/caseload-management` page, the legacy `caseload-context.tsx`, or `caseloadService.ts`.
 
-## Open Questions (owner → resolver)
+## Open Questions
 
 - **Schedule data shape** — Chris to confirm the JSON shape. Stub below is a placeholder; we'll align on merge.
-- **"Super user" in the ticket** — in the current nav gating, `superAdmin` is filtered OUT of `/caseload-management` (it's admin-only), and `superAdmin`'s equivalent lives under `/caseload/superuser`. Confirm whether "super user" here means `admin` (most likely) or `superAdmin`. Plan assumes **admin** for the v2 page, matching legacy behavior.
 - **CSS / component library** — proposal below (stay on shadcn/ui, add `zustand`). Flag before implementation if we want to try something different for the calendar grid.
-- **URL** — proposal: `/caseload-management-v2`. Alternates: `/caseload-management/beta`, `/schedule`. Ticket says "new URL," doesn't specify.
 
 ---
 
 ## Proposed URL & File Layout
 
-New page at `/caseload-management-v2`, isolated from the existing tree:
+New page at `/caseload-management/beta`, nested under the existing route:
 
 ```
 frontend/
-  app/(private)/caseload-management-v2/
-    page.tsx                       # Route entry, wraps the view in store provider
-    layout.tsx                     # (optional) page-level guard for admin role
+  app/(private)/caseload-management/
+    page.tsx                       # Legacy — unchanged
+    beta/
+      page.tsx                     # New route entry, wraps view in store provider
+      layout.tsx                   # superAdmin-only guard
 
-  components/caseload-management-v2/
-    schedule-page.tsx              # Top-level composition (toolbar + grid)
-    toolbar/
-      schedule-toolbar.tsx         # Hosts month picker + filters + view toggle
-      month-picker.tsx             # Month/year dropdown
-      site-filter.tsx              # Multi-select pills
-      user-filter.tsx              # Multi-select pills
-      view-toggle.tsx              # Month / Week toggle (week view stubbed)
-    calendar/
-      calendar-month.tsx           # 6x7 grid of CalendarDay
-      calendar-week.tsx            # 1x7 row of CalendarDay (behind toggle)
-      calendar-day.tsx             # Single day cell: date header + ordered pill list
-      schedule-pill.tsx            # Atomic pill: user • time • site
-    empty-state.tsx
-    loading-state.tsx
+  components/caseload-management/
+    (legacy files unchanged)
+    beta/
+      schedule-page.tsx            # Top-level composition (toolbar + grid)
+      toolbar/
+        schedule-toolbar.tsx       # Hosts month picker + filters + view toggle
+        month-picker.tsx           # Month/year dropdown
+        site-filter.tsx            # Multi-select pills
+        user-filter.tsx            # Multi-select pills
+        view-toggle.tsx            # Month / Week toggle (week view stubbed)
+      calendar/
+        calendar-month.tsx         # 6x7 grid of CalendarDay
+        calendar-week.tsx          # 1x7 row of CalendarDay (behind toggle)
+        calendar-day.tsx           # Single day cell: date header + ordered pill list
+        schedule-pill.tsx          # Atomic pill: user • time • site
+      empty-state.tsx
+      loading-state.tsx
 
-  lib/models/caseload-v2/
+  lib/models/caseload-beta/
     scheduleModel.ts               # Types for the fixture / eventual GraphQL payload
 
   services/
-    caseloadScheduleV2Service.ts   # Mock service: loads fixture, returns typed response
+    caseloadScheduleBetaService.ts # Mock service: loads fixture, returns typed response
 
   lib/fixtures/
-    caseload-schedule.sample.json  # Fixture data (awaiting Chris's shape)
+    caseload-schedule.sample.json  # Fixture data (awaiting Chris)
 
   stores/
-    useCaseloadScheduleStore.ts    # Zustand store (filters + data + derived selectors)
+    useCaseloadScheduleBetaStore.ts # Zustand store (filters + data + derived selectors)
 ```
 
-Naming the new tree `caseload-management-v2` makes the "separate, parallel page" constraint visible in the file system and unambiguous in PRs.
+Co-locating the new code under `/caseload-management/beta/` (both in `app/` and in `components/`) keeps the "beta of an existing feature" relationship obvious and makes cleanup trivial when the legacy page is retired.
 
 ## Navigation & Access
 
-- Add a `Caseload Management v2` entry to `components/sidebar/app-sidebar.tsx#data.navMain`, pointing at `/caseload-management-v2`, using a distinct icon (e.g. `CalendarRange`) to differentiate from the existing `Caseload Management` entry.
-- Update `lib/utils.ts#filterNavigationLinks` to apply the same role gating the existing `Caseload Management` uses (hide for `superAdmin`, `supportProfessional`, `resident`; show for `admin`).
-- Page-level guard inside the route: if the user's role isn't admin, render a 403-ish empty state rather than redirecting. No new `middleware.ts` rules.
+SuperAdmin-only visibility. The new entry is a **top-level sidebar item** — front-and-center so superAdmins don't have to hunt through the "Support" submenu to find it.
+
+**Sidebar change** in `components/sidebar/app-sidebar.tsx#data.navMain`, add a new top-level item:
+
+```ts
+{
+  title: "Caseload Management (Beta)",
+  url: "/caseload-management/beta",
+  icon: CalendarRange, // or another distinct lucide icon
+},
+```
+
+**Role filter change** in `lib/utils.ts#filterNavigationLinks`. The existing rules hide `Caseload Management` from superAdmin and hide a bunch of items from non-superAdmins. Add one new rule: show `Caseload Management (Beta)` only when `userRole === RoleId.superAdmin`:
+
+```ts
+// Hide the new beta page from everyone except superAdmin
+if (
+  userRole !== RoleId.superAdmin &&
+  item.title === "Caseload Management (Beta)"
+) {
+  return false;
+}
+```
+
+Place that rule alongside the existing `superAdmin`-specific carve-outs so the intent stays grouped. Note: this rule needs to live *outside* the existing "hide regular nav items from superAdmin" block — otherwise the beta item would be caught by that sweep too. Confirm during implementation.
+
+**Page-level guard** inside `app/(private)/caseload-management/beta/layout.tsx`: read `useUser()`; if `userRole !== RoleId.superAdmin`, render a 403-ish empty state. No new `middleware.ts` rules. This catches anyone who hand-types `/caseload-management/beta` despite the sidebar filter.
+
+Trade-off we're accepting: this breaks the existing convention of "superAdmin-only pages live under the 'Support' submenu" (e.g., `/caseload/superuser`, `/alerts/superuser`). We're prioritizing discoverability for this launch. If the pattern gets awkward — e.g., the beta ships widely and we want to replace the admin page — we'll revisit placement at that time.
 
 ## State Management — Zustand
 
 We introduce `zustand` on this page as the first adoption, scoped so it doesn't bleed into legacy pages:
 
 - Add `zustand` to `frontend/package.json`.
-- One store: `useCaseloadScheduleStore` in `frontend/stores/useCaseloadScheduleStore.ts`.
+- One store: `useCaseloadScheduleBetaStore` in `frontend/stores/useCaseloadScheduleBetaStore.ts`.
 - Store slices (single store, plain actions — no slice middleware needed at this size):
   - `filters`: `{ selectedMonth: Date, selectedSiteIds: string[], selectedUserIds: string[], view: 'month' | 'week' }`
   - `data`: `{ response: GetScheduleResponse | null, isLoading: boolean, error: Error | null }`
@@ -108,7 +138,7 @@ We introduce `zustand` on this page as the first adoption, scoped so it doesn't 
   - `selectEntriesByDay(state, dayISO)` → sorted by user name, then start time.
   - `selectSiteById`, `selectUserById` for pill rendering.
 
-Rationale for Zustand over existing React Context (used by legacy `caseload-context.tsx`): the grid will re-render hot as filters change; fine-grained subscriptions via Zustand selectors avoid the context-wide re-render pattern, and the store is easy to mock in tests / storybook later.
+Rationale for Zustand over existing React Context (used by legacy `caseload-context.tsx`): the grid re-renders hot as filters change; fine-grained subscriptions via Zustand selectors avoid the context-wide re-render pattern, and the store is easy to mock in tests / storybook later.
 
 ## CSS / Component Library
 
@@ -135,10 +165,10 @@ Built bottom-up so each can be visually reviewed in isolation:
 
 ### Service
 
-`services/caseloadScheduleV2Service.ts`:
+`services/caseloadScheduleBetaService.ts`:
 
 ```ts
-export const caseloadScheduleV2Service = {
+export const caseloadScheduleBetaService = {
   async getSchedule(req: { month: string /* YYYY-MM */ }): Promise<GetScheduleResponse> {
     // v1: return fixture filtered to requested month
     // v2: swap to GraphQL / AppSync call — call site unchanged
@@ -174,8 +204,8 @@ Fixture should cover: multiple users, multiple sites, one user scheduled at two 
 
 ## Milestones
 
-1. **Scaffolding** — new route, sidebar entry, role guard, empty page that renders "v2".
-2. **Store + service + fixture** — `useCaseloadScheduleStore` loads the fixture; show raw JSON to sanity-check.
+1. **Scaffolding** — new route at `/caseload-management/beta`, top-level sidebar entry gated to superAdmin, page-level guard, empty page that renders "Beta".
+2. **Store + service + fixture** — `useCaseloadScheduleBetaStore` loads the fixture; show raw JSON to sanity-check.
 3. **Atomic pieces** — `SchedulePill`, `CalendarDay` in isolation with hardcoded props.
 4. **Month view** — `CalendarMonth` wired to the store, no filters yet.
 5. **Month picker** — changing month re-loads fixture (filter by `month` in the mock service).
@@ -191,6 +221,8 @@ Fixture should cover: multiple users, multiple sites, one user scheduled at two 
 - **Overflow in dense days** — a single site with 10+ users on one day will blow up a calendar cell. Plan for "+N more" from the start.
 - **Month boundaries & timezones** — agency-local TZ vs. browser TZ. Render using the agency's timezone if present in the payload; document the assumption.
 - **Accessibility of the grid** — keyboard nav across days isn't required in v1, but don't build ourselves into a `div`-soup corner. Use `role="grid"` semantics.
+- **Nested-route access leak** — because `/caseload-management/beta` lives under the legacy parent, a non-superAdmin who hand-types the URL must hit the page-level guard. Don't rely on sidebar filtering alone.
+- **Filter-rule ordering** — the new `Caseload Management (Beta)` rule in `filterNavigationLinks` must be placed such that it isn't short-circuited by the existing "hide regular nav items from superAdmin" block. Double-check on implementation.
 
 ## Out-of-scope (explicitly deferred)
 
@@ -200,6 +232,7 @@ Fixture should cover: multiple users, multiple sites, one user scheduled at two 
 - Drag-to-reschedule.
 - Printing / export.
 - Live GraphQL wiring.
+- Exposing the page to `admin` (the legacy `/caseload-management` remains the admin surface).
 
 ## Related Code Anchors
 
@@ -210,3 +243,4 @@ Fixture should cover: multiple users, multiple sites, one user scheduled at two 
 - Nav role filter: `frontend/lib/utils.ts#filterNavigationLinks`
 - Service pattern: `frontend/services/caseloadService.ts`
 - Existing models: `frontend/lib/models/caseload/*`
+- Existing superAdmin precedent: `/caseload/superuser`, `/alerts/superuser`, etc., all exposed via the "Support" nested menu.

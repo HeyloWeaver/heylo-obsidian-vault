@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "_Plans/Caseload Redesign v1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Caseload Redesign v1"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "_Plans/Caseload Redesign v1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of Caseload Redesign v1"
             }
           },
           {
@@ -207,13 +207,17 @@
   },
   "active": "694e8da4ebc14318",
   "lastOpenFiles": [
+    "README.md",
+    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.d.ts",
+    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.js",
+    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.js.map",
+    "backend/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.ts",
     "_Plans/Caseload Redesign v1.md",
     "_Engineering/Dev Environment Setup.md",
     "_Notes/About Mike.md",
     "_Plans",
     "_Notes/About Me.md",
     "_Engineering/Backend/High Level Overview.md",
-    "README.md",
     "_Engineering/Frontend/High Level Overview.md",
     "go/backend/appsync/schema.graphql",
     "go/backend/appsync/getcaseloadschedule_test.go",
@@ -221,10 +225,6 @@
     "go/backend/appsync/buildspec.yml",
     "_Onboarding/First Day Notes - Chris.md",
     "_Engineering/Backend",
-    "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/src/utils/password.util.d.ts",
-    "backend/dist/src/utils/password.util.js",
-    "backend/dist/src/utils/password.util.js.map",
     "_Onboarding/First Day Notes - Shivani.md",
     "_Standups/Apr 20, 2026 Standup.md",
     "frontend/node_modules/@radix-ui/react-use-is-hydrated/README.md",
