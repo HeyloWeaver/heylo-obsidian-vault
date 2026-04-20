@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Backend/High Level Overview.md",
+                "file": "_Engineering/Dev Environment Setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "High Level Overview"
+              "title": "Dev Environment Setup"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Engineering/Backend/High Level Overview.md",
+                "file": "_Engineering/Dev Environment Setup.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of High Level Overview"
+              "title": "Outline of Dev Environment Setup"
             }
           },
           {
@@ -205,11 +205,13 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0522c9e7beb4631a",
+  "active": "694e8da4ebc14318",
   "lastOpenFiles": [
+    "_Notes/About Me.md",
+    "_Engineering/Dev Environment Setup.md",
+    "_Engineering/Backend/High Level Overview.md",
     "README.md",
     "_Engineering/Frontend/High Level Overview.md",
-    "_Engineering/Backend/High Level Overview.md",
     "go/backend/appsync/schema.graphql",
     "go/backend/appsync/getcaseloadschedule_test.go",
     "go/backend/appsync/getcaseloadschedule.go",
@@ -225,7 +227,6 @@
     "_Standups/Apr 20, 2026 Standup.md",
     "frontend/node_modules/@radix-ui/react-use-is-hydrated/README.md",
     "frontend/node_modules/eslint-plugin-react/README.md",
-    "_Notes/Dev Env.md",
     "frontend/node_modules/eslint-plugin-import/docs/rules/namespace.md",
     "frontend/node_modules/eslint-plugin-import/README.md",
     "_Engineering/Devices/MedMinder.md",
@@ -234,7 +235,6 @@
     "_Engineering/Devices/Device Checker Service.md",
     "_Onboarding/Heylo Onboarding.md",
     "_Onboarding/Points of Contanct.md",
-    "_Notes/About Me.md",
     "_Engineering/Heylo Prod & Eng.md",
     "_Engineering/Devices/Updated HW Payload Samples.md",
     "_Engineering/Devices/Setting Wi-fi SSID + Password for Provisioning.md",
