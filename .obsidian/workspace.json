@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Dev Environment Setup.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dev Environment Setup"
+              "title": "README"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Engineering/Dev Environment Setup.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Dev Environment Setup"
+              "title": "Outline of README"
             }
           },
           {
@@ -207,8 +207,11 @@
   },
   "active": "694e8da4ebc14318",
   "lastOpenFiles": [
-    "_Notes/About Me.md",
+    "_Plans/Caseload Redesign v1.md",
     "_Engineering/Dev Environment Setup.md",
+    "_Notes/About Mike.md",
+    "_Plans",
+    "_Notes/About Me.md",
     "_Engineering/Backend/High Level Overview.md",
     "README.md",
     "_Engineering/Frontend/High Level Overview.md",
@@ -222,7 +225,6 @@
     "backend/dist/src/utils/password.util.d.ts",
     "backend/dist/src/utils/password.util.js",
     "backend/dist/src/utils/password.util.js.map",
-    "backend/dist/lambdas/device-checker.js.map",
     "_Onboarding/First Day Notes - Shivani.md",
     "_Standups/Apr 20, 2026 Standup.md",
     "frontend/node_modules/@radix-ui/react-use-is-hydrated/README.md",

@@ -15,17 +15,13 @@ The vault uses a naming convention to separate "notes" from "code":
 vault root
 ├── README.md                ← you are here
 ├── _Engineering/            ← architecture, design, per-subsystem deep-dives
-│   ├── Backend/
-│   ├── Frontend/
-│   ├── Devices/
-│   └── Heylo Prod & Eng.md
 ├── _Notes/                  ← personal scratch, dev environment notes
 ├── _Onboarding/             ← first-day notes, points of contact, ramp-up guides
 ├── _Standups/               ← daily/weekly standup logs
 ├── frontend/                ← Next.js 15 / React 19 console (real repo)
 ├── backend/                 ← NestJS 10 / TypeORM API (real repo)
 └── go/                      ← Go services (currently: AppSync resolvers)
-    └── backend/appsync/
+└── ...etc
 ```
 
 ## What each code repo does
