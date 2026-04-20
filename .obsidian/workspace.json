@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "922591b52708e0ef",
+        "id": "5dbcdd78a21408fb",
         "type": "tabs",
         "children": [
           {
-            "id": "694e8da4ebc14318",
+            "id": "0c9018d25010c336",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Plans/Caseload Redesign v1.md",
+                "file": "_Notes/Mike's Architecture Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Caseload Redesign v1"
+              "title": "Mike's Architecture Notes"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Plans/Caseload Redesign v1.md",
+                "file": "_Notes/Mike's Architecture Notes.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Caseload Redesign v1"
+              "title": "Outline of Mike's Architecture Notes"
             }
           },
           {
@@ -205,26 +205,35 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "694e8da4ebc14318",
+  "active": "0c9018d25010c336",
   "lastOpenFiles": [
-    "README.md",
-    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.d.ts",
-    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.js",
-    "backend/dist/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.js.map",
-    "backend/src/migrations/1777000000000-add-iscscorder-to-purchaseorder.ts",
+    "frontend/lib/models/caseload/caseloadScheduleViewModel.ts",
+    "frontend/lib/models/caseload-management/caseloadManagementScheduleViewModel.ts",
+    "frontend/lib/models/caseload-management",
+    "_Onboarding/Heylo Onboarding.md",
+    "Untitled.md",
+    "frontend/stores/useCaseloadScheduleStore.ts",
+    "frontend/services/caseloadScheduleService.ts",
+    "frontend/lib/models/caseload/scheduleViewModel.ts",
+    "_Onboarding/First Day Notes - Chris.md",
+    "_Engineering/Devices/SD Card Flashing Steps.md",
+    "_Engineering/Devices/Device Provisioning.md",
+    "_Notes/Mike's Architecture Notes.md",
+    "frontend/node_modules/@smithy/node-http-handler/dist-types/http2/ClientHttp2SessionRef.d.ts",
+    "frontend/node_modules/@smithy/node-http-handler/dist-types/http2",
+    "frontend/node_modules/@smithy/node-http-handler/dist-es/http2/ClientHttp2SessionRef.js",
+    "frontend/node_modules/@smithy/node-http-handler/dist-es/http2",
+    "frontend/node_modules/@humanfs/types/README.md",
+    "frontend/node_modules/@humanfs/types/src/hfs-types.ts",
+    "frontend/node_modules/@humanfs/types/CHANGELOG.md",
+    "frontend/node_modules/zustand/README.md",
     "_Plans/Caseload Redesign v1.md",
+    "README.md",
     "_Engineering/Dev Environment Setup.md",
     "_Notes/About Mike.md",
-    "_Plans",
     "_Notes/About Me.md",
     "_Engineering/Backend/High Level Overview.md",
     "_Engineering/Frontend/High Level Overview.md",
-    "go/backend/appsync/schema.graphql",
-    "go/backend/appsync/getcaseloadschedule_test.go",
-    "go/backend/appsync/getcaseloadschedule.go",
-    "go/backend/appsync/buildspec.yml",
-    "_Onboarding/First Day Notes - Chris.md",
-    "_Engineering/Backend",
     "_Onboarding/First Day Notes - Shivani.md",
     "_Standups/Apr 20, 2026 Standup.md",
     "frontend/node_modules/@radix-ui/react-use-is-hydrated/README.md",
@@ -233,14 +242,6 @@
     "frontend/node_modules/eslint-plugin-import/README.md",
     "_Engineering/Devices/MedMinder.md",
     "_Engineering/Devices/Heylo Hub Firmware Dev Notes.md",
-    "_Engineering/Devices/Device Provisioning.md",
-    "_Engineering/Devices/Device Checker Service.md",
-    "_Onboarding/Heylo Onboarding.md",
-    "_Onboarding/Points of Contanct.md",
-    "_Engineering/Heylo Prod & Eng.md",
-    "_Engineering/Devices/Updated HW Payload Samples.md",
-    "_Engineering/Devices/Setting Wi-fi SSID + Password for Provisioning.md",
-    "_Engineering/Devices/SD Card Flashing Steps.md",
-    "Welcome.md"
+    "_Engineering/Devices/Device Checker Service.md"
   ]
 }
