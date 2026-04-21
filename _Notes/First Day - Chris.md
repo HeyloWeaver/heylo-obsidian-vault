@@ -1,4 +1,3 @@
-
 Getting understanding of the app
 
 Make a list of things to make better
