@@ -2,3 +2,5 @@
 /frontend
 /go
 .obsidian/plugins/
+node_modules/
+.env
