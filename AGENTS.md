@@ -23,7 +23,7 @@ High-level tree (not exhaustive):
 | `frontend/` | Next.js operator console (workspace package `heylo-web`) |
 | `backend/` | NestJS API (workspace package `heylo-api`) |
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
-| `scripts/` | Root tooling (e.g. `dev-services.mjs`) |
+| `cli/` | Vault-root CLI (e.g. `dev-services.mjs`, `heylo-dev` bin) |
 
 `frontend/`, `backend/`, and `go/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
 
@@ -78,7 +78,7 @@ After the task, if behavior changed in a durable way, **update the relevant `_En
 From the vault root, `package.json` defines npm workspaces for `frontend` and `backend`.
 
 - **Both services:** `npm run dev` (loads `.env` at root).
-- **Pick services (interactive or flags):** `npm run dev:services` or `npx heylo-dev` — see `scripts/dev-services.mjs` / `npx heylo-dev --help`.
+- **Pick services (interactive or flags):** `npm run dev:services` or `npx heylo-dev` — see `cli/dev-services.mjs` / `npx heylo-dev --help`.
 
 Ensure a root **`.env`** exists (see `.env.example`). AppSync/Go has its own build and deploy path under `go/backend/appsync/`.
 

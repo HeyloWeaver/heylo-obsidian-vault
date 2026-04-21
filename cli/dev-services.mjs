@@ -3,9 +3,9 @@
  * Start one or more local dev servers (API, Web) with optional interactive pick.
  *
  * Usage:
- *   node scripts/dev-services.mjs
- *   node scripts/dev-services.mjs api web
- *   node scripts/dev-services.mjs --all
+ *   node cli/dev-services.mjs
+ *   node cli/dev-services.mjs api web
+ *   node cli/dev-services.mjs --all
  *   npm run dev:services -- api
  */
 import { spawn } from 'node:child_process';

@@ -17,7 +17,7 @@ The vault uses a naming convention to separate "notes" from "code":
 vault root
 ├── README.md                ← you are here
 ├── package.json             ← npm workspaces (frontend, backend) + dev scripts
-├── scripts/                 ← small CLI helpers (e.g. local dev service picker)
+├── cli/                     ← vault-root CLI (e.g. local dev service picker)
 ├── _Engineering/            ← architecture, design, per-subsystem deep-dives
 ├── _Plans/                  ← initiative / redesign plans
 ├── _Notes/                  ← personal scratch, dev environment notes
@@ -52,7 +52,7 @@ From the **vault root** (next to `package.json`):
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
 
-**`heylo-dev` CLI** (`scripts/dev-services.mjs`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior (including `dotenv` from the vault root).
+**`heylo-dev` CLI** (`cli/dev-services.mjs`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior (including `dotenv` from the vault root).
 
 | Command | What it does |
 |--------|----------------|
@@ -60,7 +60,7 @@ From the **vault root** (next to `package.json`):
 | `npx heylo-dev api` / `web` | Start one service |
 | `npx heylo-dev web api` | Start both (any order) |
 | `npx heylo-dev --all` | Start every configured service |
-| `npm run dev:services` | Same entrypoint as `node scripts/dev-services.mjs` |
+| `npm run dev:services` | Same entrypoint as `node cli/dev-services.mjs` |
 
 Run **`npx heylo-dev --help`** for the full flag list. In CI or other non-interactive shells, pass **`api`**, **`web`**, or **`--all`** explicitly.
 
