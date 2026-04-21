@@ -5,7 +5,7 @@ owner: Mike
 updated: 2026-04-21
 status: current
 ---
-Brian and Will - I should meet with
+Brian and Will are good first people to meet with
 
 |   |   |
 |---|---|

@@ -6,4 +6,4 @@ updated: 2026-04-21
 status: current
 ---
 - [[Heylo Onboarding]]
-- [[Points of Contanct]]
+- [[Points of Contact]]

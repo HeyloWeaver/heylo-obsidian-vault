@@ -7,7 +7,7 @@ status: current
 ---
 # Backend — High Level Overview
 
-The Heylo backend is a NestJS 10 monolith (TypeScript, Node 22) fronted by a Docker/PM2 container, with a fleet of AWS Lambda functions ringing the edges to handle IoT traffic, scheduled jobs, and event transforms. It owns domain data in MySQL (via TypeORM), session auth via AWS Cognito, realtime fan-out via API Gateway WebSockets, video-call orchestration via Daily.co, transactional email via nodemailer (SMTP), support ticketing via Intercom, device telemetry via AWS IoT Core → Kinesis → Lambda → HTTP, and secrets/streams/params across a healthy slice of AWS (S3, SSM, SecretsManager, DynamoDB, KinesisVideo, IAM, CloudWatch Logs). The NestJS process is the system of record; Lambdas mostly translate external events into REST calls back into it.
+The Heylo backend is a NestJS 11 monolith (TypeScript, Node 22) fronted by a Docker/PM2 container, with a fleet of AWS Lambda functions ringing the edges to handle IoT traffic, scheduled jobs, and event transforms. It owns domain data in MySQL (via TypeORM), session auth via AWS Cognito, realtime fan-out via API Gateway WebSockets, video-call orchestration via Daily.co, transactional email via nodemailer (SMTP), support ticketing via Intercom, device telemetry via AWS IoT Core → Kinesis → Lambda → HTTP, and secrets/streams/params across a healthy slice of AWS (S3, SSM, SecretsManager, DynamoDB, KinesisVideo, IAM, CloudWatch Logs). The NestJS process is the system of record; Lambdas mostly translate external events into REST calls back into it.
 
 At a glance: `src/main.ts` bootstraps Nest with CORS for the known heylo.tech origins, installs `cookie-parser`, and listens on `PORT` (default 3000, `4000` in local dev). `src/app.module.ts` wires TypeORM (mysql, no synchronize, migrations in `src/migrations/`), AutoMapper with Automapper classes strategy, and every feature module. Two global guards run on every request: `AuthGuard` (validates Cognito JWT and populates `ContextService`, unless `@Public()`) and `RolesGuard` (checks required roles from `@Roles(...)`). Controllers follow the Nest HTTP convention; services hold the business logic; entities live in `src/entities/`; cross-cutting DTOs and enums live in `src/domain/`.
 
@@ -18,7 +18,7 @@ At a glance: `src/main.ts` bootstraps Nest with CORS for the known heylo.tech or
 ### Stack
 
 - **Runtime:** Node 22.14 (alpine in Docker), TypeScript 5.
-- **Framework:** NestJS 10 — decorator-driven controllers, DI via modules, `@nestjs/swagger` exposing `/api`.
+- **Framework:** NestJS 11 — decorator-driven controllers, DI via modules, `@nestjs/swagger` exposing `/api`.
 - **ORM:** TypeORM with `mysql` driver, `synchronize: false`, hand-written migrations (`src/migrations/*.ts`).
 - **Auth:** AWS Cognito — `@aws-sdk/client-cognito-identity-provider` for user admin; JWT verification via `aws-jwt-verify`. Custom attributes `custom:platformUserId`, `custom:platformRoleId`, `custom:platformAgencyId`, `custom:platformDeviceId` carry platform identity in the ID token.
 - **Realtime:** AWS API Gateway WebSockets. Lifecycle (`$connect`/`$disconnect`) is proxied by an API Gateway integration into this backend's `/connection/ws/on/connect` and `/connection/ws/on/disconnect`. Outbound messages go out via `ApiGatewayManagementApiClient.PostToConnection`.

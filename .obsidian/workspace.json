@@ -216,6 +216,7 @@
   },
   "active": "541ffd2d9c8b48e4",
   "lastOpenFiles": [
+    "_Onboarding/Points of Contact.md",
     "AGENTS.md",
     "_Notes/04-21-26 Caseloads Review.md",
     "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
@@ -251,7 +252,6 @@
     "_Engineering/Backend/Agent Work Guide.md",
     "_Standups/Apr 27, 2026 Standup.md",
     "_Standups/Standups.md",
-    "_Standups/Apr 20, 2026 Standup.md",
     "node_modules/concurrently/docs/demo.gif"
   ]
 }

@@ -24,7 +24,7 @@ vault root (= git workspace root)
 ├── _Onboarding/             ← first-day notes, points of contact, ramp-up guides
 ├── _Standups/               ← daily/weekly standup logs
 ├── frontend/                ← Next.js 15 / React 19 console (real repo)
-├── backend/                 ← NestJS 10 / TypeORM API (real repo)
+├── backend/                 ← NestJS 11 / TypeORM API (real repo)
 ├── go/                      ← Go services (currently: AppSync resolvers)
 ├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
 ├── dev-services.mjs         ← `heylo` CLI (service picker)
@@ -33,7 +33,7 @@ vault root (= git workspace root)
 ## What each code repo does
 
 - **`frontend/`** — the operator-facing web console. Next.js 15 App Router, React 19, Tailwind v4, shadcn/ui. Renders caseload, alerts, analytics, video calls, and site/device management. Connects to the backend over HTTPS cookies and a single global WebSocket. Deep-dive: `_Engineering/Frontend/High Level Overview.md`.
-- **`backend/`** — the core API. NestJS 10 on Node 22 with TypeORM + MySQL. Serves the frontend, handles auth via AWS Cognito, drives real-time updates through API Gateway WebSockets, and orchestrates device/IoT events, video calls (Daily.co), email, and multi-tenant agency state. Deep-dive: `_Engineering/Backend/High Level Overview.md`.
+- **`backend/`** — the core API. NestJS 11 on Node 22 with TypeORM + MySQL. Serves the frontend, handles auth via AWS Cognito, drives real-time updates through API Gateway WebSockets, and orchestrates device/IoT events, video calls (Daily.co), email, and multi-tenant agency state. Deep-dive: `_Engineering/Backend/High Level Overview.md`.
 - **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
 
 Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/`.
@@ -82,7 +82,7 @@ A few conventions that make the vault pleasant to use — the same paths apply i
 
 ## If you're new here
 
-Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contanct.md`, then set up your machine using `_Engineering/Dev Environment Setup.md`, then read the two high-level overviews:
+Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contact.md`, then set up your machine using `_Engineering/Dev Environment Setup.md`, then read the two high-level overviews:
 
 - `_Engineering/Frontend/High Level Overview.md`
 - `_Engineering/Backend/High Level Overview.md`

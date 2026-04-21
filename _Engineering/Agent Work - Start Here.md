@@ -35,6 +35,7 @@ Then use domain playbooks for targeted work:
    - frontend usually on `localhost:3000`
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API
+5. Optional deeper pass across all three repos: [[04-21-26 Codebase Audit – Full Stack Architecture Review]] (`_Notes/`).
 
 ---
 

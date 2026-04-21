@@ -11,7 +11,7 @@ status: current
 
 We are building a new platform for agencies who service humans with developmental disabilities through a tech enabled remote monitoring platform. Our product will enable agencies to reduce the number of FTEs that are required in-home to deliver care. This will alleviate a significant amount of operating and profit margin pressure from the agency, while delivering a better experience to the humans we serve, helping them to be more independent in their home and community.
 
-_**Our goal is to develop and release a first version of our platform by end of September 2025.**_
+**Engineering focus (2026):** ship in quarterly roadmap increments while hardening production paths across the operator app, APIs, and device integrations. Use the **Heylo 2026 Roadmap** link under Planning and Resources for current priorities; treat that roadmap as the live planning source rather than fixed historical dates.
 
 ### Technical Summary
 
