@@ -1,0 +1,3 @@
+# Standups
+
+- [[Apr 20, 2026 Standup]]

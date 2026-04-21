@@ -35,4 +35,3 @@
 - Status transitions enforce authorization and audit/event logs.
 - Realtime updates still fire where expected.
 - Integration/service tests cover touched behaviors.
-

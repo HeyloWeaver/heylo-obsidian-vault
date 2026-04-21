@@ -37,4 +37,3 @@
 - Device status/battery/lifecycle updates persist correctly.
 - Alert/banner side effects still trigger correctly.
 - Tests or fixtures cover changed payload mapping.
-

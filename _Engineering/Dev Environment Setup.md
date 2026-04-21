@@ -15,7 +15,3 @@ NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID=us-east-2:2ca8427e-6c7c-4cc0-9f1c-513c6
 NEXT_PUBLIC_AWS_COGNITO_USER_AUTH_CLIENT_ID=72keil7g6emsltkug4cjeipg9u \
 NEXT_PUBLIC_API_BASE_URL=http://localhost:4000 npm run dev
 ```
-
----
-
-**Related:** [[Agent Work - Start Here]] | [[Backend/Agent Work Guide]] | [[Frontend/Agent Work Guide]] | [[Go/Agent Work Guide]]

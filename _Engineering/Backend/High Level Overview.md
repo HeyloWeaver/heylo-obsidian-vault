@@ -1,5 +1,4 @@
 # Backend — High Level Overview
-> **Related:** [[Backend/Agent Work Guide]] | [[Backend/Domain Playbooks]] | [[Agent Work - Start Here]] | [[Frontend/High Level Overview]]
 
 The Heylo backend is a NestJS 10 monolith (TypeScript, Node 22) fronted by a Docker/PM2 container, with a fleet of AWS Lambda functions ringing the edges to handle IoT traffic, scheduled jobs, and event transforms. It owns domain data in MySQL (via TypeORM), session auth via AWS Cognito, realtime fan-out via API Gateway WebSockets, video-call orchestration via Daily.co, transactional email via nodemailer (SMTP), support ticketing via Intercom, device telemetry via AWS IoT Core → Kinesis → Lambda → HTTP, and secrets/streams/params across a healthy slice of AWS (S3, SSM, SecretsManager, DynamoDB, KinesisVideo, IAM, CloudWatch Logs). The NestJS process is the system of record; Lambdas mostly translate external events into REST calls back into it.
 

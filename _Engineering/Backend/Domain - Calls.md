@@ -36,4 +36,3 @@
 - Call event log entries still capture meaningful lifecycle events.
 - Participant authorization is preserved.
 - Realtime notifications are consistent with state changes.
-

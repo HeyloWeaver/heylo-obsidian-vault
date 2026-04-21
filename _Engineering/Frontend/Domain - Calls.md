@@ -35,4 +35,3 @@
 - Call state updates are reflected in UI without manual refresh.
 - Missed/rejected/connected handling remains consistent.
 - No duplicate toasts/events for the same call action.
-

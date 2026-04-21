@@ -35,4 +35,3 @@
 - Battery/online/offline alerts still surface and clear correctly.
 - No regressions in socket-driven banners/indicators.
 - Service payload assumptions match backend response shape.
-

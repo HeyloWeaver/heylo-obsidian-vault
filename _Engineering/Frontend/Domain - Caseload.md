@@ -34,4 +34,3 @@
 - CRUD/update workflows still persist and refresh expected UI state.
 - Empty/loading/error states are still coherent.
 - No hidden dependency on fixture-specific shape.
-

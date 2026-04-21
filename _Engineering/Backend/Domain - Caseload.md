@@ -35,4 +35,3 @@
 - Schedule reads/writes handle date boundaries correctly.
 - Integration tests cover modified behavior.
 - Cross-repo contract consumers are updated.
-

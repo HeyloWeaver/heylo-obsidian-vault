@@ -14,6 +14,3 @@ Atomic design - run with it
 
 Chris picky on architecture w/ data flow
 - If you're using an interface, frontend should not do math - pull the data from backend!!!
-
-
-

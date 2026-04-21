@@ -35,7 +35,3 @@
 - Resolver dispatch path in `main.go` includes expected field handling.
 - Unauthorized requests are rejected.
 - Tests cover both happy path and permission failure.
-
----
-
-**Related:** [[Go/Agent Work Guide]] | [[Go/Domain Playbooks]] | [[Backend/Domain - Caseload]] | [[Frontend/Domain - Caseload]]

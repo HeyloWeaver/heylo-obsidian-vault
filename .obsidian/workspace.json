@@ -202,6 +202,15 @@
   },
   "active": "8f4641cdab190961",
   "lastOpenFiles": [
+    "_Engineering/Backend/Backend.md",
+    "_Standups/Standups.md",
+    "_Onboarding/Onboarding.md",
+    "_Plans/Plans.md",
+    "_Notes/Notes.md",
+    "_Engineering/Devices/Devices.md",
+    "_Engineering/Go/Go.md",
+    "_Engineering/Frontend/Frontend.md",
+    "_Engineering/Engineering.md",
     "frontend/services/beta/caseloadService.ts",
     "frontend/services/beta",
     "frontend/services/caseloadBetaService.ts",
@@ -213,7 +222,6 @@
     "backend/dist/lambdas",
     "backend/dist/src/main.d.ts",
     "backend/dist/src/main.js",
-    "backend/dist/src/main.js.map",
     "_Engineering/Go/Domain - Handoffs.md",
     "_Engineering/Go/Domain - Caseload.md",
     "_Engineering/Go/Domain Playbooks.md",
@@ -229,14 +237,6 @@
     "_Engineering/Frontend/Domain Playbooks.md",
     "_Engineering/Go/Agent Work Guide.md",
     "_Engineering/Backend/Agent Work Guide.md",
-    "_Engineering/Frontend/Agent Work Guide.md",
-    "_Engineering/Agent Work - Start Here.md",
-    "_Notes/Mike's Architecture Notes.md",
-    "_Onboarding/Heylo Onboarding.md",
-    "Untitled.md",
-    "_Onboarding/First Day Notes - Chris.md",
-    "_Engineering/Devices/SD Card Flashing Steps.md",
-    "_Engineering/Devices/Device Provisioning.md",
-    "frontend/node_modules/@humanfs/types/README.md"
+    "_Engineering/Frontend/Agent Work Guide.md"
   ]
 }

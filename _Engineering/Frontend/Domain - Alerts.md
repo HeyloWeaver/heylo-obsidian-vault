@@ -34,4 +34,3 @@
 - Status update flows (`resolved`, `needs-support`, `dismissed`) still work.
 - Incoming alert realtime behavior (sound/toast/notification) is intact.
 - Role-based route behavior still makes sense for affected pages.
-
