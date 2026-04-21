@@ -26,7 +26,6 @@ related:
   - "[[Agent Work - Start Here]]"
   - "[[Agent Work Guide]]"
 ---
-
 # Codebase Audit — Full Stack Architecture Review
 *Senior full-stack architect onboarding pass. Three repos: `frontend/`, `backend/`, `go/`. Written as a peer-level audit for the team — what's working well, what to watch, and what to fix.*
 
