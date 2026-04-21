@@ -11,6 +11,16 @@
             "id": "37f60a9e5a05c4a9",
             "type": "leaf",
             "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "0bc69d57b2421878",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
                 "file": "_Notes/! 04-21-26 Caseloads Review.md",
@@ -206,18 +216,20 @@
   },
   "active": "37f60a9e5a05c4a9",
   "lastOpenFiles": [
-    "node_modules/fsevents/fsevents.d.ts",
-    "node_modules/fsevents/fsevents.node",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/src/test/summary-emailer.integration.test.d.ts",
+    "backend/dist/src/test/summary-emailer.integration.test.js",
+    "backend/dist/src/test/summary-emailer.integration.test.js.map",
+    "backend/dist/src/test/site-common-area.integration.test.d.ts",
+    "backend/dist/src/test/site-common-area.integration.test.js",
+    "backend/dist/src/test/site-common-area.integration.test.js.map",
+    "backend/dist/src/test/event-processor.integration.test.d.ts",
+    "backend/dist/src/test/event-processor.integration.test.js",
+    "backend/dist/src/test/event-processor.integration.test.js.map",
+    "backend/dist/src/test/lambda-loader.d.ts",
+    "_Notes/! 04-21-26 Caseloads Review.md",
+    "_Notes/About Mike.md",
     "node_modules/fsevents/README.md",
-    "node_modules/fsevents/package.json",
-    "node_modules/fsevents/fsevents.js",
-    "node_modules/fsevents/LICENSE",
-    "node_modules/fsevents",
-    "frontend/tsconfig.tsbuildinfo",
-    "frontend/hooks/useSiteColors.ts",
-    "frontend/lib/utils/imageColor.ts",
-    "frontend/lib/models/caseload/caseloadConstants.ts",
-    "node_modules/@nestjs/common/decorators/core/set-metadata.decorator.d.ts",
     "_Notes/! Action Items.md",
     "CLAUDE.md",
     "AGENTS.md",
@@ -235,13 +247,11 @@
     "_Standups/Apr 20, 2026 Standup.md",
     "node_modules/cliui/CHANGELOG.md",
     "_Notes/Notes.md",
-    "_Notes/! 04-21-26 Caseloads Review.md",
     "node_modules/rxjs/README.md",
     "node_modules/rxjs/CODE_OF_CONDUCT.md",
     "node_modules/rxjs/CHANGELOG.md",
     "node_modules/concurrently/README.md",
     "node_modules/yargs/README.md",
-    "node_modules/cliui/README.md",
     "node_modules/concurrently/docs/demo.gif"
   ]
 }

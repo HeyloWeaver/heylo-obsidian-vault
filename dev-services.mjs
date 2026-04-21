@@ -68,7 +68,7 @@ const SERVICES = [
   },
   {
     id: 'go',
-    title: 'AppSync (Go Lambda)',
+    title: 'AppSync (Go — local GraphQL + cloud MySQL via DB_* in .env)',
     npmScript: 'dev:go',
     color: 'cyan',
     port: 8080,
@@ -97,6 +97,7 @@ Examples:
   heylo                      # interactive multiselect (TTY only)
   heylo api                  # API local, everything else → cloud
   heylo api web              # API + web local, go → cloud (any order)
+  heylo go                   # Go GraphQL on :8080; set DB_* (or APPSYNC_MYSQL_DSN) in .env like the API
   heylo --all                # all services local
 `);
 }
