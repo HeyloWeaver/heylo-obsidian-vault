@@ -28,3 +28,9 @@ CLI command for this
 SOurce version - change branch name
 
 getcaseloadschedule.go is where we will be doing all our logic and moving everything in client to
+
+---
+
+## NOTES
+
+derive color of location from the image provided, default to what it is now

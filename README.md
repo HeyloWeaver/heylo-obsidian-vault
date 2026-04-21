@@ -1,20 +1,22 @@
 # Heylo Engineering Vault
 
-This Obsidian vault is the single place where Heylo's **code** and **context** live side-by-side. The code repositories are mirrored in as real folders, and everything else — architecture notes, onboarding docs, standups, device/hardware knowledge — is written as regular Markdown notes that Obsidian can link, search, and graph across.
+This repository is Heylo’s **Obsidian vault** — the single place where **code** and **context** live side by side. It is **also** the **git workspace** (multiple real repos and Markdown in one tree on disk) so **docs, AI coding agents, and code stay aligned**. Architecture notes, onboarding, standups, and device knowledge sit next to `frontend/`, `backend/`, and `go/` as first-class paths — agents and humans get **clear instructions, stable links, and direct visibility into the same files the repo uses**, not a parallel copy of the truth.
 
-The intent is simple: when you're reading a note about the backend, you can jump straight into the backend code without leaving Obsidian; when you're reading the code, you can jump straight into the note that explains why it exists.
+**Obsidian** gives the vault search, `[[wikilinks]]`, and graphing on top of that layout; editors and agents use the **same paths**. The broader goal is **one vault/workspace where documentation and code evolve together**, with agent-facing entry points so tools always know where to look and what to run.
 
-**Coding agents (Cursor, Claude Code, etc.):** use **`AGENTS.md`** at the vault root for Obsidian layout, sub-repo map, agent handoff order, and how to attach context. **`CLAUDE.md`** is a shorter Claude-oriented summary that points back to `AGENTS.md`.
+We also use **Obsidian as an MCP** ([Model Context Protocol](https://modelcontextprotocol.io/)) server so agents can **pull live vault context** (notes, links, structure) while they work on the repos. That closes a **feedback loop**: agents ground themselves in durable docs, changes ship in the codebase, and new reasoning gets written back into the vault — each pass makes the next one better. Together, the vault and the codebase act as a **recursively learning brain**: each cycle of agent work, commits, and note updates tightens the map between intent and implementation, with git keeping the whole thing auditable.
+
+**Coding agents (Cursor, Claude Code, etc.):** use **`AGENTS.md`** at the **vault root** (same folder as the git workspace root) for layout, sub-repo map, agent handoff order, and how to attach context. **`CLAUDE.md`** is a shorter Claude-oriented summary that points back to `AGENTS.md`.
 
 ## How the vault is organized
 
-The vault uses a naming convention to separate "notes" from "code":
+The vault is the git workspace: one tree on disk. It uses a naming convention to separate **documentation** from **code** (works the same in git, Obsidian, and agent context):
 
 - **Folders with a leading underscore** (`_Engineering/`, `_Notes/`, `_Onboarding/`, `_Standups/`) are Obsidian notes. Edit them like any Markdown file — they're meant to be linked, back-linked, and graphed.
-- **Folders without an underscore** (`frontend/`, `backend/`, `go/`) are real code repositories. Treat them as read-only from Obsidian's perspective — edit code in your actual editor (VS Code, Cursor, etc.) and let Obsidian index the files for search and linking.
+- **Folders without an underscore** (`frontend/`, `backend/`, `go/`) are real code repositories. Edit them in your editor or via agents; use Obsidian for **read/search/link** on notes and code paths — the vault (git workspace) stays the single source of truth on disk.
 
 ```
-vault root
+vault root (= git workspace root)
 ├── README.md                ← you are here
 ├── _Engineering/            ← architecture, design, per-subsystem deep-dives
 ├── _Plans/                  ← initiative / redesign plans
@@ -39,7 +41,7 @@ Hardware/device knowledge — hubs, firmware, provisioning, payload samples — 
 
 ## Local development (terminal)
 
-npm workspaces and dev scripts live at the **vault root** (`package.json` lists `frontend` and `backend`).
+npm workspaces and dev scripts live at the **vault root** — the same directory as the **git workspace root** (`package.json` lists `frontend` and `backend`). The **`heylo`** CLI there is the supported way to **orchestrate** which Node services to run without juggling one-off commands.
 
 1. Ensure **`.env`** exists at the vault root (copy from **`.env.example`**).
 2. Run **`npm install`** once from the vault root. That links **`heylo-web`** and **`heylo-api`** and installs shared tooling (`concurrently`, `dotenv-cli`, `prompts`, …).
@@ -70,12 +72,13 @@ AWS profiles, backend `development.env`, and copy-paste frontend env for Cognito
 
 ## Working in Obsidian
 
-A few conventions that make the vault pleasant to use:
+A few conventions that make the vault pleasant to use — the same paths apply in git and in agents:
 
+- **MCP** — if your agent stack has the Obsidian MCP server enabled, prefer it for **targeted vault reads** (search, file content, backlinks) instead of re-explaining context that already lives in `_Engineering/` and friends. What you capture in notes becomes what the next session can fetch first.
 - **Follow `[[wikilinks]]`** — notes link to each other and to files inside the code repos. Ctrl/Cmd-click opens the target.
 - **Graph view** (Ctrl/Cmd-G) is useful for seeing how a subsystem's notes relate to its code.
-- **Search** (Ctrl/Cmd-Shift-F) searches notes *and* code at once — great for "where do we use X?" queries without leaving Obsidian.
-- **Don't edit code files from Obsidian.** Obsidian doesn't know about ESLint, Prettier, or build tooling. Open the repo in your real editor.
+- **Search** (Ctrl/Cmd-Shift-F) searches notes *and* code at once — great for "where do we use X?" without switching roots.
+- **Don't edit code files from Obsidian** if you rely on formatters and language servers — use Cursor/VS Code (or agents) for code; keep Obsidian for notes and navigation.
 - **Underscore prefix = note, no prefix = code.** If you're creating a new top-level folder, follow the pattern.
 
 ## If you're new here
@@ -90,5 +93,5 @@ After that, `_Engineering/Heylo Prod & Eng.md` gives the wider product + enginee
 ## Keeping this vault healthy
 
 - When you learn something non-obvious about a subsystem, write it into the relevant note under `_Engineering/` rather than leaving it in a PR description or Slack thread.
-- Architecture notes should link to the specific files in the code repos they describe — that's the whole point of keeping them in the same vault.
+- Architecture notes should link to the specific files in the code repos they describe — that keeps agents and humans pointed at the same paths as git.
 - The overviews under `_Engineering/Frontend/` and `_Engineering/Backend/` are living documents. If you change a foundational piece of either repo, update the overview in the same PR.
