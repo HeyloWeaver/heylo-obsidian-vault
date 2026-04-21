@@ -103,19 +103,19 @@ SuperAdmin-only visibility. The new entry is a **top-level sidebar item** — fr
 
 ```ts
 {
-  title: "Caseload Management (Beta)",
-  url: "/caseload-management/beta",
+  title: "Caseload Management",
+  url: "/caseload-management/v2",
   icon: CalendarRange, // or another distinct lucide icon
 },
 ```
 
-**Role filter change** in `lib/utils.ts#filterNavigationLinks`. The existing rules hide `Caseload Management` from superAdmin and hide a bunch of items from non-superAdmins. Add one new rule: show `Caseload Management (Beta)` only when `userRole === RoleId.superAdmin`:
+**Role filter change** in `lib/utils.ts#filterNavigationLinks`. The existing rules hide `Caseload Management` from superAdmin and hide a bunch of items from non-superAdmins. Add one new rule: show `Caseload Management` only when `userRole === RoleId.superAdmin`:
 
 ```ts
 // Hide the new beta page from everyone except superAdmin
 if (
   userRole !== RoleId.superAdmin &&
-  item.title === "Caseload Management (Beta)"
+  item.path === "/caseload-management/v2"
 ) {
   return false;
 }
@@ -227,7 +227,7 @@ Fixture should cover: multiple users, multiple sites, one user scheduled at two 
 - **Month boundaries & timezones** — agency-local TZ vs. browser TZ. Render using the agency's timezone if present in the payload; document the assumption.
 - **Accessibility of the grid** — keyboard nav across days isn't required in v1, but don't build ourselves into a `div`-soup corner. Use `role="grid"` semantics.
 - **Nested-route access leak** — because `/caseload-management/beta` lives under the legacy parent, a non-superAdmin who hand-types the URL must hit the page-level guard. Don't rely on sidebar filtering alone.
-- **Filter-rule ordering** — the new `Caseload Management (Beta)` rule in `filterNavigationLinks` must be placed such that it isn't short-circuited by the existing "hide regular nav items from superAdmin" block. Double-check on implementation.
+- **Filter-rule ordering** — the new `Caseload Management` rule in `filterNavigationLinks` must be placed such that it isn't short-circuited by the existing "hide regular nav items from superAdmin" block. Double-check on implementation.
 
 ## Out-of-scope (explicitly deferred)
 

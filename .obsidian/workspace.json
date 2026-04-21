@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/! Caseloads Review.md",
+                "file": "_Standups/Apr 20, 2026 Standup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "! Caseloads Review"
+              "title": "Apr 20, 2026 Standup"
             }
           }
         ]
@@ -206,20 +206,22 @@
   },
   "active": "abeb0b1695690567",
   "lastOpenFiles": [
-    "package-lock.json",
-    "node_modules/rxjs/LICENSE.txt",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/src/utils/password.util.d.ts",
+    "backend/dist/src/utils/password.util.js",
+    "backend/dist/src/utils/password.util.js.map",
+    "backend/dist/src/test/site-common-area.integration.test.d.ts",
+    "backend/dist/src/test/event-processor.integration.test.d.ts",
+    "backend/dist/src/test/event-processor.integration.test.js",
+    "backend/dist/src/test/event-processor.integration.test.js.map",
+    "backend/dist/src/test/lambda-loader.d.ts",
+    "backend/dist/src/test/lambda-loader.js",
+    "backend/dist/src/test/device-checker.test.d.ts",
+    "_Notes/! Caseloads Review.md",
+    "_Notes/! Action Items.md",
     "node_modules/rxjs/README.md",
     "node_modules/rxjs/CODE_OF_CONDUCT.md",
     "node_modules/rxjs/CHANGELOG.md",
-    "node_modules/rxjs/tsconfig.json",
-    "node_modules/rxjs/webSocket/package.json",
-    "node_modules/rxjs/webSocket",
-    "node_modules/rxjs/testing/package.json",
-    "node_modules/rxjs/testing",
-    "node_modules/rxjs/package.json",
-    "node_modules/rxjs/operators/package.json",
-    "node_modules/rxjs/operators",
-    "node_modules/rxjs/fetch/package.json",
     "node_modules/concurrently/README.md",
     "node_modules/yargs/README.md",
     "node_modules/cliui/README.md",
@@ -240,8 +242,6 @@
     "node_modules/concurrently/docs/cli/passthrough-arguments.md",
     "node_modules/concurrently/docs/cli/output-control.md",
     "node_modules/concurrently/docs/cli/input-handling.md",
-    "node_modules/concurrently/docs/cli/configuration.md",
-    "node_modules/concurrently/docs/demo.gif",
-    "node_modules/concurrently/docs/README.md"
+    "node_modules/concurrently/docs/demo.gif"
   ]
 }
