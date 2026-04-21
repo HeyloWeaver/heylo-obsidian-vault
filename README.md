@@ -28,7 +28,6 @@ vault root (= git workspace root)
 ├── go/                      ← Go services (currently: AppSync resolvers)
 ├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
 ├── dev-services.mjs         ← `heylo` CLI (service picker)
-└── package-lock.json
 ```
 
 ## What each code repo does
