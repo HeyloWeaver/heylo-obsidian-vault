@@ -11,14 +11,10 @@
             "id": "0c9018d25010c336",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/Mike's Architecture Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Mike's Architecture Notes"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -156,13 +152,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_Notes/Mike's Architecture Notes.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Mike's Architecture Notes"
+              "title": "Outline"
             }
           },
           {
@@ -207,6 +202,12 @@
   },
   "active": "0c9018d25010c336",
   "lastOpenFiles": [
+    "_Engineering/Go/Agent Work Guide.md",
+    "_Engineering/Backend/Agent Work Guide.md",
+    "_Engineering/Frontend/Agent Work Guide.md",
+    "_Engineering/Agent Work - Start Here.md",
+    "_Engineering/Go",
+    "_Notes/Mike's Architecture Notes.md",
     "frontend/lib/models/caseload/caseloadScheduleViewModel.ts",
     "frontend/lib/models/caseload-management/caseloadManagementScheduleViewModel.ts",
     "frontend/lib/models/caseload-management",
@@ -218,13 +219,10 @@
     "_Onboarding/First Day Notes - Chris.md",
     "_Engineering/Devices/SD Card Flashing Steps.md",
     "_Engineering/Devices/Device Provisioning.md",
-    "_Notes/Mike's Architecture Notes.md",
     "frontend/node_modules/@smithy/node-http-handler/dist-types/http2/ClientHttp2SessionRef.d.ts",
     "frontend/node_modules/@smithy/node-http-handler/dist-types/http2",
     "frontend/node_modules/@smithy/node-http-handler/dist-es/http2/ClientHttp2SessionRef.js",
-    "frontend/node_modules/@smithy/node-http-handler/dist-es/http2",
     "frontend/node_modules/@humanfs/types/README.md",
-    "frontend/node_modules/@humanfs/types/src/hfs-types.ts",
     "frontend/node_modules/@humanfs/types/CHANGELOG.md",
     "frontend/node_modules/zustand/README.md",
     "_Plans/Caseload Redesign v1.md",
@@ -239,9 +237,6 @@
     "frontend/node_modules/@radix-ui/react-use-is-hydrated/README.md",
     "frontend/node_modules/eslint-plugin-react/README.md",
     "frontend/node_modules/eslint-plugin-import/docs/rules/namespace.md",
-    "frontend/node_modules/eslint-plugin-import/README.md",
-    "_Engineering/Devices/MedMinder.md",
-    "_Engineering/Devices/Heylo Hub Firmware Dev Notes.md",
-    "_Engineering/Devices/Device Checker Service.md"
+    "frontend/node_modules/eslint-plugin-import/README.md"
   ]
 }
