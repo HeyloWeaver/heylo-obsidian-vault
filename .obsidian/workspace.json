@@ -16,23 +16,8 @@
               "icon": "lucide-git-fork",
               "title": "Graph view"
             }
-          },
-          {
-            "id": "0bc69d57b2421878",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Notes"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -215,9 +200,10 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0bc69d57b2421878",
+  "active": "37f60a9e5a05c4a9",
   "lastOpenFiles": [
-    "_Notes/04-20-26 - Architecture Notes.md",
+    "_Notes/04-20-26 Architecture Notes.md",
+    "_Notes/Notes.md",
     "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
     "_Notes/04-20-26 First Day - Chris.md",
     "_Notes/04-20-26 First Day - Shivani.md",
@@ -250,7 +236,6 @@
     "_Standups/Standups.md",
     "_Standups/Apr 20, 2026 Standup.md",
     "node_modules/cliui/CHANGELOG.md",
-    "_Notes/Notes.md",
     "node_modules/rxjs/README.md",
     "node_modules/rxjs/CODE_OF_CONDUCT.md",
     "node_modules/concurrently/docs/demo.gif"

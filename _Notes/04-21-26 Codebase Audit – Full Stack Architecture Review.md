@@ -32,7 +32,7 @@ reviewed_by: Mike
 next_review: 2026-06-01
 review_trigger: after RDS Proxy decision + caseload beta GraphQL migration
 related:
-  - "[[04-20-26 - Architecture Notes]]"
+  - "[[04-20-26 Architecture Notes]]"
   - "[[Agent Work - Start Here]]"
   - "[[Agent Work Guide]]"
 ---
