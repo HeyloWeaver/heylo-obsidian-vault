@@ -9,3 +9,4 @@ status: current
 - [[First Day - Shivani]]
 - [[First Day - Chris]]
 - [[Mike's Architecture Notes]]
+- [[Codebase Audit – Full Stack Architecture Review]]
