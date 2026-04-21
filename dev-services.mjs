@@ -3,9 +3,9 @@
  * Start one or more local dev servers (API, Web) with optional interactive pick.
  *
  * Usage:
- *   node cli/dev-services.mjs
- *   node cli/dev-services.mjs api web
- *   node cli/dev-services.mjs --all
+ *   node dev-services.mjs
+ *   node dev-services.mjs api web
+ *   node dev-services.mjs --all
  *   npm run dev:services -- api
  */
 import { spawn } from 'node:child_process';
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 
 import prompts from 'prompts';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const ROOT = dirname(fileURLToPath(import.meta.url));
 
 /** @type {{ id: string, title: string, npmScript: string, color: string }[]} */
 const SERVICES = [
@@ -37,7 +37,7 @@ function printHelp() {
   console.log(`Heylo local dev — pick which services to run.
 
 Usage:
-  heylo-dev [options] [service ...]
+  heylo [options] [service ...]
   npm run dev:services -- [options] [service ...]
 
 Services:
@@ -48,10 +48,10 @@ Options:
   -h, --help    Show this help
 
 Examples:
-  heylo-dev                  # interactive multiselect (TTY only)
-  heylo-dev api              # API only
-  heylo-dev web api          # both (any order)
-  heylo-dev --all            # same as both
+  heylo                      # interactive multiselect (TTY only)
+  heylo api                  # API only
+  heylo web api              # both (any order)
+  heylo --all                # same as both
 `);
 }
 

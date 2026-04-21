@@ -23,7 +23,8 @@ High-level tree (not exhaustive):
 | `frontend/` | Next.js operator console (workspace package `heylo-web`) |
 | `backend/` | NestJS API (workspace package `heylo-api`) |
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
-| `cli/` | Vault-root CLI (e.g. `dev-services.mjs`, `heylo-dev` bin) |
+| `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `dev-services.mjs` |
+| `dev-services.mjs` | Local dev service picker (`npx heylo`) |
 
 `frontend/`, `backend/`, and `go/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
 
@@ -73,14 +74,14 @@ After the task, if behavior changed in a durable way, **update the relevant `_En
 
 ---
 
-## Local development (root workspace)
+## Local development (npm at vault root)
 
-From the vault root, `package.json` defines npm workspaces for `frontend` and `backend`.
+The root **`package.json`** (package name **`heylo`**) workspaces **`frontend`** and **`backend`**. Run **`npm install`** and scripts from the vault root; local **`.env`** lives next to **`package.json`** (see **`.env.example`**) and scripts load it with `dotenv -e .env`.
 
-- **Both services:** `npm run dev` (loads `.env` at root).
-- **Pick services (interactive or flags):** `npm run dev:services` or `npx heylo-dev` — see `cli/dev-services.mjs` / `npx heylo-dev --help`.
+- **Both services:** `npm run dev`
+- **Pick services:** `npm run dev:services` or `npx heylo` — `npx heylo --help` for flags.
 
-Ensure a root **`.env`** exists (see `.env.example`). AppSync/Go has its own build and deploy path under `go/backend/appsync/`.
+Ensure **`.env`** exists (copy from **`.env.example`**). AppSync/Go has its own build and deploy path under `go/backend/appsync/`.
 
 ---
 

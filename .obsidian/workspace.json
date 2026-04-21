@@ -206,8 +206,7 @@
   },
   "active": "0522c9e7beb4631a",
   "lastOpenFiles": [
-    "cli/dev-services.mjs",
-    "cli",
+    "dev-services.mjs",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/src/utils/password.util.d.ts",
     "backend/dist/src/utils/password.util.js",

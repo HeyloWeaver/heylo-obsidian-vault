@@ -36,7 +36,7 @@ Prefer **small, contract-aligned** changes; update **`_Engineering/`** when arch
 
 ---
 
-## Local dev (from vault root)
+## Local dev (npm at vault root)
 
-- `npm run dev` — API + web with root `.env`
-- `npx heylo-dev` / `npm run dev:services` — choose services (`--help` for flags)
+- `npm install` then `npm run dev` — API + web (loads `.env`)
+- `npx heylo` / `npm run dev:services` — choose services (`--help` for flags)

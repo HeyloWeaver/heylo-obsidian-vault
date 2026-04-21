@@ -16,8 +16,6 @@ The vault uses a naming convention to separate "notes" from "code":
 ```
 vault root
 ├── README.md                ← you are here
-├── package.json             ← npm workspaces (frontend, backend) + dev scripts
-├── cli/                     ← vault-root CLI (e.g. local dev service picker)
 ├── _Engineering/            ← architecture, design, per-subsystem deep-dives
 ├── _Plans/                  ← initiative / redesign plans
 ├── _Notes/                  ← personal scratch, dev environment notes
@@ -25,8 +23,10 @@ vault root
 ├── _Standups/               ← daily/weekly standup logs
 ├── frontend/                ← Next.js 15 / React 19 console (real repo)
 ├── backend/                 ← NestJS 10 / TypeORM API (real repo)
-└── go/                      ← Go services (currently: AppSync resolvers)
-└── ...etc
+├── go/                      ← Go services (currently: AppSync resolvers)
+├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
+├── dev-services.mjs         ← `heylo` CLI (service picker)
+└── package-lock.json
 ```
 
 ## What each code repo does
@@ -39,32 +39,34 @@ Hardware/device knowledge — hubs, firmware, provisioning, payload samples — 
 
 ## Local development (terminal)
 
-From the **vault root** (next to `package.json`):
+npm workspaces and dev scripts live at the **vault root** (`package.json` lists `frontend` and `backend`).
 
-1. Ensure **`.env`** exists at the vault root (start from **`.env.example`**).
-2. Run **`npm install`** once so root tooling and the `frontend` / `backend` workspaces are available.
+1. Ensure **`.env`** exists at the vault root (copy from **`.env.example`**).
+2. Run **`npm install`** once from the vault root. That links **`heylo-web`** and **`heylo-api`** and installs shared tooling (`concurrently`, `dotenv-cli`, `prompts`, …).
 
-**npm scripts**
+**npm scripts** (from the vault root)
 
 | Command | What it runs |
 |--------|----------------|
-| `npm run dev` | API and web together (loads root `.env`) |
+| `npm run dev` | API and web together (loads **`.env`** via `dotenv-cli`) |
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
 
-**`heylo-dev` CLI** (`cli/dev-services.mjs`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior (including `dotenv` from the vault root).
+**`heylo` CLI** (`dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior.
 
 | Command | What it does |
 |--------|----------------|
-| `npx heylo-dev` | Interactive multiselect when stdin is a TTY |
-| `npx heylo-dev api` / `web` | Start one service |
-| `npx heylo-dev web api` | Start both (any order) |
-| `npx heylo-dev --all` | Start every configured service |
-| `npm run dev:services` | Same entrypoint as `node cli/dev-services.mjs` |
+| `npx heylo` | Interactive multiselect when stdin is a TTY |
+| `npx heylo api` / `web` | Start one service |
+| `npx heylo web api` | Start both (any order) |
+| `npx heylo --all` | Start every configured service |
+| `npm run dev:services` | Same as `node dev-services.mjs` (pass extra args after `--`, e.g. `npm run dev:services -- api`) |
 
-Run **`npx heylo-dev --help`** for the full flag list. In CI or other non-interactive shells, pass **`api`**, **`web`**, or **`--all`** explicitly.
+Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass **`api`**, **`web`**, or **`--all`** explicitly.
 
-**Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow; it is not started by `npm run dev` or `heylo-dev` today.
+**Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow; it is not started by `npm run dev` or `heylo` today.
+
+AWS profiles, backend `development.env`, and copy-paste frontend env for Cognito are documented in **`_Engineering/Dev Environment Setup.md`**.
 
 ## Working in Obsidian
 
@@ -78,7 +80,7 @@ A few conventions that make the vault pleasant to use:
 
 ## If you're new here
 
-Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contanct.md`, then read the two high-level overviews:
+Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contanct.md`, then set up your machine using `_Engineering/Dev Environment Setup.md`, then read the two high-level overviews:
 
 - `_Engineering/Frontend/High Level Overview.md`
 - `_Engineering/Backend/High Level Overview.md`

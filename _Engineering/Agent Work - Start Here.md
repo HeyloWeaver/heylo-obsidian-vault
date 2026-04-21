@@ -31,6 +31,7 @@ Then use domain playbooks for targeted work:
    - [[Backend/High Level Overview]]
 3. Read the repo-specific agent guide above for "change recipes" and gotchas.
 4. Confirm active local run targets before changing behavior:
+   - npm workspaces and dev scripts run from the **vault root** (`npm install`, `npm run dev`, or `npx heylo` — see `README.md` *Local development* or [[Dev Environment Setup]])
    - frontend usually on `localhost:3000`
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API
