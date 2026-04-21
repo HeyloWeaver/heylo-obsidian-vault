@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AGENTS.md",
+                "file": "_Notes/! Caseloads Review.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "! Caseloads Review"
             }
           }
         ]
@@ -204,21 +204,23 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0522c9e7beb4631a",
+  "active": "37f60a9e5a05c4a9",
   "lastOpenFiles": [
-    "dev-services.mjs",
-    "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/src/utils/password.util.d.ts",
-    "backend/dist/src/utils/password.util.js",
-    "backend/dist/src/utils/password.util.js.map",
-    "backend/dist/src/test/event-processor.integration.test.d.ts",
-    "backend/dist/src/test/event-processor.integration.test.js",
-    "backend/dist/src/test/lambda-loader.js",
-    "backend/dist/src/test/device-checker.test.d.ts",
-    "backend/dist/src/test/device-checker.test.js",
-    "README.md",
+    "node_modules/@nestjs/common/decorators/core/set-metadata.decorator.d.ts",
+    "node_modules/@nestjs/common/cache/index.d.ts",
+    "node_modules/@nestjs/common/cache/default-options.d.ts",
+    "node_modules/@nestjs/common/constants.d.ts",
+    "node_modules/@nestjs/common/cache/cache.providers.d.ts",
+    "node_modules/@nestjs/common/cache/cache.module.d.ts",
+    "node_modules/@nestjs/common/cache/cache.module-definition.d.ts",
+    "node_modules/@nestjs/common/cache/cache.constants.d.ts",
+    "node_modules/@nestjs/common/file-stream/interfaces/index.d.ts",
+    "node_modules/@nestjs/common/file-stream/interfaces/index.js",
+    "node_modules/@nestjs/common/file-stream/interfaces/streamable-options.interface.js",
+    "_Notes/! Action Items.md",
     "CLAUDE.md",
     "AGENTS.md",
+    "README.md",
     "_Engineering/Engineering.md",
     "_Engineering/Dev Environment Setup.md",
     "_Engineering/Agent Work - Start Here.md",
@@ -233,7 +235,6 @@
     "node_modules/cliui/CHANGELOG.md",
     "_Notes/Notes.md",
     "_Notes/! Caseloads Review.md",
-    "_Notes/! Action Items.md",
     "node_modules/rxjs/README.md",
     "node_modules/rxjs/CODE_OF_CONDUCT.md",
     "node_modules/rxjs/CHANGELOG.md",
