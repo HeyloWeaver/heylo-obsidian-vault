@@ -4,7 +4,7 @@
 
 FRONTEND AS LITTLE AS POSSIBLE - backend should do all the logic and backend has the logic for frontend
 
-set up GO and push to prod today
+**DONE!** - set up GO and push to prod today 
 
 ### TIMEZONE 
 
@@ -23,7 +23,7 @@ Put the data manipulations in a hook and import
 ~~moving away from cookies - be aware of that
 DONT USE MIDDLEWARE FOR AUTH - we are moving away from vercel~~
 
-**build GO:**
+**how to build GO:**
 build app with overrides
 CLI command for this
 Source version - change branch name
@@ -34,4 +34,4 @@ getcaseloadschedule.go is where we will be doing all our logic and moving everyt
 
 ## NOTES
 
-derive color of location from the image provided, default to what it is now
+**DONE -** derive color of location from the image provided, default to what it is now

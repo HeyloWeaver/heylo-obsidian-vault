@@ -1,28 +1,38 @@
 ---
 type: audit
-tags: [engineering, architecture, audit, backend, frontend, go, onboarding]
+tags:
+  - engineering
+  - architecture
+  - audit
+  - backend
+  - frontend
+  - go
+  - onboarding
 owner: Mike
 updated: 2026-04-21
 status: current
-
-repos: [frontend, backend, go]
-stack: [Next.js 15, NestJS 11, Go, MySQL, AWS]
-
+repos:
+  - frontend
+  - backend
+  - go
+stack:
+  - Next.js 15
+  - NestJS 11
+  - Go
+  - MySQL
+  - AWS
 action_items_total: 20
 action_items_high: 5
 action_items_medium: 7
 action_items_low: 8
 action_items_resolved: 0
-
 risk_level: medium
-top_risk: "shared MySQL DB with no RDS Proxy under Lambda concurrency"
-
+top_risk: shared MySQL DB with no RDS Proxy under Lambda concurrency
 reviewed_by: Mike
 next_review: 2026-06-01
-review_trigger: "after RDS Proxy decision + caseload beta GraphQL migration"
-
+review_trigger: after RDS Proxy decision + caseload beta GraphQL migration
 related:
-  - "[[Mike's Architecture Notes]]"
+  - "[[04-20-26 - Architecture Notes]]"
   - "[[Agent Work - Start Here]]"
   - "[[Agent Work Guide]]"
 ---
