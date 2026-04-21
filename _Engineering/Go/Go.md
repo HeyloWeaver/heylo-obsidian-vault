@@ -1,5 +1,3 @@
-# Go
-
 Index for all Go / AppSync documentation.
 
 - [[Go/Agent Work Guide]]

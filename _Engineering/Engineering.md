@@ -1,5 +1,3 @@
-# Engineering
-
 Central index for all Heylo engineering documentation.
 
 ## Top-Level

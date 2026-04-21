@@ -1,5 +1,3 @@
-# Frontend
-
 Index for all Frontend documentation.
 
 - [[Frontend/High Level Overview]]

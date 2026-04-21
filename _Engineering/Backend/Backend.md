@@ -1,5 +1,3 @@
-# Backend
-
 Index for all Backend documentation.
 
 - [[Backend/High Level Overview]]

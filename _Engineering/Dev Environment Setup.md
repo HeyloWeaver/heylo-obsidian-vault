@@ -1,4 +1,3 @@
-
 `~/.aws/credentials` and `~/.aws/config`
 `aws configure`
 Log in and add [govalo-dev]

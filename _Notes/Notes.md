@@ -1,4 +1,4 @@
-# Notes
-
 - [[About Mike]]
+- [[First Day - Shivani]]
+- [[First Day - Chris]]
 - [[Mike's Architecture Notes]]

@@ -1,17 +1,17 @@
 Hello dictionary good for acronym/industry terms
 
-I/dd = dev disability
+**I/dd** = developmental disability
 
-Remote SUPPORT - NOT remote monitoring
+Remote **SUPPORT** - NOT remote monitoring
 
 Support professional, remote pro, dsp/rsp are interchangeable
 
-waiver = funding
+**waiver** = funding
 
 - Currently trying to figure out how to get reimbursed lobbying
 - Pitch deck for how 
 
-Customer types
+**Customer types**
 
 - Agency that’s never used remote support
 
@@ -20,7 +20,7 @@ Customer types
 - grantCare - copying our positioning
 - Using outsourcing system (callcenter)
 
-Engineering goals:
+**Engineering goals**
 
 - Reducing number of issues first-install
 
@@ -29,4 +29,4 @@ Engineering goals:
 - Trying to know capacity
 - 2 viewers on customer facing things (impact functionality)
 
-GTM understand the platform
+Review GTM strategy & understand the platform

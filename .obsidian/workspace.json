@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "b46113addca3a8e6",
+        "id": "7c2a93cbf1069a13",
         "type": "tabs",
         "children": [
           {
-            "id": "8f4641cdab190961",
+            "id": "abeb0b1695690567",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -200,17 +200,29 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "8f4641cdab190961",
+  "active": "abeb0b1695690567",
   "lastOpenFiles": [
-    "_Engineering/Backend/Backend.md",
-    "_Standups/Standups.md",
-    "_Onboarding/Onboarding.md",
-    "_Plans/Plans.md",
-    "_Notes/Notes.md",
-    "_Engineering/Devices/Devices.md",
-    "_Engineering/Go/Go.md",
     "_Engineering/Frontend/Frontend.md",
+    "_Engineering/Go/Go.md",
+    "_Engineering/Go/Agent Work Guide.md",
+    "_Engineering/Agent Work - Start Here.md",
+    "_Engineering/Frontend/Agent Work Guide.md",
+    "_Engineering/Backend/Agent Work Guide.md",
+    "_Standups/Standups.md",
+    "_Plans/Plans.md",
+    "_Onboarding/Onboarding.md",
+    "_Notes/Notes.md",
     "_Engineering/Engineering.md",
+    "_Engineering/Backend/Backend.md",
+    "_Engineering/Heylo Prod & Eng.md",
+    "_Engineering/Dev Environment Setup.md",
+    "_Notes/Mike's Architecture Notes.md",
+    "_Notes/First Day - Shivani.md",
+    "_Notes/First Day - Chris.md",
+    "_Notes/About Mike.md",
+    "_Engineering/Frontend/Domain - Alerts.md",
+    "_Engineering/Frontend/Domain Playbooks.md",
+    "_Engineering/Devices/Devices.md",
     "frontend/services/beta/caseloadService.ts",
     "frontend/services/beta",
     "frontend/services/caseloadBetaService.ts",
@@ -225,18 +237,6 @@
     "_Engineering/Go/Domain - Handoffs.md",
     "_Engineering/Go/Domain - Caseload.md",
     "_Engineering/Go/Domain Playbooks.md",
-    "_Engineering/Backend/Domain - Devices.md",
-    "_Engineering/Backend/Domain - Caseload.md",
-    "_Engineering/Backend/Domain - Calls.md",
-    "_Engineering/Backend/Domain - Alerts.md",
-    "_Engineering/Backend/Domain Playbooks.md",
-    "_Engineering/Frontend/Domain - Devices.md",
-    "_Engineering/Frontend/Domain - Caseload.md",
-    "_Engineering/Frontend/Domain - Calls.md",
-    "_Engineering/Frontend/Domain - Alerts.md",
-    "_Engineering/Frontend/Domain Playbooks.md",
-    "_Engineering/Go/Agent Work Guide.md",
-    "_Engineering/Backend/Agent Work Guide.md",
-    "_Engineering/Frontend/Agent Work Guide.md"
+    "_Engineering/Backend/Domain - Devices.md"
   ]
 }
