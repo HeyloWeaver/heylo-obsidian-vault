@@ -317,4 +317,3 @@ Four environments with CD pipelines for staging and production — solid. QA is 
 ---
 
 *Last updated: 2026-04-21 by Mike*
-*Next pass: revisit after RDS Proxy decision and after caseload beta goes to GraphQL*
