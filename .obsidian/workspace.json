@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5dbcdd78a21408fb",
+        "id": "b46113addca3a8e6",
         "type": "tabs",
         "children": [
           {
-            "id": "0c9018d25010c336",
+            "id": "8f4641cdab190961",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -200,8 +200,20 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0c9018d25010c336",
+  "active": "8f4641cdab190961",
   "lastOpenFiles": [
+    "frontend/services/beta/caseloadService.ts",
+    "frontend/services/beta",
+    "frontend/services/caseloadBetaService.ts",
+    "_Engineering/Frontend/High Level Overview.md",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "backend/dist/src/main.js.map",
     "_Engineering/Go/Domain - Handoffs.md",
     "_Engineering/Go/Domain - Caseload.md",
     "_Engineering/Go/Domain Playbooks.md",
@@ -219,24 +231,12 @@
     "_Engineering/Backend/Agent Work Guide.md",
     "_Engineering/Frontend/Agent Work Guide.md",
     "_Engineering/Agent Work - Start Here.md",
-    "_Engineering/Go",
     "_Notes/Mike's Architecture Notes.md",
-    "frontend/lib/models/caseload/caseloadScheduleViewModel.ts",
-    "frontend/lib/models/caseload-management/caseloadManagementScheduleViewModel.ts",
-    "frontend/lib/models/caseload-management",
     "_Onboarding/Heylo Onboarding.md",
     "Untitled.md",
-    "frontend/stores/useCaseloadScheduleStore.ts",
-    "frontend/services/caseloadScheduleService.ts",
-    "frontend/lib/models/caseload/scheduleViewModel.ts",
     "_Onboarding/First Day Notes - Chris.md",
     "_Engineering/Devices/SD Card Flashing Steps.md",
     "_Engineering/Devices/Device Provisioning.md",
-    "frontend/node_modules/@smithy/node-http-handler/dist-types/http2/ClientHttp2SessionRef.d.ts",
-    "frontend/node_modules/@smithy/node-http-handler/dist-types/http2",
-    "frontend/node_modules/@smithy/node-http-handler/dist-es/http2/ClientHttp2SessionRef.js",
-    "frontend/node_modules/@humanfs/types/README.md",
-    "frontend/node_modules/@humanfs/types/CHANGELOG.md",
-    "frontend/node_modules/zustand/README.md"
+    "frontend/node_modules/@humanfs/types/README.md"
   ]
 }

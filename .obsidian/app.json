@@ -1,7 +1,8 @@
 {
   "alwaysUpdateLinks": true,
   "userIgnoreFilters": [
-    "node_modules",
-    "node_modules/*"
+    "frontend/",
+    "backend/",
+    "go/"
   ]
 }
