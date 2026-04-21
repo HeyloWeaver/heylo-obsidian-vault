@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [onboarding, team]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 Brian and Will - I should meet with
 
 |   |   |

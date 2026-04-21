@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, hardware, provisioning]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 Steps to set Wi-fi SSID/Password to match the site’s Wi-fi for provisioning and testing:
 
 - Go to [http://192.168.1.254/](http://192.168.1.254/) while connected to the AT&T router (usually set to “heylo-provisioning”)

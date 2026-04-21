@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [go, caseload]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Go Domain - Caseload
 
 ## Primary ownership

@@ -1,3 +1,10 @@
+---
+type: index
+tags: [frontend]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 Index for all Frontend documentation.
 
 - [[Frontend/High Level Overview]]

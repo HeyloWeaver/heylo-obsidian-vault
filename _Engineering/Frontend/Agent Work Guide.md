@@ -1,3 +1,10 @@
+---
+type: guide
+tags: [frontend, agents]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Frontend - Agent Work Guide
 
 This guide is optimized for agents making changes in `frontend/`.

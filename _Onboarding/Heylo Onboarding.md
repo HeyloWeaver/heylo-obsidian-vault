@@ -1,3 +1,10 @@
+---
+type: onboarding
+tags: [onboarding, team]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 
 Welcome to the team! This guide covers everything you need to get up to speed — tools, codebase, process, and culture.
 

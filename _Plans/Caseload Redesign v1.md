@@ -8,6 +8,8 @@ tags:
   - caseload
 related:
   - "[[_Engineering/Frontend/High Level Overview]]"
+type: plan
+updated: 2026-04-21
 ---
 
 # Caseload Redesign v1 — Plan

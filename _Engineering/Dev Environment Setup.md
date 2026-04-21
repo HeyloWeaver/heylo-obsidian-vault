@@ -1,3 +1,10 @@
+---
+type: setup
+tags: [engineering, backend, frontend]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 `~/.aws/credentials` and `~/.aws/config`
 `aws configure`
 Log in and add [govalo-dev]

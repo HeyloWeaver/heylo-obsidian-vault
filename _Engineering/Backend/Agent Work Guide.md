@@ -1,3 +1,10 @@
+---
+type: guide
+tags: [backend, agents]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Backend - Agent Work Guide
 
 This guide is optimized for agents making changes in `backend/`.

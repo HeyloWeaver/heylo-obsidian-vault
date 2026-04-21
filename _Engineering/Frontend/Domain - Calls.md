@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [frontend, calls]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Frontend Domain - Calls
 
 ## Primary ownership

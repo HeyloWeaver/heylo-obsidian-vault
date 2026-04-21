@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, hardware, backend]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 ## Video Streaming
 
 - Start/stop Stream (downward):

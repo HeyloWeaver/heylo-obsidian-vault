@@ -1,3 +1,10 @@
+---
+type: playbook
+tags: [backend, domain]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Backend - Domain Playbooks
 
 Use these for targeted work in `backend/`:

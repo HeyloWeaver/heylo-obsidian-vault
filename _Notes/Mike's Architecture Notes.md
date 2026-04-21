@@ -1,3 +1,10 @@
+---
+type: note
+tags: [notes, engineering, architecture]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 Frontend:
 - I really like app (private) and (public) folders for separation of concerns
 - `lib` is well organized

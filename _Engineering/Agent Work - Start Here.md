@@ -1,3 +1,10 @@
+---
+type: guide
+tags: [engineering, agents, backend, frontend, go]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Agent Work - Start Here
 
 This is the fast handoff page for future agents working in Heylo.

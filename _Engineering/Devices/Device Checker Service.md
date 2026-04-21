@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, backend, alerts]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 The device checker service is intended to ensure that our customers know when
 
 - devices are not sending heartbeat/connectivity notifications to our platform

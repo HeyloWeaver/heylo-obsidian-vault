@@ -1,3 +1,10 @@
+---
+type: playbook
+tags: [frontend, domain]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Frontend - Domain Playbooks
 
 Use these for targeted work in `frontend/`:

@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, hardware, provisioning]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 - Allow super users to download `.sdimg` from platform
     
     - Allow “warehouse” role to download from platform

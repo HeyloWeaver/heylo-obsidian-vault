@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [backend, devices]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Backend Domain - Devices
 
 ## Primary ownership

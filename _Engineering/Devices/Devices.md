@@ -1,3 +1,10 @@
+---
+type: index
+tags: [devices, hardware]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Devices
 
 Index for all hardware and device documentation.

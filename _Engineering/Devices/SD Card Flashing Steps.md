@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, hardware, provisioning]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 Prerequisites:
 
 - Make sure the hub repo is available on your computer.

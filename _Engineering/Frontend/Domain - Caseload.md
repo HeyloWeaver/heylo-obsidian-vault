@@ -1,3 +1,10 @@
+---
+type: domain
+tags: [frontend, caseload]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 # Frontend Domain - Caseload
 
 ## Primary ownership

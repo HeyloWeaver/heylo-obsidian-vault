@@ -1,3 +1,10 @@
+---
+type: standup
+tags: [standup]
+owner: Mike
+created: 2026-04-20
+status: current
+---
 Invited [Shivani Patel](mailto:spatel@heylo.tech) [ritwik@buildvessel.com](mailto:ritwik@buildvessel.com) [Brian Hart](mailto:bhart@heylo.tech) [Christopher Baron](mailto:cbaron@heylo.tech) [mweaver@heylo.tech](mailto:mweaver@heylo.tech)
 
 Attachments [Prod/Eng Standup](https://calendar.google.com/calendar/event?eid=N28wNmN1a2F1Y3Y4cWszaW8yYm1vZTRramRfMjAyNjA0MjBUMTUwMDAwWiBzcGF0ZWxAaGV5bG8udGVjaA)

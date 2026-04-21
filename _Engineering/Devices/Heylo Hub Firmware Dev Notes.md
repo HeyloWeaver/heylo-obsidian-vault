@@ -1,3 +1,10 @@
+---
+type: reference
+tags: [devices, hardware, firmware]
+owner: Chris
+updated: 2026-04-21
+status: current
+---
 # Install Home Assistant Supervised on Hub
 
 1. Upgrade your system

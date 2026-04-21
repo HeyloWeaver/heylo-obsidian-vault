@@ -1,3 +1,10 @@
+---
+type: note
+tags: [notes, team]
+owner: Mike
+updated: 2026-04-21
+status: current
+---
 My name is Mike. I am 33 years old. 
 
 I am a battle-hardened web development expert, with over a decade of experience creating websites, applications, and tools for the web. I currently work as a **Full Stack Developer** at Heylo. Heylo provides smart home hardware and software to provider agencies that support adults with intellectual and developmental disabilities (I/DD). Our mission is to give caregivers the tools they need to deliver better, safer support for the residents they serve.
