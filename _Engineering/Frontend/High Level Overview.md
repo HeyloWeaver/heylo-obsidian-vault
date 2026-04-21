@@ -1,4 +1,5 @@
 # Frontend — High Level Overview
+> **Related:** [[Frontend/Agent Work Guide]] | [[Frontend/Domain Playbooks]] | [[Agent Work - Start Here]] | [[Backend/High Level Overview]]
 
 The Heylo web app is a Next.js 15 App Router SPA (TypeScript + React 19) that serves as the operations console for Heylo's residential-care platform. It is the primary day-to-day surface for super admins, agency admins, support professionals, and residents themselves — alerts, video calls, chat, devices, caseloads, analytics, and site/user management all live here. Real-time behavior (incoming alerts, calls, chat messages, device online/offline status) is driven by a persistent WebSocket connection to AWS API Gateway, multiplexed through a single `SocketProvider` at the private-area root.
 

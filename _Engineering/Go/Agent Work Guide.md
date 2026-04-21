@@ -2,8 +2,8 @@
 
 This guide is optimized for agents making changes in `go/backend/appsync/`.
 
-Use with root `README.md` and backend/frontend overviews for cross-repo context.
-Use `_Engineering/Go/Domain Playbooks.md` for subsystem-specific entry points.
+Use with root [[README]] and backend/frontend overviews for cross-repo context.
+Use [[Go/Domain Playbooks]] for subsystem-specific entry points.
 
 ---
 

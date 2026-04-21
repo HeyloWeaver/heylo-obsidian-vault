@@ -4,24 +4,24 @@ This is the fast handoff page for future agents working in Heylo.
 
 Use this page first, then jump to the repo-specific guide:
 
-- Frontend: `_Engineering/Frontend/Agent Work Guide.md`
-- Backend: `_Engineering/Backend/Agent Work Guide.md`
-- Go: `_Engineering/Go/Agent Work Guide.md`
+- Frontend: [[Frontend/Agent Work Guide]]
+- Backend: [[Backend/Agent Work Guide]]
+- Go: [[Go/Agent Work Guide]]
 
 Then use domain playbooks for targeted work:
 
-- Frontend domains: `_Engineering/Frontend/Domain Playbooks.md`
-- Backend domains: `_Engineering/Backend/Domain Playbooks.md`
-- Go domains: `_Engineering/Go/Domain Playbooks.md`
+- Frontend domains: [[Frontend/Domain Playbooks]]
+- Backend domains: [[Backend/Domain Playbooks]]
+- Go domains: [[Go/Domain Playbooks]]
 
 ---
 
 ## How to orient quickly
 
-1. Read `README.md` at vault root for the code + docs model.
+1. Read [[README]] at vault root for the code + docs model.
 2. Read the repo-specific high-level overview:
-   - `_Engineering/Frontend/High Level Overview.md`
-   - `_Engineering/Backend/High Level Overview.md`
+   - [[Frontend/High Level Overview]]
+   - [[Backend/High Level Overview]]
 3. Read the repo-specific agent guide above for "change recipes" and gotchas.
 4. Confirm active local run targets before changing behavior:
    - frontend usually on `localhost:3000`

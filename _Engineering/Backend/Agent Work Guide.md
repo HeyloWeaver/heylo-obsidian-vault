@@ -2,8 +2,8 @@
 
 This guide is optimized for agents making changes in `backend/`.
 
-Use with `_Engineering/Backend/High Level Overview.md` (deep reference).
-Use `_Engineering/Backend/Domain Playbooks.md` for subsystem-specific entry points.
+Use with [[Backend/High Level Overview]] (deep reference).
+Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 
 ---
 
