@@ -4,6 +4,8 @@ This Obsidian vault is the single place where Heylo's **code** and **context** l
 
 The intent is simple: when you're reading a note about the backend, you can jump straight into the backend code without leaving Obsidian; when you're reading the code, you can jump straight into the note that explains why it exists.
 
+**Coding agents (Cursor, Claude Code, etc.):** use **`AGENTS.md`** at the vault root for Obsidian layout, sub-repo map, agent handoff order, and how to attach context. **`CLAUDE.md`** is a shorter Claude-oriented summary that points back to `AGENTS.md`.
+
 ## How the vault is organized
 
 The vault uses a naming convention to separate "notes" from "code":
@@ -14,7 +16,10 @@ The vault uses a naming convention to separate "notes" from "code":
 ```
 vault root
 ├── README.md                ← you are here
+├── package.json             ← npm workspaces (frontend, backend) + dev scripts
+├── scripts/                 ← small CLI helpers (e.g. local dev service picker)
 ├── _Engineering/            ← architecture, design, per-subsystem deep-dives
+├── _Plans/                  ← initiative / redesign plans
 ├── _Notes/                  ← personal scratch, dev environment notes
 ├── _Onboarding/             ← first-day notes, points of contact, ramp-up guides
 ├── _Standups/               ← daily/weekly standup logs
@@ -31,6 +36,35 @@ vault root
 - **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
 
 Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/`.
+
+## Local development (terminal)
+
+From the **vault root** (next to `package.json`):
+
+1. Ensure **`.env`** exists at the vault root (start from **`.env.example`**).
+2. Run **`npm install`** once so root tooling and the `frontend` / `backend` workspaces are available.
+
+**npm scripts**
+
+| Command | What it runs |
+|--------|----------------|
+| `npm run dev` | API and web together (loads root `.env`) |
+| `npm run dev:api` | Nest API only (`heylo-api`) |
+| `npm run dev:web` | Next console only (`heylo-web`) |
+
+**`heylo-dev` CLI** (`scripts/dev-services.mjs`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior (including `dotenv` from the vault root).
+
+| Command | What it does |
+|--------|----------------|
+| `npx heylo-dev` | Interactive multiselect when stdin is a TTY |
+| `npx heylo-dev api` / `web` | Start one service |
+| `npx heylo-dev web api` | Start both (any order) |
+| `npx heylo-dev --all` | Start every configured service |
+| `npm run dev:services` | Same entrypoint as `node scripts/dev-services.mjs` |
+
+Run **`npx heylo-dev --help`** for the full flag list. In CI or other non-interactive shells, pass **`api`**, **`web`**, or **`--all`** explicitly.
+
+**Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow; it is not started by `npm run dev` or `heylo-dev` today.
 
 ## Working in Obsidian
 

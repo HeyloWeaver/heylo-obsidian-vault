@@ -1,0 +1,12 @@
+---
+description: Heylo vault — where project context and agent workflow live
+alwaysApply: true
+---
+
+# Heylo workspace
+
+This root is an **Obsidian engineering vault**: `_Engineering/`, `_Plans/`, `_Onboarding/`, etc. are notes; `frontend/`, `backend/`, and `go/` are code.
+
+Before non-trivial work, read **`AGENTS.md`** at the repository root (Obsidian conventions, sub-repo responsibilities, **agent work reading order**, how to @-mention context, local dev). **`CLAUDE.md`** is a shorter parallel entry for Claude.
+
+Handoff hub for humans and agents: **`_Engineering/Agent Work - Start Here.md`**, then the repo-specific **`_Engineering/*/Agent Work Guide.md`** for the stack you are changing.

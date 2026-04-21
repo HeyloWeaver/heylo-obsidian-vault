@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "7c2a93cbf1069a13",
+        "id": "a871397bb9e27d59",
         "type": "tabs",
         "children": [
           {
-            "id": "abeb0b1695690567",
+            "id": "37f60a9e5a05c4a9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Standups/Apr 20, 2026 Standup.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Apr 20, 2026 Standup"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -204,19 +200,33 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "abeb0b1695690567",
+  "active": "37f60a9e5a05c4a9",
   "lastOpenFiles": [
-    "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/src/utils/password.util.d.ts",
-    "backend/dist/src/utils/password.util.js",
-    "backend/dist/src/utils/password.util.js.map",
-    "backend/dist/src/test/site-common-area.integration.test.d.ts",
-    "backend/dist/src/test/event-processor.integration.test.d.ts",
-    "backend/dist/src/test/event-processor.integration.test.js",
-    "backend/dist/src/test/event-processor.integration.test.js.map",
-    "backend/dist/src/test/lambda-loader.d.ts",
-    "backend/dist/src/test/lambda-loader.js",
-    "backend/dist/src/test/device-checker.test.d.ts",
+    "CLAUDE.md",
+    "AGENTS.md",
+    "node_modules/prompts/readme.md",
+    "node_modules/prompts/package.json",
+    "node_modules/prompts/index.js",
+    "node_modules/sisteransi/readme.md",
+    "node_modules/sisteransi/package.json",
+    "node_modules/sisteransi/license",
+    "node_modules/sisteransi/src/sisteransi.d.ts",
+    "node_modules/sisteransi/src/index.js",
+    "node_modules/sisteransi/src",
+    "node_modules/prompts/lib/dateparts/hours.js",
+    "node_modules/prompts/lib/dateparts/year.js",
+    "node_modules/prompts/lib/util/wrap.js",
+    "node_modules/kleur/readme.md",
+    "_Engineering/Engineering.md",
+    "_Engineering/Go/Go.md",
+    "_Engineering/Agent Work - Start Here.md",
+    "_Engineering/Backend/Agent Work Guide.md",
+    "_Standups/Apr 27, 2026 Standup.md",
+    "_Standups/Standups.md",
+    "_Standups/Apr 20, 2026 Standup.md",
+    "node_modules/cliui/CHANGELOG.md",
+    "_Notes/Notes.md",
+    "README.md",
     "_Notes/! Caseloads Review.md",
     "_Notes/! Action Items.md",
     "node_modules/rxjs/README.md",
@@ -225,23 +235,9 @@
     "node_modules/concurrently/README.md",
     "node_modules/yargs/README.md",
     "node_modules/cliui/README.md",
-    "node_modules/cliui/CHANGELOG.md",
     "node_modules/minimist/README.md",
     "node_modules/minimist/CHANGELOG.md",
     "node_modules/dotenv-cli/README.md",
-    "node_modules/shebang-regex/readme.md",
-    "node_modules/chalk/node_modules/supports-color/readme.md",
-    "node_modules/shell-quote/security.md",
-    "node_modules/shell-quote/README.md",
-    "node_modules/chalk/readme.md",
-    "node_modules/concurrently/docs/cli/prefixing.md",
-    "node_modules/concurrently/docs/cli/terminating.md",
-    "node_modules/concurrently/docs/cli/success.md",
-    "node_modules/concurrently/docs/cli/restarting.md",
-    "node_modules/concurrently/docs/cli/shortcuts.md",
-    "node_modules/concurrently/docs/cli/passthrough-arguments.md",
-    "node_modules/concurrently/docs/cli/output-control.md",
-    "node_modules/concurrently/docs/cli/input-handling.md",
     "node_modules/concurrently/docs/demo.gif"
   ]
 }

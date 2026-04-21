@@ -3,6 +3,7 @@
   "userIgnoreFilters": [
     "frontend/",
     "backend/",
-    "go/"
+    "go/",
+    "/node_modules/"
   ]
 }
