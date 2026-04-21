@@ -3,6 +3,7 @@
 This guide is optimized for agents making changes in `frontend/`.
 
 Use with `_Engineering/Frontend/High Level Overview.md` (deep reference).
+Use `_Engineering/Frontend/Domain Playbooks.md` for subsystem-specific entry points.
 
 ---
 

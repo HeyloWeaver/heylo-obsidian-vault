@@ -8,6 +8,12 @@ Use this page first, then jump to the repo-specific guide:
 - Backend: `_Engineering/Backend/Agent Work Guide.md`
 - Go: `_Engineering/Go/Agent Work Guide.md`
 
+Then use domain playbooks for targeted work:
+
+- Frontend domains: `_Engineering/Frontend/Domain Playbooks.md`
+- Backend domains: `_Engineering/Backend/Domain Playbooks.md`
+- Go domains: `_Engineering/Go/Domain Playbooks.md`
+
 ---
 
 ## How to orient quickly
