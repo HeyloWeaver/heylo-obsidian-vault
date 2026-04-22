@@ -50,7 +50,7 @@
             }
           },
           {
-            "id": "8f8677ec03bd83a2",
+            "id": "1fc81c73c600c710",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -245,6 +245,7 @@
   },
   "active": "52754b0feace97be",
   "lastOpenFiles": [
+    "_Notes/04-22-26 - Notes.md",
     "tablet/build/de020c12761865c5db1f642f29cd43ef/outputs.json",
     "tablet/build/de020c12761865c5db1f642f29cd43ef/dart_build.stamp",
     "tablet/build/de020c12761865c5db1f642f29cd43ef/dart_build.d",
@@ -255,7 +256,6 @@
     "tablet/build/reports/problems",
     "tablet/build/reports",
     "tablet/build/app/outputs/flutter-apk/app-dev-debug.apk",
-    "tablet/build/app/outputs/flutter-apk/app-dev-debug.apk.sha1",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
@@ -267,7 +267,6 @@
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/menu.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/location_arrow.svg",
     "_Engineering/Tablet/Tablet.md",
-    "_Notes/04-22-26 - Notes.md",
     "_Engineering/Tablet/1st Android Bug.md",
     "_Engineering/Agent Work - Start Here.md",
     "_Engineering/Tablet/Agent Work Guide.md",
