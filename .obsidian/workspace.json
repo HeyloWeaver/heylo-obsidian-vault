@@ -11,14 +11,10 @@
             "id": "541ffd2d9c8b48e4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Engineering/Dev Environment Setup.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Dev Environment Setup"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           },
           {
@@ -27,15 +23,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Go/Domain - Caseload.md",
+                "file": "_Engineering/Tablet/Tablet.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Domain - Caseload"
+              "title": "Tablet"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -218,26 +215,36 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "541ffd2d9c8b48e4",
+  "active": "e090087e4bf8373d",
   "lastOpenFiles": [
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "backend/dist/src/main.js.map",
+    "backend/dist/src/app.module.d.ts",
+    "backend/dist/src/app.module.js",
+    "backend/dist/src/app.module.js.map",
+    "_Engineering/Tablet/Kiosk Quick Start.md",
+    "_Engineering/Tablet/Kiosk Mode Setup.md",
+    "_Engineering/Tablet/Agent Work Guide.md",
+    "_Engineering/Tablet/Update Strategy.md",
+    "_Engineering/Tablet/Admin Commands.md",
+    "_Engineering/Go/Domain - Caseload.md",
+    "_Engineering/Tablet/Skills/tablet-logs.md",
+    "_Engineering/Tablet/Skills/release-build.md",
+    "_Engineering/Tablet/Skills/Skills.md",
+    "_Engineering/Dev Environment Setup.md",
     "_Engineering/Tablet/Domain - Calls.md",
     "_Engineering/Tablet/Domain - Chat.md",
-    "_Engineering/Tablet/Agent Work Guide.md",
     "_Engineering/Tablet/Domain - Kiosk.md",
     "_Engineering/Tablet/Tablet.md",
     "_Engineering/Tablet/Domain Playbooks.md",
     "_Engineering/Tablet/High Level Overview.md",
     "_Plans/Frontend Theme Colors and Design Tokens.md",
-    "_Engineering/Tablet",
-    "tablet/scripts/build-and-upload-apk.sh",
-    "tablet/scripts/upload-apk.sh",
-    "tablet/scripts",
-    "tablet/pubspec.yaml",
-    "tablet/pubspec.lock",
-    "tablet/lib/ui/screens/video_call/participant_video_view/participant_video_view.dart",
-    "tablet/lib/ui/screens/weather_detail/weather_detail_app_bar/weather_detail_app_bar.view.dart",
-    "tablet/lib/ui/screens/video_call/calling/calling.view.dart",
-    "tablet/lib/ui/screens/video_call/local_video_view/local_video_view.dart",
     "tablet/flutter_02.png",
     "tablet/flutter_01.png",
     "tablet/assets/images/name_min_logo.png",
@@ -253,18 +260,8 @@
     "tablet/KIOSK_QUICK_START.md",
     "tablet/KIOSK_MODE_SETUP.md",
     "_Engineering/Frontend/High Level Overview.md",
-    "_Engineering/Go/Domain - Caseload.md",
     "_Engineering/Go/Agent Work Guide.md",
     "_Notes/04-21-26 Caseloads Review.md",
-    "_Engineering/Backend/Agent Work Guide.md",
-    "_Engineering/Agent Work - Start Here.md",
-    "README.md",
-    "CLAUDE.md",
-    "AGENTS.md",
-    "_Onboarding/Points of Contact.md",
-    "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
-    "_Engineering/Frontend/Domain Playbooks.md",
-    "_Engineering/Frontend/Frontend.md",
-    "_Engineering/Frontend/Agent Work Guide.md"
+    "_Engineering/Backend/Agent Work Guide.md"
   ]
 }

@@ -13,6 +13,13 @@ Index for all Tablet documentation.
 - [[Tablet/Domain - Calls]]
 - [[Tablet/Domain - Chat]]
 - [[Tablet/Domain - Kiosk]]
+- [[Tablet/Skills/Skills]]
+
+## Ops & Setup
+- [[Tablet/Kiosk Mode Setup]]
+- [[Tablet/Kiosk Quick Start]]
+- [[Tablet/Update Strategy]]
+- [[Tablet/Admin Commands]]
 
 ---
 **Up:** [[Engineering]]
