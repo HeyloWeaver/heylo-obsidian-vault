@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Plans/Frontend Theme Colors and Design Tokens.md",
+                "file": "_Engineering/Dev Environment Setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Frontend Theme Colors and Design Tokens"
+              "title": "Dev Environment Setup"
             }
           },
           {
@@ -218,8 +218,17 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0522c9e7beb4631a",
+  "active": "541ffd2d9c8b48e4",
   "lastOpenFiles": [
+    "_Engineering/Tablet/Domain - Calls.md",
+    "_Engineering/Tablet/Domain - Chat.md",
+    "_Engineering/Tablet/Agent Work Guide.md",
+    "_Engineering/Tablet/Domain - Kiosk.md",
+    "_Engineering/Tablet/Tablet.md",
+    "_Engineering/Tablet/Domain Playbooks.md",
+    "_Engineering/Tablet/High Level Overview.md",
+    "_Plans/Frontend Theme Colors and Design Tokens.md",
+    "_Engineering/Tablet",
     "tablet/scripts/build-and-upload-apk.sh",
     "tablet/scripts/upload-apk.sh",
     "tablet/scripts",
@@ -229,8 +238,6 @@
     "tablet/lib/ui/screens/weather_detail/weather_detail_app_bar/weather_detail_app_bar.view.dart",
     "tablet/lib/ui/screens/video_call/calling/calling.view.dart",
     "tablet/lib/ui/screens/video_call/local_video_view/local_video_view.dart",
-    "tablet/lib/ui/screens/home/weather_card/weather_card.view.dart",
-    "tablet/lib/ui/screens/home/missed_calls_card/missed_calls_card.view_model.dart",
     "tablet/flutter_02.png",
     "tablet/flutter_01.png",
     "tablet/assets/images/name_min_logo.png",
@@ -246,7 +253,6 @@
     "tablet/KIOSK_QUICK_START.md",
     "tablet/KIOSK_MODE_SETUP.md",
     "_Engineering/Frontend/High Level Overview.md",
-    "_Plans/Frontend Theme Colors and Design Tokens.md",
     "_Engineering/Go/Domain - Caseload.md",
     "_Engineering/Go/Agent Work Guide.md",
     "_Notes/04-21-26 Caseloads Review.md",
@@ -259,12 +265,6 @@
     "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
     "_Engineering/Frontend/Domain Playbooks.md",
     "_Engineering/Frontend/Frontend.md",
-    "_Engineering/Frontend/Agent Work Guide.md",
-    "_Notes/04-20-26 Architecture Notes.md",
-    "_Notes/Notes.md",
-    "_Notes/04-20-26 First Day - Chris.md",
-    "_Notes/04-20-26 First Day - Shivani.md",
-    "_Notes/About Mike.md",
-    "node_modules/fsevents/README.md"
+    "_Engineering/Frontend/Agent Work Guide.md"
   ]
 }

@@ -1,8 +1,8 @@
 ---
 type: guide
-tags: [engineering, agents, backend, frontend, go]
+tags: [engineering, agents, backend, frontend, go, tablet]
 owner: Mike
-updated: 2026-04-21
+updated: 2026-04-22
 status: current
 ---
 # Agent Work - Start Here
@@ -14,12 +14,14 @@ Use this page first, then jump to the repo-specific guide:
 - Frontend: [[Frontend/Agent Work Guide]]
 - Backend: [[Backend/Agent Work Guide]]
 - Go: [[Go/Agent Work Guide]]
+- Tablet: [[Tablet/Agent Work Guide]]
 
 Then use domain playbooks for targeted work:
 
 - Frontend domains: [[Frontend/Domain Playbooks]]
 - Backend domains: [[Backend/Domain Playbooks]]
 - Go domains: [[Go/Domain Playbooks]]
+- Tablet domains: [[Tablet/Domain Playbooks]]
 
 ---
 
@@ -29,12 +31,14 @@ Then use domain playbooks for targeted work:
 2. Read the repo-specific high-level overview:
    - [[Frontend/High Level Overview]]
    - [[Backend/High Level Overview]]
+   - [[Tablet/High Level Overview]]
 3. Read the repo-specific agent guide above for "change recipes" and gotchas.
 4. Confirm active local run targets before changing behavior:
    - npm workspaces and dev scripts run from the **vault root** (`npm install`, `npm run dev`, or `npx heylo` — see `README.md` *Local development* or [[Dev Environment Setup]])
    - frontend usually on `localhost:3000`
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API
+   - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
 5. Optional deeper pass across all three repos: [[04-21-26 Codebase Audit – Full Stack Architecture Review]] (`_Notes/`).
 
 ---
@@ -54,7 +58,8 @@ Then use domain playbooks for targeted work:
 - `frontend/` is Next.js App Router and talks to backend over cookie-authenticated HTTP.
 - `backend/` is NestJS + MySQL and handles core API, auth, realtime fanout, and integrations.
 - `go/backend/appsync/` is a focused GraphQL resolver Lambda path for heavier reads (currently caseload schedule).
-- The same product surface spans all three, so changes often need at least a sanity check in two repos.
+- `tablet/` is a Flutter Android kiosk app for residents — video calls, chat, device management. Talks to the same NestJS backend over REST + WebSocket.
+- The same product surface spans all repos, so changes often need at least a sanity check in two or more.
 
 ---
 
