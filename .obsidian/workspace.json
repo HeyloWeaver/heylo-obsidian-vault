@@ -13,22 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-21-26 Caseloads Review.md",
+                "file": "_Plans/Frontend Theme Colors and Design Tokens.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-21-26 Caseloads Review"
+              "title": "Frontend Theme Colors and Design Tokens"
             }
           },
           {
             "id": "e090087e4bf8373d",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "_Engineering/Go/Domain - Caseload.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Domain - Caseload"
             }
           }
         ]
@@ -216,21 +220,24 @@
   },
   "active": "541ffd2d9c8b48e4",
   "lastOpenFiles": [
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "backend/dist/src/main.js.map",
+    "backend/dist/src/app.module.d.ts",
+    "backend/dist/src/app.module.js",
+    "backend/dist/src/app.module.js.map",
+    "_Engineering/Go/Domain - Caseload.md",
+    "_Engineering/Go/Agent Work Guide.md",
     "_Plans/Frontend Theme Colors and Design Tokens.md",
+    "_Notes/04-21-26 Caseloads Review.md",
     "_Engineering/Backend/Agent Work Guide.md",
     "_Engineering/Agent Work - Start Here.md",
     "README.md",
-    "frontend/components/caseload-management/v2/toolbar/view-toggle.tsx",
-    "frontend/components/caseload-management/v2/toolbar/user-filter.tsx",
-    "frontend/components/caseload-management/v2/toolbar/site-filter.tsx",
-    "frontend/components/caseload-management/v2/toolbar/schedule-toolbar.tsx",
-    "frontend/components/caseload-management/v2/toolbar/month-picker.tsx",
-    "frontend/components/caseload-management/v2/calendar/schedule-pill.tsx",
-    "frontend/components/caseload-management/v2/calendar/calendar-month.tsx",
-    "frontend/components/caseload-management/v2/calendar/calendar-week.tsx",
-    "frontend/components/caseload-management/v2/calendar/calendar-day.tsx",
-    "frontend/components/caseload-management/v2/toolbar",
-    "_Notes/04-21-26 Caseloads Review.md",
     "CLAUDE.md",
     "AGENTS.md",
     "_Onboarding/Points of Contact.md",
@@ -249,9 +256,6 @@
     "_Engineering/Dev Environment Setup.md",
     "node_modules/prompts/readme.md",
     "node_modules/sisteransi/readme.md",
-    "node_modules/kleur/readme.md",
-    "_Engineering/Go/Go.md",
-    "_Standups/Apr 27, 2026 Standup.md",
     "node_modules/concurrently/docs/demo.gif"
   ]
 }
