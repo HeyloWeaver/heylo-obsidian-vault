@@ -6,6 +6,11 @@
  * lambda main(). Go's -overlay swaps main.go for a generated copy that omits
  * func main() so the tree compiles.
  *
+ * MySQL: main.go defaults to local 127.0.0.1:3306. This script injects the same DSN
+ * precedence as go/mysql_dsn.go via `-ldflags -X main.DbConnection=…` when
+ * APPSYNC_MYSQL_DSN, MYSQL_DSN, or DB_HOST+DB_USER+DB_NAME are set (e.g. from
+ * `dotenv -e .env` / SSM port-forward to cloud RDS).
+ *
  * Usage (from repo root):
  *   node appsync-local-dev.mjs              # run once (no file watching)
  *   node appsync-local-dev.mjs --watch    # restart on .go saves under go/backend/appsync
@@ -28,6 +33,38 @@ const OVERLAY_MAIN = join(DEVGEN, 'main.overlay.go');
 const OVERLAY_JSON = join(DEVGEN, 'overlay.json');
 
 const watchMode = process.argv.includes('--watch');
+
+const LOCAL_DEFAULT_DSN =
+  'root@tcp(127.0.0.1:3306)/heylo?parseTime=true&loc=UTC';
+
+function trimEnvQuotes(s) {
+  return s.replace(/^['"]|['"]$/g, '');
+}
+
+/**
+ * Same precedence as go/backend/appsync/mysql_dsn.go (keep in sync).
+ * Returns empty string when env does not specify a DSN (caller uses main.go default).
+ * @param {NodeJS.ProcessEnv} env
+ */
+function mysqlDsnFromEnvForLdflags(env) {
+  const t = (k) => String(env[k] ?? '').trim();
+  const d1 = t('APPSYNC_MYSQL_DSN');
+  if (d1) return d1;
+  const d2 = t('MYSQL_DSN');
+  if (d2) return d2;
+
+  const host = t('DB_HOST');
+  const user = t('DB_USER');
+  const dbName = t('DB_NAME');
+  if (!host || !user || !dbName) {
+    return '';
+  }
+  const port = t('DB_PORT') || '3306';
+  const pass = trimEnvQuotes(t('DB_PASS'));
+  const addr = host.includes(':') ? `[${host}]:${port}` : `${host}:${port}`;
+  const auth = pass ? `${user}:${pass}` : user;
+  return `${auth}@tcp(${addr})/${dbName}?parseTime=true&loc=UTC`;
+}
 
 /**
  * Remove the first top-level `func main(...) { ... }` from Go source.
@@ -88,15 +125,17 @@ function writeOverlayFiles() {
 
 function runGo(childEnv = process.env) {
   writeOverlayFiles();
-  const go = spawn(
-    'go',
-    ['run', `-overlay=${OVERLAY_JSON}`, '-tags', 'local', '.'],
-    {
-      cwd: APPSYNC_DIR,
-      stdio: 'inherit',
-      env: childEnv,
-    },
-  );
+  const dsn = mysqlDsnFromEnvForLdflags(childEnv);
+  const args = ['run', `-overlay=${OVERLAY_JSON}`, '-tags', 'local'];
+  if (dsn && dsn !== LOCAL_DEFAULT_DSN) {
+    args.push(`-ldflags=-X=main.DbConnection=${dsn}`);
+  }
+  args.push('.');
+  const go = spawn('go', args, {
+    cwd: APPSYNC_DIR,
+    stdio: 'inherit',
+    env: childEnv,
+  });
   return go;
 }
 
