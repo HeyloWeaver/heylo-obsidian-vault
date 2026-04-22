@@ -35,3 +35,9 @@ getcaseloadschedule.go is where we will be doing all our logic and moving everyt
 ## NOTES
 
 **DONE -** derive color of location from the image provided, default to what it is now
+
+## NEXT
+
+Handle overlap?
+
+They can be assigned to multiple places at once

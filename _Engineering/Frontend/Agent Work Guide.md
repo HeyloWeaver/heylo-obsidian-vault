@@ -65,21 +65,21 @@ Use [[Frontend/Domain Playbooks]] for subsystem-specific entry points.
 
 ### Colors — always use Tailwind theme tokens, never raw hex
 
-All brand and UI colors are defined as named tokens in `frontend/app/globals.css` inside a `@theme` block. Use those token names in Tailwind classes. Never write `text-[#6F6C76]`, `bg-[#262428]`, etc. inline in components.
+Semantic colors live in `frontend/app/globals.css`: `:root` and `.dark` define CSS variables (`--foreground`, `--muted`, `--primary`, `--destructive`, …). The `@theme inline { … }` block maps those to Tailwind color utilities (`text-foreground`, `bg-muted`, `border-destructive`, …). Use those utilities only. Never write `text-[#6F6C76]`, `bg-[#262428]`, etc. inline in components.
 
-Current Heylo tokens:
+Common mappings:
 
-| Token | Use |
+| Tailwind | Typical use |
 |---|---|
-| `text-heylo-body` / `bg-heylo-body` | Primary text (#262428) |
-| `text-heylo-muted` / `bg-heylo-muted` | Secondary / subdued text and icons (#6F6C76) |
-| `text-heylo-dim` | Dimmed text, e.g. outside-month days (#9C99A3) |
-| `bg-heylo-surface` / `hover:bg-heylo-surface` | Subtle background, hover states (#F8F8F8) |
-| `bg-heylo-brand` | Brand/primary action color (#4655E5) |
-| `border-heylo-error-border` | Error border (#E399A0) |
-| `text-heylo-error-text` | Error text (#61050E) |
+| `text-foreground` / `bg-background` | Primary body text and page background |
+| `text-muted-foreground` / `text-muted-foreground/70` | Secondary text, icons, dimmed labels (opacity for extra de-emphasis) |
+| `bg-muted` / `hover:bg-muted` / `hover:bg-muted/70` | Subtle surfaces, headers, hover rows |
+| `bg-primary` + `text-primary-foreground` | Strong emphasis (e.g. “today” on a calendar) |
+| `text-destructive`, `border-destructive/50`, `bg-destructive` | Errors and destructive actions |
+| `border-border`, `bg-card`, `text-card-foreground` | Cards and neutral borders |
+| `ring-ring` | Focus rings (with `focus-visible:ring-2`, etc.) |
 
-If you need a color that isn't in this table, **add it to the `@theme` block in `globals.css` first**, then use the token name.
+If you need a new semantic, **extend `:root` / `.dark` and the `@theme inline` map in `globals.css`** so it stays theme- and dark-mode-aware; do not add one-off hex palettes beside the main system.
 
 ### Discriminated string values — always use enums, never inline literals
 
@@ -145,7 +145,7 @@ Each feature domain that has its own state, enums, or repeated literals should h
 - Route behavior works for each affected role.
 - Service contracts still match backend responses.
 - Realtime handlers do not break existing toast/audio behavior.
-- No raw hex color values in components — use `heylo-*` Tailwind tokens.
+- No raw hex color values in components — use theme utilities (`foreground`, `muted`, `primary`, `destructive`, `card`, `border`, `ring`, …) from `globals.css`.
 - No inline string literals for discriminated values — use enums.
 - No inline route strings — use path constants.
 - Lint passes for touched files.
