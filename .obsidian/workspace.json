@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-22-26 - Notes.md",
+                "file": "_Plans/Prettier & Eslint.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-22-26 - Notes"
+              "title": "Prettier & Eslint"
             }
           }
         ],
@@ -233,11 +233,11 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "52754b0feace97be",
+  "active": "0522c9e7beb4631a",
   "lastOpenFiles": [
     "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/lambdas/device-checker.js",
     "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
     "backend/dist/lambdas/device-checker.d.ts",
     "backend/dist/lambdas",
     "backend/dist/src/main.d.ts",
@@ -246,10 +246,11 @@
     "backend/dist/src/app.module.d.ts",
     "backend/dist/src/app.module.js",
     "backend/dist/src/app.module.js.map",
+    "_Notes/04-22-26 - Notes.md",
+    "_Plans/Prettier & Eslint.md",
     "_Onboarding/Onboarding.md",
     "_Engineering/Tablet/1st Android Bug.md",
     "_Onboarding/Pull Requests.md",
-    "_Notes/04-22-26 - Notes.md",
     "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
@@ -279,7 +280,6 @@
     "_Engineering/Tablet/Domain - Kiosk.md",
     "_Engineering/Tablet/Domain Playbooks.md",
     "_Plans/Frontend Theme Colors and Design Tokens.md",
-    "tablet/UPDATE_STRATEGY.md",
-    "tablet/README.md"
+    "tablet/UPDATE_STRATEGY.md"
   ]
 }
