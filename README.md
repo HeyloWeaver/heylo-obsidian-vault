@@ -26,6 +26,7 @@ vault root (= git workspace root)
 ├── frontend/                ← Next.js 15 / React 19 console (real repo)
 ├── backend/                 ← NestJS 11 / TypeORM API (real repo)
 ├── go/                      ← Go services (currently: AppSync resolvers)
+├── tablet/                  ← Flutter Android kiosk app for resident tablets
 ├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
 ├── dev-services.mjs         ← `heylo` CLI (service picker)
 ```
@@ -35,6 +36,7 @@ vault root (= git workspace root)
 - **`frontend/`** — the operator-facing web console. Next.js 15 App Router, React 19, Tailwind v4, shadcn/ui. Renders caseload, alerts, analytics, video calls, and site/device management. Connects to the backend over HTTPS cookies and a single global WebSocket. Deep-dive: `_Engineering/Frontend/High Level Overview.md`.
 - **`backend/`** — the core API. NestJS 11 on Node 22 with TypeORM + MySQL. Serves the frontend, handles auth via AWS Cognito, drives real-time updates through API Gateway WebSockets, and orchestrates device/IoT events, video calls (Daily.co), email, and multi-tenant agency state. Deep-dive: `_Engineering/Backend/High Level Overview.md`.
 - **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
+- **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets deployed at care sites. Handles video calls (Daily.co), chat, missed calls, weather, and device management. Runs in `dev` and `prod` flavors; uses the same NestJS backend over REST + WebSocket. Deep-dive: `_Engineering/Tablet/High Level Overview.md`.
 
 Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/`.
 
@@ -52,6 +54,7 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run dev` | API and web together (loads **`.env`** via `dotenv-cli`) |
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
+| `npm run dev:tablet` | Flutter tablet app (`flutter run --flavor dev`) |
 
 **`heylo` CLI** (`dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior.
 
@@ -82,10 +85,11 @@ A few conventions that make the vault pleasant to use — the same paths apply i
 
 ## If you're new here
 
-Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contact.md`, then set up your machine using `_Engineering/Dev Environment Setup.md`, then read the two high-level overviews:
+Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contact.md`, then set up your machine using `_Engineering/Dev Environment Setup.md`, then read the high-level overviews for the areas you'll be working in:
 
 - `_Engineering/Frontend/High Level Overview.md`
 - `_Engineering/Backend/High Level Overview.md`
+- `_Engineering/Tablet/High Level Overview.md`
 
 After that, `_Engineering/Heylo Prod & Eng.md` gives the wider product + engineering context, and `_Engineering/Devices/` covers the hardware side.
 

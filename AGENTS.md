@@ -23,6 +23,7 @@ High-level tree (not exhaustive):
 | `frontend/` | Next.js operator console (workspace package `heylo-web`) |
 | `backend/` | NestJS API (workspace package `heylo-api`) |
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
+| `tablet/` | Flutter Android kiosk app for resident tablets |
 | `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `dev-services.mjs` |
 | `dev-services.mjs` | Local dev service picker (`npx heylo`) |
 
@@ -35,6 +36,7 @@ High-level tree (not exhaustive):
 - **`frontend/`** — Next.js App Router, React, Tailwind, operator UI. Cookie-auth HTTP to the API, global WebSocket client. Typical local URL: `http://localhost:3000`.
 - **`backend/`** — NestJS + TypeORM + MySQL: core API, auth/session, WebSocket fanout, integrations. Typical local URL: `http://localhost:4000`.
 - **`go/backend/appsync/`** — AppSync GraphQL resolvers in Go (e.g. caseload schedule). Separate deploy path from Nest; shares MySQL domain data.
+- **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets. Talks to the same NestJS backend over REST + WebSocket. Runs in two flavors: `dev` (hits `dev-api.heylo.tech`) and `prod`. Local dev: `flutter run --flavor dev -t lib/main.dart`.
 
 Cross-cutting features often touch **two or three** of these; keep DTOs, enums, event names, and role rules aligned.
 
@@ -49,13 +51,16 @@ Use this sequence before large or ambiguous tasks:
    - `_Engineering/Frontend/Agent Work Guide.md`
    - `_Engineering/Backend/Agent Work Guide.md`
    - `_Engineering/Go/Agent Work Guide.md`
+   - `_Engineering/Tablet/Agent Work Guide.md`
 3. **High-level overview** for depth when the task is broad:
    - `_Engineering/Frontend/High Level Overview.md`
    - `_Engineering/Backend/High Level Overview.md`
+   - `_Engineering/Tablet/High Level Overview.md`
 4. **Domain playbooks** for subsystem entry points:
    - `_Engineering/Frontend/Domain Playbooks.md`
    - `_Engineering/Backend/Domain Playbooks.md`
    - `_Engineering/Go/Domain Playbooks.md`
+   - `_Engineering/Tablet/Domain Playbooks.md`
 
 **Ground rules** (from the handoff doc): smallest change that solves the problem; align frontend/backend contracts; auth and realtime changes need explicit consumer/producer checks; document non-obvious architectural shifts in `_Engineering/`.
 
