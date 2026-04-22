@@ -1,3 +1,4 @@
 .obsidian/plugins/
 node_modules/
 .env
+go/backend/appsync/.devgen/

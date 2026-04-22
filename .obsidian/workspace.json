@@ -48,16 +48,6 @@
               "icon": "lucide-file",
               "title": "04-22-26 - Notes"
             }
-          },
-          {
-            "id": "1fc81c73c600c710",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
           }
         ],
         "currentTab": 2
@@ -245,17 +235,22 @@
   },
   "active": "52754b0feace97be",
   "lastOpenFiles": [
+    "scripts/appsync-local-dev.mjs",
+    "scripts",
+    "appsync-local-dev.mjs",
+    "_Onboarding/Onboarding.md",
+    "_Engineering/Tablet/1st Android Bug.md",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "backend/dist/src/main.js.map",
+    "_Onboarding/Pull Requests.md",
     "_Notes/04-22-26 - Notes.md",
-    "tablet/build/de020c12761865c5db1f642f29cd43ef/outputs.json",
-    "tablet/build/de020c12761865c5db1f642f29cd43ef/dart_build.stamp",
-    "tablet/build/de020c12761865c5db1f642f29cd43ef/dart_build.d",
-    "tablet/build/de020c12761865c5db1f642f29cd43ef/dart_build_result.json",
-    "tablet/build/native_hooks",
-    "tablet/build/64c0b726dccdec12efdfd1d506934ea8.cache.dill.track.dill",
-    "tablet/build/reports/problems/problems-report.html",
-    "tablet/build/reports/problems",
-    "tablet/build/reports",
-    "tablet/build/app/outputs/flutter-apk/app-dev-debug.apk",
+    "_Notes/04-21-26 Codebase Audit – Full Stack Architecture Review.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
@@ -267,7 +262,6 @@
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/menu.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/location_arrow.svg",
     "_Engineering/Tablet/Tablet.md",
-    "_Engineering/Tablet/1st Android Bug.md",
     "_Engineering/Agent Work - Start Here.md",
     "_Engineering/Tablet/Agent Work Guide.md",
     "_Engineering/Tablet/Domain - Calls.md",
@@ -286,9 +280,6 @@
     "_Engineering/Tablet/Domain Playbooks.md",
     "_Plans/Frontend Theme Colors and Design Tokens.md",
     "tablet/UPDATE_STRATEGY.md",
-    "tablet/README.md",
-    "tablet/KIOSK_QUICK_START.md",
-    "tablet/KIOSK_MODE_SETUP.md",
-    "_Engineering/Frontend/High Level Overview.md"
+    "tablet/README.md"
   ]
 }

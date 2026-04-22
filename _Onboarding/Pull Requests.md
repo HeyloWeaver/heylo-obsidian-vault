@@ -1,0 +1,3 @@
+- dev submits pr, requests reviewer
+- reviewer approves
+- dev merges and deploys
