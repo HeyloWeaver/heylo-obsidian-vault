@@ -4,7 +4,8 @@
     "frontend/",
     "backend/",
     "go/",
-    "/node_modules/"
+    "/node_modules/",
+    "tablet/"
   ],
   "newFileLocation": "current"
 }

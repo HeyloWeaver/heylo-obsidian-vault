@@ -3,7 +3,9 @@
   "private": true,
   "workspaces": [
     "frontend",
-    "backend"
+    "backend",
+    "go",
+    "tablet"
   ],
   "bin": {
     "heylo": "./dev-services.mjs"
@@ -13,6 +15,7 @@
     "dev:api": "dotenv -e .env -- npm run start:dev -w heylo-api",
     "dev:web": "dotenv -e .env -- npm run dev -w heylo-web",
     "dev:go": "dotenv -e .env -- bash -c 'cd go/backend/appsync && go run -tags local .'",
+    "dev:tablet": "dotenv -e .env -- bash -c 'cd tablet && npm run dev'",
     "dev:services": "node dev-services.mjs"
   },
   "devDependencies": {
