@@ -1,0 +1,13 @@
+{
+  "folders": [
+    { "path": ".", "name": "Heylo (vault)" },
+    { "path": "frontend", "name": "heylo-web" },
+    { "path": "backend", "name": "heylo-api" },
+    { "path": "go", "name": "go" },
+    { "path": "tablet", "name": "tablet" }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": true,
+    "git.repositoryScanMaxDepth": 2
+  }
+}
