@@ -68,18 +68,8 @@ const SERVICES = [
   },
   {
     id: 'go',
-    title: 'AppSync (Go — local GraphQL on :8080)',
+    title: 'AppSync (Go — local GraphQL + cloud MySQL via DB_* in .env)',
     npmScript: 'dev:go',
-    color: 'green',
-    port: 8080,
-    localEnv: {
-      NEXT_PUBLIC_APPSYNC_GRAPHQL_ENDPOINT: 'http://localhost:8080/graphql',
-    },
-  },
-  {
-    id: 'appsync',
-    title: 'AppSync (TypeScript/Bun — local GraphQL on :8080)',
-    npmScript: 'dev:appsync',
     color: 'cyan',
     port: 8080,
     localEnv: {
@@ -97,28 +87,20 @@ Usage:
   npm run dev:services -- [options] [service ...]
 
 Services:
-${SERVICES.map((s) => `  ${s.id.padEnd(10)} ${s.title}`).join('\n')}
+${SERVICES.map((s) => `  ${s.id.padEnd(8)} ${s.title}`).join('\n')}
 
 Options:
   -a, --all     Start every service locally
   -h, --help    Show this help
 
-Notes:
-  appsync and go both bind :8080 — do not run them together.
-
 Examples:
   heylo                      # interactive multiselect (TTY only)
   heylo api                  # API local, everything else → cloud
-  heylo api web              # API + web local, appsync → cloud
-  heylo appsync              # TS AppSync on :8080; DB_* (or APPSYNC_MYSQL_DSN) from .env
-  heylo api web appsync      # full local stack (TS AppSync)
-  heylo --all                # all services local (go wins AppSync slot)
+  heylo api web              # API + web local, go → cloud (any order)
+  heylo go                   # Go GraphQL on :8080; set DB_* (or APPSYNC_MYSQL_DSN) in .env like the API
+  heylo --all                # all services local
 `);
 }
-
-// Services in the same group share a port and env var — only one may run at a time.
-// First entry in each group is the --all default.
-const EXCLUSIVE_GROUPS = [['go', 'appsync']];
 
 function parseArgv(argv) {
   const raw = argv.slice(2);
@@ -135,13 +117,6 @@ function validateIds(ids) {
     console.error(`Unknown service(s): ${unknown.join(', ')}`);
     console.error(`Valid: ${[...known].join(', ')}`);
     process.exit(1);
-  }
-  for (const group of EXCLUSIVE_GROUPS) {
-    const both = group.filter((id) => ids.includes(id));
-    if (both.length > 1) {
-      console.error(`Cannot run together (same port): ${both.join(' + ')}. Pick one.`);
-      process.exit(1);
-    }
   }
 }
 
@@ -172,13 +147,6 @@ async function pickServices() {
     console.error('Nothing selected.');
     process.exit(1);
   }
-  for (const group of EXCLUSIVE_GROUPS) {
-    const both = group.filter((id) => picked.includes(id));
-    if (both.length > 1) {
-      console.error(`Cannot run together (same port): ${both.join(' + ')}. Pick one.`);
-      process.exit(1);
-    }
-  }
   return picked;
 }
 
@@ -203,28 +171,17 @@ function warnMissingEnv() {
 function applyLocalEnv(selected, dotEnv) {
   const selectedIds = new Set(selected.map((s) => s.id));
   const rows = [];
-  const seen = new Set(); // deduplicate env var keys across exclusive-group alternatives
 
   for (const svc of SERVICES) {
-    if (!Object.keys(svc.localEnv).length) continue;
+    if (!Object.keys(svc.localEnv).length) continue; // web has no env vars to route
     const isLocal = selectedIds.has(svc.id);
     for (const [key, localVal] of Object.entries(svc.localEnv)) {
-      if (seen.has(key)) continue; // already handled by the selected alternative
       if (isLocal) {
-        seen.add(key);
         process.env[key] = localVal;
         rows.push({ label: key, value: localVal, tag: 'local' });
       } else {
-        // Only emit the cloud fallback once — after we've checked all services for this key.
-        // Defer: mark unseen and let a later selected service claim it, or fall through.
-        const anyGroupMemberSelected = EXCLUSIVE_GROUPS
-          .filter((g) => g.includes(svc.id))
-          .some((g) => g.some((id) => selectedIds.has(id)));
-        if (!anyGroupMemberSelected) {
-          seen.add(key);
-          const cloudVal = dotEnv[key] || process.env[key] || '(not set in .env)';
-          rows.push({ label: key, value: cloudVal, tag: 'cloud' });
-        }
+        const cloudVal = dotEnv[key] || process.env[key] || '(not set in .env)';
+        rows.push({ label: key, value: cloudVal, tag: 'cloud' });
       }
     }
   }
@@ -285,13 +242,7 @@ async function main() {
 
   let ids;
   if (all) {
-    // For exclusive groups, keep only the first member listed in the group.
-    // go is listed before appsync in EXCLUSIVE_GROUPS so go wins with --all.
-    const excluded = new Set();
-    for (const group of EXCLUSIVE_GROUPS) {
-      for (const id of group.slice(1)) excluded.add(id);
-    }
-    ids = SERVICES.map((s) => s.id).filter((id) => !excluded.has(id));
+    ids = SERVICES.map((s) => s.id);
   } else if (cliIds.length) {
     ids = cliIds;
   } else if (process.stdin.isTTY) {

@@ -4,8 +4,7 @@
     { "path": "frontend", "name": "frontend" },
     { "path": "backend", "name": "backend" },
     { "path": "go", "name": "go" },
-    { "path": "tablet", "name": "tablet" },
-    { "path": "appsync", "name": "appsync" }
+    { "path": "tablet", "name": "tablet" }
   ],
   "settings": {
     "git.autoRepositoryDetection": true,

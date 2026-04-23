@@ -55,16 +55,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-22-26 AppSync TypeScript vs Go.md",
+                "file": "_Notes/04-22-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-22-26 AppSync TypeScript vs Go"
+              "title": "04-22-26 - Notes"
+            }
+          },
+          {
+            "id": "9112c5e67b23c666",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Notes/04-23-26 - Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "04-23-26 - Notes"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -247,8 +261,11 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "43f69d6aed4abd78",
+  "active": "9112c5e67b23c666",
   "lastOpenFiles": [
+    "_Notes/04-22-26 AppSync TypeScript vs Go.md",
+    "_Notes/04-23-26 - Notes.md",
+    "_Notes/04-22-26 - Notes.md",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
     "backend/dist/lambdas/device-checker.js",
@@ -259,12 +276,10 @@
     "backend/dist/src/main.js.map",
     "backend/dist/src/app.module.d.ts",
     "backend/dist/src/app.module.js",
-    "backend/dist/src/app.module.js.map",
     "node_modules/@types/aws-lambda/README.md",
     "node_modules/bun-types/docs/README.md",
     "node_modules/bun-types/README.md",
     "node_modules/bun-types/CLAUDE.md",
-    "_Notes/04-22-26 AppSync TypeScript vs Go.md",
     "appsync/node_modules/mysql2/lib/auth_plugins/caching_sha2_password.md",
     "appsync/node_modules/bun-types/docs/README.md",
     "appsync/node_modules/@types/node/README.md",
@@ -284,7 +299,6 @@
     "appsync/node_modules/bun-types/README.md",
     "appsync/node_modules/bun-types/CLAUDE.md",
     "appsync/node_modules/aws-ssl-profiles/README.md",
-    "appsync/node_modules/generate-function/README.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
