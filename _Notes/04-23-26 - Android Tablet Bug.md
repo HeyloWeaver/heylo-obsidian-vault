@@ -1,6 +1,3 @@
-understand how the messaging works and what I think
-need to add an amount of unreads in UI
-
 ### Goal
 When a new message comes in, it does not have an icon in the communication tab indicating an unread message from chat. See second image for reference (ignore that it's in alerts)
 
@@ -25,3 +22,29 @@ When a new message comes in, it does not have an icon in the communication tab i
             - when it fails
                 - put a small question mark by the number
                     - on click show a small modal telling the user that we failed to mark messages as read
+
+---
+
+### Notes from first call
+
+log in as support pro
+
+run script to simulate a message going out
+
+i should get that message in the tablet's UX
+
+should get an unread messages count but currently its not
+bug is that we should show a number with how many unread messages
+we do it with alerts but not with unread messages
+
+create-zigby-event - simulate event
+etc..
+
+---
+
+### Notes from second call
+
+understand how the messaging works and what I think
+need to add an amount of unreads in UI
+
+---

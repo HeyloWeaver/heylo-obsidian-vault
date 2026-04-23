@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-23-26 - Android Tablet Bug.md",
+                "file": "_Engineering/Tablet/Kiosk Mode Setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-23-26 - Android Tablet Bug"
+              "title": "Kiosk Mode Setup"
             }
           },
           {
@@ -220,9 +220,17 @@
   },
   "active": "023810013d978f74",
   "lastOpenFiles": [
+    "_Engineering/Tablet/Kiosk Quick Start.md",
+    "backend/dist/tsconfig.tsbuildinfo",
+    "_Engineering/Tablet/Kiosk Mode Setup.md",
+    "_Engineering/Tablet/Tablet.md",
+    "_Engineering/Tablet/Update Strategy.md",
+    "_Notes/1st Android Bug.md",
+    "_Notes/04-23-26 - Android Tablet Bug.md",
+    "frontend/context/unread-count-context.tsx",
+    "frontend/services/readReceiptService.ts",
     "_Plans/Unread Message Count Badge.md",
     "_Notes/04-23-26 - Customer Support.md",
-    "_Notes/04-23-26 - Android Tablet Bug.md",
     "_Notes/04-23-26 - Caseload v2 Notes.md",
     "_Notes/04-22-26 - Notes.md",
     "tablet/build/app/intermediates/cxx/debug/4p1l2q5c/logs/x86_64/generate_cxx_metadata_89_timing.txt",
@@ -233,9 +241,6 @@
     "_Notes/04-22-26 AppSync TypeScript vs Go.md",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
-    "backend/dist/lambdas/device-checker.js",
-    "backend/dist/lambdas/device-checker.d.ts",
-    "backend/dist/lambdas",
     "node_modules/@types/aws-lambda/README.md",
     "node_modules/bun-types/docs/README.md",
     "node_modules/bun-types/README.md",
@@ -251,11 +256,6 @@
     "appsync/node_modules/safer-buffer/Readme.md",
     "appsync/node_modules/safer-buffer/Porting-Buffer.md",
     "appsync/node_modules/is-property/README.md",
-    "appsync/node_modules/denque/README.md",
-    "appsync/node_modules/lru.min/README.md",
-    "appsync/node_modules/denque/CHANGELOG.md",
-    "appsync/node_modules/long/README.md",
-    "appsync/node_modules/iconv-lite/README.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
