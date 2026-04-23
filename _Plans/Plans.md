@@ -7,3 +7,4 @@ status: current
 ---
 - [[Caseload Redesign v1]]
 - [[Frontend Theme Colors and Design Tokens]]
+- [[Unread Message Count Badge]]

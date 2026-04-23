@@ -35,8 +35,7 @@
               "title": "04-23-26 - Customer Support"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -219,8 +218,9 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "7c2de78c6d892d64",
+  "active": "023810013d978f74",
   "lastOpenFiles": [
+    "_Plans/Unread Message Count Badge.md",
     "_Notes/04-23-26 - Customer Support.md",
     "_Notes/04-23-26 - Android Tablet Bug.md",
     "_Notes/04-23-26 - Caseload v2 Notes.md",
@@ -256,7 +256,6 @@
     "appsync/node_modules/denque/CHANGELOG.md",
     "appsync/node_modules/long/README.md",
     "appsync/node_modules/iconv-lite/README.md",
-    "appsync/node_modules/bun-types/README.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
