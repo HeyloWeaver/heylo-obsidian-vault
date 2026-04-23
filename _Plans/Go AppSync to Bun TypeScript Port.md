@@ -1,5 +1,5 @@
 ---
-status: draft
+status: done
 owner: Mike
 created: 2026-04-22
 tags:
@@ -10,6 +10,7 @@ tags:
   - appsync
 type: plan
 updated: 2026-04-22
+completed: 2026-04-22
 ---
 
 # Go AppSync → Bun/TypeScript Port — Plan

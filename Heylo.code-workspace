@@ -1,10 +1,11 @@
 {
   "folders": [
     { "path": ".", "name": "Heylo (vault)" },
-    { "path": "frontend", "name": "heylo-web" },
-    { "path": "backend", "name": "heylo-api" },
+    { "path": "frontend", "name": "frontend" },
+    { "path": "backend", "name": "backend" },
     { "path": "go", "name": "go" },
-    { "path": "tablet", "name": "tablet" }
+    { "path": "tablet", "name": "tablet" },
+    { "path": "appsync", "name": "appsync" }
   ],
   "settings": {
     "git.autoRepositoryDetection": true,

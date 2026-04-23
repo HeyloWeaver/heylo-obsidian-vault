@@ -5,7 +5,8 @@
     "frontend",
     "backend",
     "go",
-    "tablet"
+    "tablet",
+    "appsync"
   ],
   "bin": {
     "heylo": "./dev-services.mjs"
@@ -17,6 +18,7 @@
     "dev:go": "dotenv -e .env -- node appsync-local-dev.mjs --watch",
     "dev:go:once": "dotenv -e .env -- node appsync-local-dev.mjs",
     "dev:tablet": "dotenv -e .env -- bash -c 'cd tablet && npm run dev'",
+    "dev:appsync": "dotenv -e .env -- npm run dev -w heylo-appsync",
     "dev:services": "node dev-services.mjs"
   },
   "devDependencies": {
