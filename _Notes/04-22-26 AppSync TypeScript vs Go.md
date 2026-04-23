@@ -87,6 +87,60 @@ Moving to TS doesn't immediately unlock all of that, but it removes the wall tha
 
 ---
 
+## Performance
+
+The most common objection is "Go is faster." That's true in general. It does not apply here.
+
+### Latency
+
+**This service is I/O-bound.** It validates a JWT claim and runs two SQL queries. CPU time — JSON parsing, the FNV hash, sorting a slice of rows — is 1–2ms. The rest is waiting on MySQL.
+
+For a warm invocation, the breakdown is:
+
+| Phase | Go | Bun | Difference |
+|---|---|---|---|
+| JSON parse + route | ~0.2ms | ~0.5ms | 0.3ms |
+| MySQL queries × 2 | 5–50ms | 5–50ms | 0ms |
+| JSON serialize | ~0.1ms | ~0.3ms | 0.2ms |
+| **Total** | **5–50ms** | **5–50ms** | **<1ms** |
+
+The runtime contributes less than 1ms to a response dominated by 5–50ms of database I/O. That difference is not user-visible at any scale.
+
+**Lambda's concurrency model makes this even more irrelevant.** Each Lambda instance handles exactly one request at a time — Go's goroutine scheduler, which shines when a single process juggles thousands of concurrent requests, never comes into play. Concurrency is handled by Lambda spinning up more instances. Both runtimes perform identically under load.
+
+**Cold start is the one real gap:**
+
+| | Go | Bun |
+|---|---|---|
+| Binary size | ~8 MB | ~35 MB |
+| Cold start | ~50–80ms | ~150–250ms |
+| Warm invocation overhead | <1ms | <5ms |
+
+Cold starts are real — Go initializes faster. But a Lambda behind a live product stays warm. Cold starts happen on first deploy, after 15+ minutes of zero traffic, or during a burst scale-out. For a scheduling tool used by staff during business hours, this is rarely user-visible, and never more than a one-time 200ms delay on first load.
+
+**When Go's speed would actually matter:** compute-heavy workloads — bulk data transformation, cryptography, tight loops over large datasets. For a resolver that joins four tables and groups rows by timezone, the language is irrelevant to performance.
+
+### Cost
+
+Lambda is billed per GB-second. The only cost difference between Go and Bun is memory: Go sits around 30–50MB resident; Bun around 80–120MB. In the worst case, Go fits in a 128MB Lambda setting and Bun needs 256MB.
+
+For a caseload scheduling tool, a realistic usage ceiling is 10 page loads per user per workday, 20 workdays a month:
+
+| Users | Requests/month | Go (128MB) cost | Bun (256MB) cost | Difference |
+|---|---|---|---|---|
+| 1,000 | 200,000 | free tier | free tier | **$0** |
+| 5,000 | 1,000,000 | $3.75 | $7.08 | **$3.33** |
+| 10,000 | 2,000,000 | $7.50 | $14.17 | **$6.67** |
+| 50,000 | 10,000,000 | $37.50 | $70.83 | **$33.33** |
+
+At 50,000 users making 10 million calls a month — 10× the realistic ceiling — the difference is **$33/month**.
+
+The MySQL instance sized to handle that load costs $200–500/month on its own. The Lambda memory delta is noise on top of the actual infrastructure spend.
+
+**Neither latency nor cost makes Go the right choice for this service.** The gap exists on paper; it does not exist in production.
+
+---
+
 ## Recommendation
 
 Ship the `appsync/` TypeScript service. Run both in parallel for one release cycle against the same DB, diff the responses, then decommission the Go service. The Go code stays in the repo under `go/` until we're confident — no flag day.
