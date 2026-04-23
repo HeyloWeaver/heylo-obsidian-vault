@@ -245,6 +245,7 @@
   },
   "active": "43f69d6aed4abd78",
   "lastOpenFiles": [
+    "_Plans/Go AppSync to Bun TypeScript Port.md",
     "_Plans/Prettier & Eslint.md",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
