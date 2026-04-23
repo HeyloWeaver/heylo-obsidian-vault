@@ -8,77 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e090087e4bf8373d",
+            "id": "023810013d978f74",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Tablet/Tablet.md",
+                "file": "_Notes/04-23-26 - Android Tablet Bug.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tablet"
+              "title": "04-23-26 - Android Tablet Bug"
             }
           },
           {
-            "id": "4ddae686b131ee15",
+            "id": "7c2de78c6d892d64",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Tablet/1st Android Bug.md",
+                "file": "_Notes/04-23-26 - Customer Support.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1st Android Bug"
-            }
-          },
-          {
-            "id": "52754b0feace97be",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Plans/Prettier & Eslint.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Prettier & Eslint"
-            }
-          },
-          {
-            "id": "43f69d6aed4abd78",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/04-22-26 - Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04-22-26 - Notes"
-            }
-          },
-          {
-            "id": "9112c5e67b23c666",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/04-23-26 - Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04-23-26 - Notes"
+              "title": "04-23-26 - Customer Support"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -261,21 +219,23 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "9112c5e67b23c666",
+  "active": "7c2de78c6d892d64",
   "lastOpenFiles": [
-    "_Notes/04-22-26 AppSync TypeScript vs Go.md",
-    "_Notes/04-23-26 - Notes.md",
+    "_Notes/04-23-26 - Customer Support.md",
+    "_Notes/04-23-26 - Android Tablet Bug.md",
+    "_Notes/04-23-26 - Caseload v2 Notes.md",
     "_Notes/04-22-26 - Notes.md",
+    "tablet/build/app/intermediates/cxx/debug/4p1l2q5c/logs/x86_64/generate_cxx_metadata_89_timing.txt",
+    "tablet/build/app/intermediates/cxx/debug/4p1l2q5c/logs/armeabi-v7a/generate_cxx_metadata_89_timing.txt",
+    "tablet/build/app/intermediates/cxx/debug/4p1l2q5c/logs/arm64-v8a/generate_cxx_metadata_89_timing.txt",
+    "tablet/build/app/intermediates/assets/devDebug/mergeDevDebugAssets/flutter_assets/NativeAssetsManifest.json",
+    "tablet/build/app/intermediates/assets/devDebug/mergeDevDebugAssets/flutter_assets/NOTICES.Z",
+    "_Notes/04-22-26 AppSync TypeScript vs Go.md",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
     "backend/dist/lambdas/device-checker.js",
     "backend/dist/lambdas/device-checker.d.ts",
     "backend/dist/lambdas",
-    "backend/dist/src/main.d.ts",
-    "backend/dist/src/main.js",
-    "backend/dist/src/main.js.map",
-    "backend/dist/src/app.module.d.ts",
-    "backend/dist/src/app.module.js",
     "node_modules/@types/aws-lambda/README.md",
     "node_modules/bun-types/docs/README.md",
     "node_modules/bun-types/README.md",
@@ -297,8 +257,6 @@
     "appsync/node_modules/long/README.md",
     "appsync/node_modules/iconv-lite/README.md",
     "appsync/node_modules/bun-types/README.md",
-    "appsync/node_modules/bun-types/CLAUDE.md",
-    "appsync/node_modules/aws-ssl-profiles/README.md",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/windy.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/waveform.svg",
     "tablet/build/app/intermediates/flutter/prodDebug/flutter_assets/assets/icons/sunny.svg",
