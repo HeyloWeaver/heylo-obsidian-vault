@@ -1,5 +1,5 @@
 
-Follow [[Kiosk Quick Start]]
+Follow [[Kiosk Quick Start]] and [[Kiosk Mode Setup]]
 
 ```
 # First start adb
