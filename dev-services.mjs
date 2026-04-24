@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 /**
  * Start one or more local dev servers (API, Web, Go/AppSync) with optional interactive pick.
- * Services not started locally automatically fall back to cloud URLs from .env.
+ * Services not started locally automatically fall back to cloud URLs from the chosen env file.
  *
  * Usage:
  *   node dev-services.mjs
  *   node dev-services.mjs api web
  *   node dev-services.mjs --all
+ *   node dev-services.mjs --env local
+ *   node dev-services.mjs --env dev api web
  *   npm run dev:services -- api
  */
 import { spawn } from 'node:child_process';
@@ -19,25 +21,54 @@ import prompts from 'prompts';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Read key=value pairs from .env without touching process.env.
- * Used to surface cloud URL values in the routing summary.
+ * Read key=value pairs from an env file without touching process.env.
+ * @param {string} filePath
  * @returns {Record<string, string>}
  */
-function readDotEnv() {
+function readEnvFile(filePath) {
   try {
-    const src = readFileSync(join(ROOT, '.env'), 'utf8');
+    const src = readFileSync(filePath, 'utf8');
     const env = {};
     for (const line of src.split('\n')) {
       const trimmed = line.trim();
       if (!trimmed || trimmed.startsWith('#')) continue;
       const eq = trimmed.indexOf('=');
       if (eq === -1) continue;
-      env[trimmed.slice(0, eq).trim()] = trimmed.slice(eq + 1).trim();
+      const key = trimmed.slice(0, eq).trim();
+      const val = trimmed.slice(eq + 1).trim().replace(/^"|"$/g, '');
+      env[key] = val;
     }
     return env;
   } catch {
     return {};
   }
+}
+
+const ENV_PROFILES = {
+  local: '.env.local',
+  dev: '.env.dev',
+};
+
+/**
+ * Load base .env then overlay the chosen profile file on top.
+ * Override file is applied after base so its values take precedence.
+ * Returns the merged vars for display purposes.
+ * @param {'local'|'dev'} profile
+ * @returns {Record<string, string>}
+ */
+function applyEnvProfile(profile) {
+  const baseVars = readEnvFile(join(ROOT, '.env'));
+  const overrideVars = readEnvFile(join(ROOT, ENV_PROFILES[profile]));
+  const merged = { ...baseVars, ...overrideVars };
+  for (const [k, v] of Object.entries(merged)) {
+    process.env[k] = v;
+  }
+  const dbHost = overrideVars.DB_HOST || merged.DB_HOST || '';
+  const dbTag = profile === 'local'
+    ? '↳ local  127.0.0.1:3306 (Docker)'
+    : `↳ dev    ${dbHost}`;
+  console.log(`DB       ${dbTag}`);
+  return merged;
 }
 
 /**
@@ -90,15 +121,16 @@ Services:
 ${SERVICES.map((s) => `  ${s.id.padEnd(8)} ${s.title}`).join('\n')}
 
 Options:
-  -a, --all     Start every service locally
-  -h, --help    Show this help
+  -a, --all          Start every service locally
+  --env local|dev    Environment: local Docker DB or dev cloud RDS (default: prompt)
+  -h, --help         Show this help
 
 Examples:
-  heylo                      # interactive multiselect (TTY only)
-  heylo api                  # API local, everything else → cloud
-  heylo api web              # API + web local, go → cloud (any order)
-  heylo go                   # Go GraphQL on :8080; set DB_* (or APPSYNC_MYSQL_DSN) in .env like the API
-  heylo --all                # all services local
+  heylo                          # interactive pick: services + env
+  heylo api                      # API local, everything else → cloud (prompts for env)
+  heylo api web --env local      # API + web local, Docker MySQL
+  heylo go --env dev             # Go GraphQL, cloud RDS
+  heylo --all --env local        # all services local, Docker MySQL
 `);
 }
 
@@ -106,8 +138,14 @@ function parseArgv(argv) {
   const raw = argv.slice(2);
   if (raw.some((a) => a === '-h' || a === '--help')) return { help: true };
   const all = raw.some((a) => a === '-a' || a === '--all');
-  const ids = raw.filter((a) => !a.startsWith('-'));
-  return { help: false, all, ids };
+  const envIdx = raw.findIndex((a) => a === '--env');
+  const env = envIdx !== -1 ? raw[envIdx + 1] : null;
+  if (env && !ENV_PROFILES[env]) {
+    console.error(`Unknown --env value: "${env}". Valid: ${Object.keys(ENV_PROFILES).join(', ')}`);
+    process.exit(1);
+  }
+  const ids = raw.filter((a, i) => !a.startsWith('-') && raw[i - 1] !== '--env');
+  return { help: false, all, ids, env };
 }
 
 function validateIds(ids) {
@@ -150,10 +188,30 @@ async function pickServices() {
   return picked;
 }
 
-function warnMissingEnv() {
-  const envFile = join(ROOT, '.env');
-  if (!existsSync(envFile)) {
-    console.warn('Warning: no .env at repo root; copy .env.example to .env if services fail to boot.\n');
+async function pickEnv() {
+  const { env } = await prompts({
+    type: 'select',
+    name: 'env',
+    message: 'Which environment?',
+    choices: [
+      { title: 'local  — Docker MySQL (127.0.0.1:3306)', value: 'local' },
+      { title: 'dev    — Cloud RDS (AWS dev)', value: 'dev' },
+    ],
+  });
+  if (!env) {
+    console.error('No environment selected.');
+    process.exit(1);
+  }
+  return env;
+}
+
+function warnMissingEnv(profile) {
+  if (!existsSync(join(ROOT, '.env'))) {
+    console.warn('Warning: .env not found. Copy .env.example and fill in values.\n');
+  }
+  const overrideFile = ENV_PROFILES[profile];
+  if (!existsSync(join(ROOT, overrideFile))) {
+    console.warn(`Warning: ${overrideFile} not found. Copy ${overrideFile}.example and fill in values.\n`);
   }
 }
 
@@ -166,9 +224,9 @@ function warnMissingEnv() {
  * Prints a routing summary so it's always clear what's hitting local vs cloud.
  *
  * @param {typeof SERVICES} selected
- * @param {Record<string, string>} dotEnv  parsed .env values (for display only)
+ * @param {Record<string, string>} envVars  parsed env file values (for display only)
  */
-function applyLocalEnv(selected, dotEnv) {
+function applyLocalEnv(selected, envVars) {
   const selectedIds = new Set(selected.map((s) => s.id));
   const rows = [];
 
@@ -180,7 +238,7 @@ function applyLocalEnv(selected, dotEnv) {
         process.env[key] = localVal;
         rows.push({ label: key, value: localVal, tag: 'local' });
       } else {
-        const cloudVal = dotEnv[key] || process.env[key] || '(not set in .env)';
+        const cloudVal = envVars[key] || process.env[key] || '(not set in env file)';
         rows.push({ label: key, value: cloudVal, tag: 'cloud' });
       }
     }
@@ -188,7 +246,7 @@ function applyLocalEnv(selected, dotEnv) {
 
   if (rows.length) {
     const pad = Math.max(...rows.map((r) => r.label.length));
-    console.log('Routing:');
+    console.log('\nRouting:');
     for (const { label, value, tag } of rows) {
       const marker = tag === 'local' ? '↳ local' : '↳ cloud';
       console.log(`  ${label.padEnd(pad)}  ${marker}  ${value}`);
@@ -217,11 +275,12 @@ function runShell(command) {
   });
 }
 
-/** @param {typeof SERVICES} selected */
-async function start(selected) {
-  warnMissingEnv();
-  const dotEnv = readDotEnv();
-  applyLocalEnv(selected, dotEnv);
+/**
+ * @param {typeof SERVICES} selected
+ * @param {Record<string, string>} envVars
+ */
+async function start(selected, envVars) {
+  applyLocalEnv(selected, envVars);
 
   if (selected.length === 1) {
     await runShell(`npm run ${selected[0].npmScript}`);
@@ -234,7 +293,7 @@ async function start(selected) {
 }
 
 async function main() {
-  const { help, all, ids: cliIds } = parseArgv(process.argv);
+  const { help, all, ids: cliIds, env: cliEnv } = parseArgv(process.argv);
   if (help) {
     printHelp();
     process.exit(0);
@@ -252,9 +311,13 @@ async function main() {
     process.exit(1);
   }
 
+  const env = cliEnv ?? (process.stdin.isTTY ? await pickEnv() : 'dev');
+
   validateIds(ids);
+  warnMissingEnv(env);
   const selected = orderedServices(ids);
-  await start(selected);
+  const envVars = applyEnvProfile(env);
+  await start(selected, envVars);
 }
 
 main().catch((err) => {
