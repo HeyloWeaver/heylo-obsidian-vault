@@ -11,10 +11,14 @@
             "id": "9ec69508be0c313d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "_Engineering/Hub/Agent Work Guide.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Agent Work Guide"
             }
           }
         ]
@@ -202,6 +206,7 @@
   },
   "active": "9ec69508be0c313d",
   "lastOpenFiles": [
+    "_Engineering/Agent Work - Start Here.md",
     "hub/CODEBUILD_SETUP.md",
     "_Notes/04-23-66 - HEY-352 - Fix device naming.md",
     "_Engineering/Hub/Domain - OTA.md",
@@ -246,7 +251,6 @@
     "_Notes/04-22-26 - Notes.md",
     "_Notes/04-21-26 - HEY-366 - Caseloads Review.md",
     "_Engineering/Tablet/Update Strategy.md",
-    "_Notes/1st Android Bug.md",
-    "_Plans/Unread Message Count Badge.md"
+    "_Notes/1st Android Bug.md"
   ]
 }
