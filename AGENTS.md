@@ -8,7 +8,7 @@ This repository root is the **Heylo engineering Obsidian vault**: product and ar
 
 - **Obsidian** indexes this folder as a vault (see `.obsidian/`). Notes use **`[[wikilinks]]`** to cross-link; in Cursor or the terminal, resolve those to paths under this repo (for example `[[Frontend/Agent Work Guide]]` → `_Engineering/Frontend/Agent Work Guide.md`).
 - **Leading underscore = Markdown notes** (safe to edit in Obsidian): `_Engineering/`, `_Onboarding/`, `_Notes/`, `_Standups/`, `_Plans/`, etc.
-- **No leading underscore = code** (`frontend/`, `backend/`, `go/`): edit in your IDE (Cursor, VS Code). Do not rely on Obsidian for lint/format/build; avoid changing application code only inside Obsidian if your workflow does not run the same toolchain as the repo.
+- **No leading underscore = code** (`frontend/`, `backend/`, `go/`, `tablet/`, `hub/`): edit in your IDE (Cursor, VS Code). Do not rely on Obsidian for lint/format/build; avoid changing application code only inside Obsidian if your workflow does not run the same toolchain as the repo.
 - **Search and graph** in Obsidian span both notes and code; use that for discovery, then implement in the IDE.
 
 High-level tree (not exhaustive):
@@ -24,10 +24,11 @@ High-level tree (not exhaustive):
 | `backend/` | NestJS API (workspace package `heylo-api`) |
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
 | `tablet/` | Flutter Android kiosk app for resident tablets |
+| `hub/` | Yocto Hub OS for Raspberry Pi 5 (Mender OTA, kas, `meta-heylo`); not part of root npm dev |
 | `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `dev-services.mjs` |
 | `dev-services.mjs` | Local dev service picker (`npx heylo`) |
 
-`frontend/`, `backend/`, and `go/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
+`frontend/`, `backend/`, `go/`, `tablet/`, and `hub/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
 
 ---
 
@@ -37,8 +38,9 @@ High-level tree (not exhaustive):
 - **`backend/`** — NestJS + TypeORM + MySQL: core API, auth/session, WebSocket fanout, integrations. Typical local URL: `http://localhost:4000`.
 - **`go/backend/appsync/`** — AppSync GraphQL resolvers in Go (e.g. caseload schedule). Separate deploy path from Nest; shares MySQL domain data.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets. Talks to the same NestJS backend over REST + WebSocket. Runs in two flavors: `dev` (hits `dev-api.heylo.tech`) and `prod`. Local dev: `flutter run --flavor dev -t lib/main.dart`.
+- **`hub/`** — Yocto 5.2 build for Heylo Hub hardware: Raspberry Pi 5 images, Mender OTA, kas + Docker (typically WSL2 + Ubuntu 24.04). Application services and recipes live under `hub/meta-heylo/`. Authoritative build/runbook: `hub/README.md`; agent-oriented notes: `_Engineering/Hub/`.
 
-Cross-cutting features often touch **two or three** of these; keep DTOs, enums, event names, and role rules aligned.
+Cross-cutting features often touch **two or three** of frontend, backend, Go, and tablet; keep DTOs, enums, event names, and role rules aligned. Hub OS work is mostly self-contained under `hub/` but may need backend or `_Engineering/Devices/` context for provisioning and cloud contracts.
 
 ---
 
@@ -52,15 +54,18 @@ Use this sequence before large or ambiguous tasks:
    - `_Engineering/Backend/Agent Work Guide.md`
    - `_Engineering/Go/Agent Work Guide.md`
    - `_Engineering/Tablet/Agent Work Guide.md`
+   - `_Engineering/Hub/Agent Work Guide.md`
 3. **High-level overview** for depth when the task is broad:
    - `_Engineering/Frontend/High Level Overview.md`
    - `_Engineering/Backend/High Level Overview.md`
    - `_Engineering/Tablet/High Level Overview.md`
+   - `_Engineering/Hub/High Level Overview.md`
 4. **Domain playbooks** for subsystem entry points:
    - `_Engineering/Frontend/Domain Playbooks.md`
    - `_Engineering/Backend/Domain Playbooks.md`
    - `_Engineering/Go/Domain Playbooks.md`
    - `_Engineering/Tablet/Domain Playbooks.md`
+   - `_Engineering/Hub/Domain Playbooks.md`
 
 **Ground rules** (from the handoff doc): smallest change that solves the problem; align frontend/backend contracts; auth and realtime changes need explicit consumer/producer checks; document non-obvious architectural shifts in `_Engineering/`.
 
@@ -86,7 +91,7 @@ The root **`package.json`** (package name **`heylo`**) workspaces **`frontend`**
 - **Both services:** `npm run dev`
 - **Pick services:** `npm run dev:services` or `npx heylo` — `npx heylo --help` for flags.
 
-Ensure **`.env`** exists (copy from **`.env.example`**). AppSync/Go has its own build and deploy path under `go/backend/appsync/`.
+Ensure **`.env`** exists (copy from **`.env.example`**). AppSync/Go has its own build and deploy path under `go/backend/appsync/`. The Hub Yocto tree under `hub/` uses kas/Docker and is not started by `npm run dev` (see `hub/README.md`).
 
 ---
 

@@ -27,6 +27,7 @@ vault root (= git workspace root)
 ├── backend/                 ← NestJS 11 / TypeORM API (real repo)
 ├── go/                      ← Go services (currently: AppSync resolvers)
 ├── tablet/                  ← Flutter Android kiosk app for resident tablets
+├── hub/                     ← Yocto Hub OS for Raspberry Pi 5 + Mender OTA (real repo)
 ├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
 ├── dev-services.mjs         ← `heylo` CLI (service picker)
 ```
@@ -37,8 +38,9 @@ vault root (= git workspace root)
 - **`backend/`** — the core API. NestJS 11 on Node 22 with TypeORM + MySQL. Serves the frontend, handles auth via AWS Cognito, drives real-time updates through API Gateway WebSockets, and orchestrates device/IoT events, video calls (Daily.co), email, and multi-tenant agency state. Deep-dive: `_Engineering/Backend/High Level Overview.md`.
 - **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets deployed at care sites. Handles video calls (Daily.co), chat, missed calls, weather, and device management. Runs in `dev` and `prod` flavors; uses the same NestJS backend over REST + WebSocket. Deep-dive: `_Engineering/Tablet/High Level Overview.md`.
+- **`hub/`** — Yocto Project 5.2 build for **Heylo Hub** field hardware: Raspberry Pi 5 images, Mender dual-partition OTA, kas-based reproducible builds, and the custom `meta-heylo` layer (systemd services, Home Assistant, Mosquitto, Heylo-specific recipes). Intended for WSL2 + Ubuntu 24.04 with Docker; not started by root `npm run dev`. Full build layout, scripts, and OTA workflow: `hub/README.md`.
 
-Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/`.
+Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/` (conceptual docs); **`hub/`** is the repo where Hub **OS images** are produced.
 
 ## Local development (terminal)
 
@@ -90,6 +92,7 @@ Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contact.
 - `_Engineering/Frontend/High Level Overview.md`
 - `_Engineering/Backend/High Level Overview.md`
 - `_Engineering/Tablet/High Level Overview.md`
+- `hub/README.md` — if you work on Hub device OS builds (Yocto, Mender, `meta-heylo`)
 
 After that, `_Engineering/Heylo Prod & Eng.md` gives the wider product + engineering context, and `_Engineering/Devices/` covers the hardware side.
 
