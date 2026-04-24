@@ -1,8 +1,8 @@
 ---
 type: guide
-tags: [engineering, agents, backend, frontend, go, tablet]
+tags: [engineering, agents, backend, frontend, go, tablet, hub]
 owner: Mike
-updated: 2026-04-22
+updated: 2026-04-23
 status: current
 ---
 # Agent Work - Start Here
@@ -15,6 +15,7 @@ Use this page first, then jump to the repo-specific guide:
 - Backend: [[Backend/Agent Work Guide]]
 - Go: [[Go/Agent Work Guide]]
 - Tablet: [[Tablet/Agent Work Guide]]
+- Hub: [[Hub/Agent Work Guide]]
 
 Then use domain playbooks for targeted work:
 
@@ -22,6 +23,7 @@ Then use domain playbooks for targeted work:
 - Backend domains: [[Backend/Domain Playbooks]]
 - Go domains: [[Go/Domain Playbooks]]
 - Tablet domains: [[Tablet/Domain Playbooks]]
+- Hub domains: [[Hub/Domain Playbooks]]
 
 ---
 
@@ -32,6 +34,7 @@ Then use domain playbooks for targeted work:
    - [[Frontend/High Level Overview]]
    - [[Backend/High Level Overview]]
    - [[Tablet/High Level Overview]]
+   - [[Hub/High Level Overview]]
 3. Read the repo-specific agent guide above for "change recipes" and gotchas.
 4. Confirm active local run targets before changing behavior:
    - npm workspaces and dev scripts run from the **vault root** (`npm install`, `npm run dev`, or `npx heylo` — see `README.md` *Local development* or [[Dev Environment Setup]])
@@ -59,6 +62,7 @@ Then use domain playbooks for targeted work:
 - `backend/` is NestJS + MySQL and handles core API, auth, realtime fanout, and integrations.
 - `go/backend/appsync/` is a focused GraphQL resolver Lambda path for heavier reads (currently caseload schedule).
 - `tablet/` is a Flutter Android kiosk app for residents — video calls, chat, device management. Talks to the same NestJS backend over REST + WebSocket.
+- `hub/` is a Yocto 5.2 embedded Linux build system for the Raspberry Pi 5 Hub device — MQTT, Home Assistant, Zigbee/Z-Wave bridges, camera streaming, AWS IoT/SSM/CloudWatch, Mender OTA.
 - The same product surface spans all repos, so changes often need at least a sanity check in two or more.
 
 ---

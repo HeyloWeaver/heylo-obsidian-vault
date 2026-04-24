@@ -2,7 +2,7 @@
 type: index
 tags: [engineering]
 owner: Mike
-updated: 2026-04-22
+updated: 2026-04-23
 status: current
 ---
 Central index for all Heylo engineering documentation.
@@ -17,6 +17,7 @@ Central index for all Heylo engineering documentation.
 - [[Frontend/Frontend]]
 - [[Go/Go]]
 - [[Tablet/Tablet]]
+- [[Hub/Hub]]
 
 ## Hardware & Devices
 - [[Devices/Devices]]
