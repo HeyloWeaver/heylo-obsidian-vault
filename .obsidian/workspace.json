@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-23-26 - Tablet Setup.md",
+                "file": "_Notes/04-24-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-23-26 - Tablet Setup"
+              "title": "04-24-26 - Notes"
             }
           }
         ]
@@ -206,10 +206,13 @@
   },
   "active": "9ec69508be0c313d",
   "lastOpenFiles": [
+    "go/backend/appsync/merge_adjacent_shifts_test.go",
+    "go/backend/appsync/merge_adjacent_shifts.go",
+    "_Notes/04-24-26 - Notes.md",
+    "_Notes/04-23-26 - Tablet Setup.md",
     "_Notes/04-23-26 - HEY-218 - Android Tablet Bug.md",
     "_Notes/04-23-26 - Caseload v2 Notes (TBD TODO).md",
     "_Notes/04-22-26 - Caseload Notes.md",
-    "_Notes/04-24-26 - Notes.md",
     "_Notes/04-21-26 - Codebase Audit – Full Stack Architecture Review.md",
     "_Notes/04-20-26 - First Day - Shivani.md",
     "_Notes/04-20-26 - First Day - Chris.md",
@@ -232,7 +235,6 @@
     "backend/dist/src/test/site-common-area.integration.test.js",
     "backend/dist/src/test/site-common-area.integration.test.js.map",
     "backend/dist/src/test/event-processor.integration.test.d.ts",
-    "backend/dist/src/test/event-processor.integration.test.js",
     "_Engineering/Hub/Domain - Provisioning.md",
     "_Engineering/Hub/High Level Overview.md",
     "_Engineering/Hub/Skills/hub-logs.md",
@@ -240,8 +242,6 @@
     "_Engineering/Hub/Domain Playbooks.md",
     "_Engineering/Hub/Hub.md",
     "hub/heylo-utils/README-heylo-provision.md",
-    "hub/docs/CHANGELOG-0.29.0.md",
-    "hub/README.md",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxxhdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-mdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxhdpi-v4/ic_launcher.png",
