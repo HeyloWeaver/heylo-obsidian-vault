@@ -11,7 +11,11 @@ status: current
 `aws configure`
 Log in and add [govalo-dev]
 
-**npm / workspaces:** install and run app scripts from the **vault root** (`package.json` workspaces `frontend` + `backend`). Copy **`.env.example`** → **`.env`** at the vault root for shared dev env; see vault `README.md` (Local development) for `npm run dev`, `npx heylo`, and flags.
+**npm / workspaces:** install and run app scripts from the **vault root** (`package.json` workspaces `frontend` + `backend`). Set up env files at the vault root:
+- **`.env.example`** → **`.env`** (base — AWS, service URLs, DB defaults)
+- **`.env.dev.example`** → **`.env.dev`** (cloud RDS creds) for dev, or **`.env.local.example`** → **`.env.local`** (local Docker DB) for local
+
+See vault `README.md` (Local development) for `npm run dev`, `npx heylo --env local|dev`, and the `db:migrate` scripts.
 
 ## Backend
 

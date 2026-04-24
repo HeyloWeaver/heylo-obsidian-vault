@@ -46,29 +46,36 @@ Hardware/device knowledge — hubs, firmware, provisioning, payload samples — 
 
 npm workspaces and dev scripts live at the **vault root** — the same directory as the **git workspace root** (`package.json` lists `frontend` and `backend`). The **`heylo`** CLI there is the supported way to **orchestrate** which Node services to run without juggling one-off commands.
 
-1. Ensure **`.env`** exists at the vault root (copy from **`.env.example`**).
+1. Copy env files at the vault root:
+   - **`.env.example`** → **`.env`** (base — AWS, service URLs, DB defaults)
+   - **`.env.dev.example`** → **`.env.dev`** (cloud RDS credentials) — or **`.env.local.example`** → **`.env.local`** (local Docker DB)
 2. Run **`npm install`** once from the vault root. That links **`heylo-web`** and **`heylo-api`** and installs shared tooling (`concurrently`, `dotenv-cli`, `prompts`, …).
 
 **npm scripts** (from the vault root)
 
 | Command | What it runs |
 |--------|----------------|
-| `npm run dev` | API and web together (loads **`.env`** via `dotenv-cli`) |
+| `npm run dev` | API and web together (loads `.env.dev` + `.env`) |
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
 | `npm run dev:tablet` | Flutter tablet app (`flutter run --flavor dev`) |
+| `npm run db:migrate` | Run pending migrations against local Docker MySQL |
+| `npm run db:migrate:show` | Show local migration state |
+| `npm run db:revert` | Roll back last migration on local Docker MySQL |
 
 **`heylo` CLI** (`dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior.
 
 | Command | What it does |
 |--------|----------------|
-| `npx heylo` | Interactive multiselect when stdin is a TTY |
-| `npx heylo api` / `web` | Start one service |
+| `npx heylo` | Interactive pick: services + environment |
+| `npx heylo api` / `web` | Start one service (prompts for env) |
 | `npx heylo web api` | Start both (any order) |
 | `npx heylo --all` | Start every configured service |
-| `npm run dev:services` | Same as `node dev-services.mjs` (pass extra args after `--`, e.g. `npm run dev:services -- api`) |
+| `npx heylo --env local` | Use local Docker MySQL (`.env.local`) |
+| `npx heylo --env dev` | Use cloud RDS (`.env.dev`) |
+| `npm run dev:services` | Same as `node dev-services.mjs` (pass extra args after `--`) |
 
-Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass **`api`**, **`web`**, or **`--all`** explicitly.
+Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass service ids and `--env` explicitly.
 
 **Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow; it is not started by `npm run dev` or `heylo` today.
 

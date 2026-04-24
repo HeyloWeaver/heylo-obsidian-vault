@@ -144,7 +144,7 @@ function parseArgv(argv) {
     console.error(`Unknown --env value: "${env}". Valid: ${Object.keys(ENV_PROFILES).join(', ')}`);
     process.exit(1);
   }
-  const ids = raw.filter((a, i) => !a.startsWith('-') && raw[i - 1] !== '--env');
+  const ids = raw.filter((a, i) => !a.startsWith('-') && !raw[i - 1]?.startsWith('--'));
   return { help: false, all, ids, env };
 }
 
