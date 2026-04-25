@@ -155,23 +155,21 @@ Frontend display/contract sanity checks:
 
 ### Current Context
 
-Local MySQL is up. The backend package already has local TypeORM scripts:
+Local MySQL is up. The root package has local TypeORM wrappers:
 
-- `typeorm:migrate:show:local`
-- `typeorm:migrate:local`
-- `typeorm:revert:local`
+- `db:migrate:show`
+- `db:migrate`
+- `db:revert`
 
-The root dev service picker also has DB profile support through `.env.db.local` and `.env.db.cloud`, and accepts `--db local|cloud`.
+The root dev service picker also has DB profile support through `.env.local` and `.env.dev`, and accepts `--db local|dev`.
 
 ### Plan
 
 1. Verify the local scripts work against the current Docker MySQL:
-   - `npm run typeorm:migrate:show:local -w heylo-api`
-   - `npm run typeorm:migrate:local -w heylo-api`
-2. Add root-level aliases only if they remove friction from active use:
-   - Example: `npm run db:migrate:show -- --local` is not currently present.
-   - If root scripts are added, make them thin wrappers around the backend workspace scripts.
-3. Keep `.env.db.local` and `.env.db.cloud` untracked unless intentionally adding example templates.
+   - `npm run db:migrate:show`
+   - `npm run db:migrate`
+2. Keep `.env.local` and `.env.dev` untracked unless intentionally adding example templates.
+3. If backend workspace migration scripts are kept, align them with the working root scripts or document root scripts as canonical.
 4. Document the final commands in [[Dev Environment Setup]] after verifying them locally.
 
 ### Definition of Done
