@@ -109,6 +109,19 @@ const SERVICES = [
   },
 ];
 
+const ANSI_COLORS = {
+  blue: '\x1b[34m',
+  cyan: '\x1b[36m',
+  magenta: '\x1b[35m',
+};
+const ANSI_RESET = '\x1b[0m';
+
+const WEB_RECOVERABLE_ERROR_PATTERNS = [
+  /Could not find the module .* in the React Client Manifest/,
+  /Cannot find module '\.\/\d+\.js'/,
+  /Cannot read properties of undefined \(reading 'call'\)/,
+];
+
 function printHelp() {
   console.log(`Heylo local dev — pick which services to run.
 Services not started locally fall back to cloud URLs from .env automatically.
@@ -276,11 +289,155 @@ function runShell(command) {
 }
 
 /**
+ * Prefix child output line-by-line so we can keep service logs readable without
+ * shelling out to concurrently. The returned function flushes a partial line.
+ * @param {{ id: string, color: string }} svc
+ * @param {(line: string) => void} onLine
+ */
+function createLineWriter(svc, onLine) {
+  let pending = '';
+  const color = ANSI_COLORS[svc.color] ?? '';
+  const prefix = `${color}[${svc.id}]${ANSI_RESET} `;
+
+  return {
+    write(chunk) {
+      pending += chunk.toString();
+      const lines = pending.split(/\r?\n/);
+      pending = lines.pop() ?? '';
+      for (const line of lines) {
+        console.log(prefix + line);
+        onLine(line);
+      }
+    },
+    flush() {
+      if (!pending) return;
+      console.log(prefix + pending);
+      onLine(pending);
+      pending = '';
+    },
+  };
+}
+
+/**
+ * Run selected services directly so the CLI can recover the Next dev server
+ * when its HMR/client manifest gets into a bad state.
+ *
+ * @param {typeof SERVICES} selected
+ */
+function runManagedServices(selected) {
+  return new Promise((resolve) => {
+    /** @type {Map<string, { svc: typeof SERVICES[number], child: import('node:child_process').ChildProcess, stopping: boolean, restarting: boolean, restartTimer: NodeJS.Timeout | null }>} */
+    const running = new Map();
+    let shuttingDown = false;
+    let exitCode = 0;
+
+    const stopAll = (code = 0) => {
+      if (shuttingDown) return;
+      shuttingDown = true;
+      exitCode = code;
+      for (const state of running.values()) {
+        state.stopping = true;
+        state.child.kill('SIGTERM');
+      }
+      if (running.size === 0) resolve(exitCode);
+    };
+
+    const maybeResolveShutdown = () => {
+      if (shuttingDown && running.size === 0) {
+        resolve(exitCode);
+      }
+    };
+
+    const scheduleWebRestart = () => {
+      const state = running.get('web');
+      if (!state || state.stopping || state.restarting) return;
+
+      state.restarting = true;
+      console.log('\n[web] Detected a recoverable Next dev/HMR cache error; restarting web only...\n');
+      state.restartTimer = setTimeout(() => {
+        state.stopping = true;
+        state.child.kill('SIGTERM');
+      }, 100);
+    };
+
+    const startService = (svc) => {
+      const child = spawn('npm', ['run', svc.npmScript], {
+        cwd: ROOT,
+        env: process.env,
+        stdio: ['inherit', 'pipe', 'pipe'],
+      });
+
+      const state = {
+        svc,
+        child,
+        stopping: false,
+        restarting: false,
+        restartTimer: null,
+      };
+      running.set(svc.id, state);
+
+      const onLine = (line) => {
+        if (
+          svc.id === 'web' &&
+          WEB_RECOVERABLE_ERROR_PATTERNS.some((pattern) => pattern.test(line))
+        ) {
+          scheduleWebRestart();
+        }
+      };
+
+      const stdout = createLineWriter(svc, onLine);
+      const stderr = createLineWriter(svc, onLine);
+      child.stdout?.on('data', (chunk) => stdout.write(chunk));
+      child.stderr?.on('data', (chunk) => stderr.write(chunk));
+
+      child.on('error', (err) => {
+        console.error(`[${svc.id}]`, err);
+        if (!state.restarting) stopAll(1);
+      });
+
+      child.on('exit', (code, signal) => {
+        stdout.flush();
+        stderr.flush();
+        running.delete(svc.id);
+        if (state.restartTimer) clearTimeout(state.restartTimer);
+
+        if (shuttingDown) {
+          maybeResolveShutdown();
+          return;
+        }
+
+        if (state.restarting && svc.id === 'web') {
+          startService(svc);
+          return;
+        }
+
+        console.log(`[${svc.id}] exited ${signal ? `with signal ${signal}` : `with code ${code ?? 0}`}`);
+        stopAll(code ?? 1);
+      });
+    };
+
+    process.once('SIGINT', () => stopAll(0));
+    process.once('SIGTERM', () => stopAll(0));
+
+    for (const svc of selected) {
+      startService(svc);
+    }
+  }).then((code) => {
+    process.exit(code);
+  });
+}
+
+/**
  * @param {typeof SERVICES} selected
  * @param {Record<string, string>} envVars
  */
 async function start(selected, envVars) {
   applyLocalEnv(selected, envVars);
+
+  if (selected.some((svc) => svc.id === 'web')) {
+    await runManagedServices(selected);
+    return;
+  }
 
   if (selected.length === 1) {
     await runShell(`npm run ${selected[0].npmScript}`);
