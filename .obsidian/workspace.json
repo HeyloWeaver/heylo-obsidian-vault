@@ -221,7 +221,7 @@
   },
   "active": "62b13596b9292aef",
   "lastOpenFiles": [
-    "frontend/next.config.mjs",
+    "frontend/components/caseload-management/v2/assign-schedule-block.tsx",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/src/utils/password.util.d.ts",
     "backend/dist/src/utils/password.util.js",
@@ -231,7 +231,7 @@
     "backend/dist/lambdas/device-checker.d.ts",
     "backend/dist/lambdas",
     "backend/dist/src/test/caseload.integration.test.d.ts",
-    "backend/dist/src/test/alert-active-times.integration.test.d.ts",
+    "backend/dist/src/test/caseload.integration.test.js",
     "_Notes/04-24-26 - Notes.md",
     "NOTES FOR MONDAY.md",
     "go/backend/appsync/README.md",
