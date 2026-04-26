@@ -8,6 +8,7 @@
  *   node dev-services.mjs api web
  *   node dev-services.mjs --all
  *   node dev-services.mjs --env local
+ *   node dev-services.mjs --db local
  *   node dev-services.mjs --env dev api web
  *   npm run dev:services -- api
  */
@@ -136,12 +137,14 @@ ${SERVICES.map((s) => `  ${s.id.padEnd(8)} ${s.title}`).join('\n')}
 Options:
   -a, --all          Start every service locally
   --env local|dev    Environment: local Docker DB or dev cloud RDS (default: prompt)
+  --db local|dev     Same as --env (shorthand for “which database”)
   -h, --help         Show this help
 
 Examples:
   heylo                          # interactive pick: services + env
   heylo api                      # API local, everything else → cloud (prompts for env)
   heylo api web --env local      # API + web local, Docker MySQL
+  heylo api web --db local       # same as --env local
   heylo go --env dev             # Go GraphQL, cloud RDS
   heylo --all --env local        # all services local, Docker MySQL
 `);
@@ -151,10 +154,10 @@ function parseArgv(argv) {
   const raw = argv.slice(2);
   if (raw.some((a) => a === '-h' || a === '--help')) return { help: true };
   const all = raw.some((a) => a === '-a' || a === '--all');
-  const envIdx = raw.findIndex((a) => a === '--env');
+  const envIdx = raw.findIndex((a) => a === '--env' || a === '--db');
   const env = envIdx !== -1 ? raw[envIdx + 1] : null;
   if (env && !ENV_PROFILES[env]) {
-    console.error(`Unknown --env value: "${env}". Valid: ${Object.keys(ENV_PROFILES).join(', ')}`);
+    console.error(`Unknown --env/--db value: "${env}". Valid: ${Object.keys(ENV_PROFILES).join(', ')}`);
     process.exit(1);
   }
   const ids = raw.filter((a, i) => !a.startsWith('-') && !raw[i - 1]?.startsWith('--'));
