@@ -16,7 +16,7 @@
  *   node appsync-local-dev.mjs --watch    # restart on .go saves under go/backend/appsync
  */
 
-import { spawn } from 'node:child_process';
+import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, watch, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -141,12 +141,82 @@ function runGo(childEnv = process.env) {
 
 let child = null;
 let debounce = null;
+let stopping = false;
+let pendingRestart = false;
 
-function start() {
-  if (child) return;
+function resolveLocalPort(env = process.env) {
+  const addr = String(env.APPSYNC_HTTP_ADDR ?? '').trim();
+  if (addr) {
+    const m = addr.match(/:(\d+)\s*$/);
+    if (m) return Number(m[1]);
+  }
+  const p = String(env.PORT ?? '').trim();
+  if (p) return Number(p);
+  return 8080;
+}
+
+function listListeners(port) {
+  try {
+    const out = execSync(`lsof -nP -iTCP:${port} -sTCP:LISTEN -Fpc`, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    const lines = out.split('\n').filter(Boolean);
+    const procs = [];
+    let current = null;
+    for (const line of lines) {
+      const prefix = line[0];
+      const value = line.slice(1);
+      if (prefix === 'p') {
+        if (current) procs.push(current);
+        current = { pid: Number(value), command: '' };
+      } else if (prefix === 'c' && current) {
+        current.command = value;
+      }
+    }
+    if (current) procs.push(current);
+    return procs.filter((p) => Number.isFinite(p.pid));
+  } catch {
+    return [];
+  }
+}
+
+function sleepMs(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function ensurePortAvailable(port, childPid) {
+  const listeners = listListeners(port);
+  if (!listeners.length) return;
+
+  for (const proc of listeners) {
+    if (proc.pid === process.pid || proc.pid === childPid) continue;
+    // Only reap known local appsync/go listeners on this port.
+    if (!['appsync', 'go'].includes(proc.command)) continue;
+    try {
+      process.kill(proc.pid, 'SIGTERM');
+    } catch {}
+  }
+
+  const deadline = Date.now() + 2000;
+  while (Date.now() < deadline) {
+    if (listListeners(port).length === 0) return;
+    await sleepMs(100);
+  }
+}
+
+async function start() {
+  if (child || stopping) return;
+  await ensurePortAvailable(resolveLocalPort(), child?.pid);
   child = runGo();
   child.on('exit', (code, signal) => {
     child = null;
+    stopping = false;
+    if (pendingRestart && watchMode) {
+      pendingRestart = false;
+      void start();
+      return;
+    }
     if (!watchMode) process.exit(code ?? (signal ? 1 : 0));
   });
   child.on('error', (err) => {
@@ -161,19 +231,23 @@ function stop(cb) {
     return;
   }
   const c = child;
-  child = null;
+  stopping = true;
   c.once('exit', () => cb?.());
   c.kill('SIGTERM');
 }
 
 function restart() {
-  stop(() => {
-    start();
+  if (stopping) {
+    pendingRestart = true;
+    return;
+  }
+  stop(async () => {
+    await start();
   });
 }
 
 if (watchMode) {
-  start();
+  void start();
   watch(
     APPSYNC_DIR,
     { recursive: true },
@@ -192,5 +266,5 @@ if (watchMode) {
     stop(() => process.exit(0));
   });
 } else {
-  start();
+  void start();
 }
