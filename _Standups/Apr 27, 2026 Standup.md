@@ -79,7 +79,3 @@ The team is anticipating about seven new installs in the next two months, includ
 - Installs and hardware: Shivani plans an ops dashboard for install and onboarding dates; team expects heavy “all hands” around install windows as customers often transition in-home care staff when adopting Halo. Rail camera sticky pads failing at Hope (first customer); magnetic mount trial and a future customer accessories list (chargers, extension cords, etc.) were discussed.
 
 - Anchor conference: Shivani reported the conference went very well, with expectation of more customer traction and workload ahead.
-
-You should review Gemini's notes to make sure they're accurate. [Get tips and learn how Gemini takes notes](https://support.google.com/meet/answer/14754931)
-
-How is the quality of these specific notes? [Take a short survey](https://google.qualtrics.com/jfe/form/SV_9vK3UZEaIQKKE7A?confid=FzvpOO4nnAuePaoxI0J7DxIPOAIIigIgABgBCA&detailid=standard&screenshot=false) to let us know your feedback, including how helpful the notes were for your needs.
