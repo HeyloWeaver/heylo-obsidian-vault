@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-24-26 - Notes.md",
+                "file": "_Standups/Apr 27, 2026 Standup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-24-26 - Notes"
+              "title": "Apr 27, 2026 Standup"
             }
           }
         ],
@@ -221,23 +221,24 @@
   },
   "active": "62b13596b9292aef",
   "lastOpenFiles": [
+    "frontend/lib/apollo-provider.tsx",
+    "frontend/lib/apollo-client.ts",
+    "frontend/components/caseload-management/v2/weekday-schedule.tsx",
+    "frontend/components/caseload-management/v2/site-multi-select.tsx",
+    "frontend/components/caseload-management/v2/schedule-form-schema.ts",
+    "frontend/components/caseload-management/v2/create-update-schedule.tsx",
+    "backend/dist/tsconfig.tsbuildinfo",
+    "backend/src/domain/utils/device-display-name.ts",
+    "backend/src/domain/utils/device-display-name.spec.ts",
+    "backend/dist/src/migrations/1777300000001-normalize-device-display-names.d.ts",
+    "backend/dist/src/migrations/1777300000001-normalize-device-display-names.js",
     "_Notes/04-27-26 - Notes.md",
+    "_Notes/04-24-26 - Notes.md",
     "_Notes/04-24-26 - Notes for Monday.md",
     "_Notes/04-27-26 - Notes for Monday.md",
-    "_Notes/04-24-26 - Notes.md",
     "_Notes/04-23-26 - Caseload v2 Notes (TBD TODO).md",
     "_Notes/04-23-66 - HEY-352 - Fix device naming.md",
     "_Notes/04-23-26 - Tablet Setup.md",
-    "tablet/build/app/outputs/apk/dev/release/output-metadata.json",
-    "tablet/build/app/intermediates/incremental/packageDevRelease/tmp/devRelease/zip-cache/androidResources",
-    "tablet/build/app/intermediates/incremental/packageDevRelease/tmp/devRelease/zip-cache/javaResources0",
-    "tablet/build/app/intermediates/shrunk_resources_proto_format/devRelease/minifyDevReleaseWithR8/shrunk-resources-proto-format-dev-release.ap_",
-    "tablet/build/app/outputs/mapping/devRelease/resources.txt",
-    "tablet/build/app/intermediates/r8_metadata/devRelease/minifyDevReleaseWithR8/r8-metadata.dat",
-    "tablet/build/app/intermediates/merged_java_res/devRelease/minifyDevReleaseWithR8/base.jar",
-    "tablet/build/app/outputs/mapping/devRelease/configuration.txt",
-    "tablet/build/app/intermediates/r8_art_profile/devRelease/minifyDevReleaseWithR8/baseline-prof.txt",
-    "tablet/build/app/intermediates/dex/devRelease/minifyDevReleaseWithR8/classes.dex",
     "node_modules/@apollo/client/skills/apollo-client/references/typescript-codegen.md",
     "node_modules/@apollo/client/skills/apollo-client/references/troubleshooting.md",
     "node_modules/@apollo/client/skills/apollo-client/references/suspense-hooks.md",
@@ -256,7 +257,6 @@
     "node_modules/@apollo/client/CHANGELOG.md",
     "node_modules/@wry/trie/README.md",
     "node_modules/@wry/equality/README.md",
-    "node_modules/@wry/context/README.md",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxxhdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-mdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxhdpi-v4/ic_launcher.png",
