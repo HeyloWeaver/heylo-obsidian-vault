@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Plans/Support Ticketing UX v2.md",
+                "file": "_Notes/04-28-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Support Ticketing UX v2"
+              "title": "04-28-26 - Notes"
             }
           }
         ]
@@ -206,21 +206,21 @@
   },
   "active": "3930f3f261ce4c94",
   "lastOpenFiles": [
-    "frontend/lib/models/caseload/scheduleViewModel.ts",
-    "frontend/lib/apollo-provider.tsx",
-    "frontend/lib/apollo-client.ts",
-    "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/lambdas/device-checker.js.map",
-    "backend/dist/lambdas/device-checker.js",
-    "backend/dist/lambdas/device-checker.d.ts",
-    "backend/dist/lambdas",
-    "backend/dist/src/main.d.ts",
-    "backend/dist/src/main.js",
-    "backend/dist/src/main.js.map",
     "_Notes/04-27-26 - Notes.md",
+    "_Notes/04-28-26 - Notes.md",
+    "backend/dist/src/services/onboarding-email-renderer.d.ts",
+    "backend/dist/src/services/onboarding-email-renderer.js",
+    "backend/dist/src/services/onboarding-email-renderer.js.map",
+    "backend/templates/customer-onboarding-summary.html",
+    "backend/src/services/onboarding-email-renderer.ts",
+    "frontend/lib/appsync-client.ts",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/src/utils/password.util.d.ts",
+    "backend/dist/src/utils/password.util.js",
+    "backend/dist/src/utils/password.util.js.map",
+    "_Plans/Support Ticketing UX v2.md",
     "_Standups/Apr 27, 2026 Standup.md",
     "_Notes/04-24-26 - Notes.md",
-    "_Plans/Support Ticketing UX v2.md",
     "_Standups/May 4, 2026 Standup.md",
     "_Notes/04-24-26 -> 04-27-26 - Notes.md",
     "_Notes/04-24-26 - Notes for Monday.md",
