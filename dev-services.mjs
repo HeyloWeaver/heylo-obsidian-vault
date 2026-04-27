@@ -12,14 +12,25 @@
  *   node dev-services.mjs --env dev api web
  *   npm run dev:services -- api
  */
-import { spawn } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { execSync, spawn } from 'node:child_process';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import prompts from 'prompts';
-
 const ROOT = dirname(fileURLToPath(import.meta.url));
+
+{
+  const lockfile = join(ROOT, 'package-lock.json');
+  const marker = join(ROOT, 'node_modules', '.package-lock.json');
+  const stale = !existsSync(marker) ||
+    (existsSync(lockfile) && statSync(lockfile).mtimeMs > statSync(marker).mtimeMs);
+  if (stale) {
+    console.log('[heylo] Dependencies out of date — running npm install…');
+    execSync('npm install', { cwd: ROOT, stdio: 'inherit' });
+  }
+}
+
+const { default: prompts } = await import('prompts');
 
 /**
  * Read key=value pairs from an env file without touching process.env.
