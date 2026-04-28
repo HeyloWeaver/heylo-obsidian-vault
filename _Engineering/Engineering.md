@@ -23,4 +23,4 @@ Central index for all Heylo engineering documentation.
 - [[Devices/Devices]]
 
 ## Deep dives & audits
-- [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/`)
+- [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`)

@@ -42,7 +42,7 @@ Then use domain playbooks for targeted work:
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API
    - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
-5. Optional deeper pass across all three repos: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/`).
+5. Optional deeper pass across all three repos: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
 
 ---
 
