@@ -8,6 +8,7 @@ status: current
 Index for all Hub documentation.
 
 - [[Hub/High Level Overview]]
+- [[Device Provisioning Steps]]
 - [[Hub/Agent Work Guide]]
 - [[Hub/Domain Playbooks]]
 - [[Hub/Domain - Provisioning]]
