@@ -235,6 +235,7 @@
   },
   "active": "b1b8fdd01edd8024",
   "lastOpenFiles": [
+    "CLI.md",
     "_Engineering/Hub/Commands/hub-mqtt.md",
     "_Engineering/Hub/Commands/Commands.md",
     "_Engineering/Hub/Commands",
@@ -270,7 +271,6 @@
     "_Notes/04-23-26 - Caseload v2 Notes (TBD TODO).md",
     "_Notes/04-23-66 - HEY-352 - Fix device naming.md",
     "_Notes/04-23-26 - Tablet Setup.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/typescript-codegen.md",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxxhdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-mdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxhdpi-v4/ic_launcher.png",
