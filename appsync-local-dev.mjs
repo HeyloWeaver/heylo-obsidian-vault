@@ -28,9 +28,10 @@ const ROOT = existsSync(candidateMain)
   : resolve(SCRIPT_DIR, '..');
 const APPSYNC_DIR = join(ROOT, 'go', 'backend', 'appsync');
 const MAIN_GO = join(APPSYNC_DIR, 'main.go');
-const DEVGEN = join(APPSYNC_DIR, '.devgen');
-const OVERLAY_MAIN = join(DEVGEN, 'main.overlay.go');
-const OVERLAY_JSON = join(DEVGEN, 'overlay.json');
+/** Generated Go `-overlay` files (kept out of `go/backend/appsync/`). */
+const OVERLAY_DIR = join(ROOT, '.appsync-local-dev');
+const OVERLAY_MAIN = join(OVERLAY_DIR, 'main.overlay.go');
+const OVERLAY_JSON = join(OVERLAY_DIR, 'overlay.json');
 
 const watchMode = process.argv.includes('--watch');
 
@@ -111,7 +112,7 @@ function dropUnusedLambdaImport(src) {
 }
 
 function writeOverlayFiles() {
-  mkdirSync(DEVGEN, { recursive: true });
+  mkdirSync(OVERLAY_DIR, { recursive: true });
   const original = readFileSync(MAIN_GO, 'utf8');
   const stripped = dropUnusedLambdaImport(stripFirstFuncMain(original));
   writeFileSync(OVERLAY_MAIN, stripped, 'utf8');
@@ -253,7 +254,6 @@ if (watchMode) {
     { recursive: true },
     (_event, filename) => {
       if (!filename) return;
-      if (filename.startsWith('.devgen')) return;
       if (!filename.endsWith('.go')) return;
       clearTimeout(debounce);
       debounce = setTimeout(() => {

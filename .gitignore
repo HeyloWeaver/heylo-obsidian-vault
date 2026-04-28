@@ -3,6 +3,6 @@ node_modules/
 .env
 .env.dev
 .env.local
-go/backend/appsync/.devgen/
+.appsync-local-dev/
 *.db-dump.sql
 image/
