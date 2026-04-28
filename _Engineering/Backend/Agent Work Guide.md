@@ -62,6 +62,76 @@ Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 
 ---
 
+## Database conventions
+
+These apply to all TypeORM entities and migrations in `backend/` and `inventory/`.
+
+- **Table names**: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`, `hardwaremodel`).
+- **Column names**: PascalCase (`StatusId`, `CreatedOn`, `IsDeleted`).
+- **`@Entity({ name: '…' })`**: must match the lowercase table name exactly.
+- **Timestamp columns** (`CreatedOn`, `UpdatedOn`): use `insert: false, update: false` on the entity property; do **not** include `default: () => 'CURRENT_TIMESTAMP'`. The DB manages these via `DEFAULT CURRENT_TIMESTAMP` / `ON UPDATE CURRENT_TIMESTAMP` in the migration.
+
+---
+
+## Query patterns — prefer raw SQL
+
+TypeORM is not going to help with scale. Service reads should use `repository.manager.query()`, not TypeORM repository methods.
+
+- **New code**: write raw SQL from the start. Use the entity repository only as the entry point to `manager`.
+- **Existing code you're touching**: convert it in the same PR — don't leave `findAndCount` / `find` with `relations` / `createQueryBuilder` in place.
+- **Avoid**: `findAndCount` (two round trips), `find` with a `relations` array (N+1 or LEFT JOIN soup), `findOne` with `relations`, `createQueryBuilder` for joined reads.
+- **Pagination**: use two separate queries — `SELECT …` and `SELECT COUNT(*) AS total FROM <table>`. Avoid `COUNT(*) OVER()` (returns 0 on empty pages and is unfamiliar to most of the team).
+- **Joined data**: single `SELECT` with explicit `LEFT JOIN`/`INNER JOIN` and aliased columns; map to nested response objects in TypeScript.
+- **Aggregates**: compute with `COUNT()`/`SUM()` + `GROUP BY` in SQL — never load rows and count in code.
+- **`COUNT()` returns strings**: always wrap with `parseInt()` before returning.
+- **No JS ternaries in SQL strings**: build optional `WHERE` clauses imperatively.
+
+  ```ts
+  let whereClause = 'WHERE a.IsDeleted = 0';
+  const params: any[] = [];
+  if (agencyId) {
+    whereClause += ' AND a.AgencyId = ?';
+    params.push(agencyId);
+  }
+  ```
+
+**Allowed TypeORM usage** (already one query, not measurably worse than raw SQL):
+- Single-row writes: `save`, `update`, `delete` by ID.
+- Single-row PK reads with no relations: `findOne({ where: { id } })`.
+- Uniqueness checks: `existsBy`.
+
+---
+
+## Transaction pattern
+
+Wrap any service method that touches multiple tables in a transaction:
+
+```ts
+await this.myRepository.manager.transaction(async (manager) => {
+  await manager.save(MyEntity, parentRow);
+  await manager.save(ChildEntity, childRows);
+});
+```
+
+Use the transaction's `manager` for **all** operations inside the callback — not the injected repositories. This ensures atomicity: if any step fails, all changes roll back. Required any time a service creates/updates multiple tables or performs multiple writes (especially important in inventory where entities have tight FK relationships).
+
+---
+
+## ORM cascade rules
+
+Never set `onDelete: 'CASCADE'`, `cascade: true`, or similar on `@ManyToOne`/`@OneToMany`/`@OneToOne` relation decorators. Delete dependents **explicitly** in the service transaction before deleting the parent. ORM-level cascades hide writes from code review and silently delete children if someone later adds a new parent-deletion caller.
+
+DB-level FK `ON DELETE CASCADE` in a migration is allowed as a schema integrity net — that's a database constraint, not ORM magic.
+
+---
+
+## Mutation responses
+
+- **Backend**: create and update endpoints return only the new/updated record's ID: `{ id: saved.id }`. Do not return the full object.
+- **Frontend**: after a successful create or update, re-fetch the full page data from the backend. Do not do optimistic or targeted Redux store updates. This keeps the UI in sync with computed/aggregated fields.
+
+---
+
 ## Gotchas and drift risks
 
 - `app.module.ts` is broad; keep module boundaries clean when adding features.
@@ -95,5 +165,11 @@ See [[Backend/Commands/Commands]] for full reference.
 - Auth/role behavior is explicit and tested for affected routes.
 - Realtime and side effects remain backward compatible.
 - Migration strategy is included when schema changes.
+- Entity table names are lowercase; column names are PascalCase; timestamp columns use `insert: false, update: false`.
+- Service reads use raw SQL via `repository.manager.query()` — no `findAndCount`/`find` with relations/`createQueryBuilder` for joined reads.
+- Multi-table writes are wrapped in a `manager.transaction(...)` callback.
+- No `cascade: true` or `onDelete: 'CASCADE'` on relation decorators.
+- Create/update endpoints return `{ id }` only; frontend re-fetches page data.
+- No hardcoded string literals where an enum exists.
 - Update `_Engineering/Backend/*` notes when architecture or contracts change.
 

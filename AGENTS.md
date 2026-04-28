@@ -25,6 +25,9 @@ High-level tree (not exhaustive):
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
 | `tablet/` | Flutter Android kiosk app for resident tablets |
 | `hub/` | Yocto Hub OS for Raspberry Pi 5 (Mender OTA, kas, `meta-heylo`); not part of root npm dev |
+| `customer-onboarding/` | Vite + React 18 + MUI 7 + Zustand 5 — customer onboarding intake forms (`onboard.heylo.tech`) |
+| `inventory/` | Vite + React 18 + MUI 7 + Zustand 5 — internal inventory tracking for hardware/shipments |
+| `heylo-infra/` | Terraform — AWS infrastructure (`platform/`, `iot/`, `relational_db/`, `modules/`) |
 | `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `cli/dev-services.mjs` |
 | `cli/` | `heylo` CLI — `dev-services.mjs` (service picker), `appsync-local-dev.mjs` (Go local runner), `README.md` |
 
@@ -39,6 +42,9 @@ High-level tree (not exhaustive):
 - **`go/backend/appsync/`** — AppSync GraphQL resolvers in Go (e.g. caseload schedule). Separate deploy path from Nest; shares MySQL domain data.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets. Talks to the same NestJS backend over REST + WebSocket. Runs in two flavors: `dev` (hits `dev-api.heylo.tech`) and `prod`. Local dev: `flutter run --flavor dev -t lib/main.dart`.
 - **`hub/`** — Yocto 5.2 build for Heylo Hub hardware: Raspberry Pi 5 images, Mender OTA, kas + Docker (typically WSL2 + Ubuntu 24.04). Application services and recipes live under `hub/meta-heylo/`. Authoritative build/runbook: `hub/README.md`; agent-oriented notes: `_Engineering/Hub/`.
+- **`customer-onboarding/`** — Vite + React 18 + MUI 7 + Zustand 5 app serving `onboard.heylo.tech`. Separate from the main operator console; used for site-administrator self-service onboarding. Backend counterpart: `CustomerOnboardingController` / `CustomerOnboardingService` in `backend/`.
+- **`inventory/`** — Vite + React 18 + MUI 7 + Zustand 5 app for Heylo's internal ops team to track physical hardware, purchase orders, inbound shipments, manufactured items, and outbound shipments. Backend counterpart: inventory controllers/services in `backend/`.
+- **`heylo-infra/`** — Terraform for all AWS infrastructure. Modules: `platform/` (core AWS), `iot/` (IoT Core, Kinesis streams), `relational_db/` (RDS MySQL), `modules/` (reusable). Changes here affect the live environment; confirm with the team before applying.
 
 Cross-cutting features often touch **two or three** of frontend, backend, Go, and tablet; keep DTOs, enums, event names, and role rules aligned. Hub OS work is mostly self-contained under `hub/` but may need backend or `_Engineering/Devices/` context for provisioning and cloud contracts.
 

@@ -1,7 +1,6 @@
 {
   "folders": [
-    { "path": ".", "name": "Heylo (vault)" },
-    { "path": "cli", "name": "Heylo CLI" }
+    { "path": ".", "name": "Heylo (vault)" }
   ],
   "settings": {
     "git.autoRepositoryDetection": true,

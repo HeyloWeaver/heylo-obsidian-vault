@@ -20,11 +20,14 @@ Wikilinks like `[[Frontend/Agent Work Guide]]` in those notes mean `_Engineering
 
 | Area | Path | Stack |
 |------|------|--------|
-| Web console | `frontend/` | Next.js App Router |
+| Web console | `frontend/` | Next.js 15, React 19, Redux, Tailwind |
 | Core API | `backend/` | NestJS, TypeORM, MySQL |
 | AppSync | `go/backend/appsync/` | Go Lambda, GraphQL |
 | Resident tablet | `tablet/` | Flutter (Android kiosk) |
 | Hub device OS | `hub/` | Yocto, Mender OTA, Raspberry Pi 5 |
+| Customer onboarding | `customer-onboarding/` | Vite, React 18, MUI 7, Zustand 5 |
+| Inventory tracking | `inventory/` | Vite, React 18, MUI 7, Zustand 5 |
+| AWS infrastructure | `heylo-infra/` | Terraform |
 
 Typical local URLs: web `http://localhost:3000`, API `http://localhost:4000`. Hub builds use kas/Docker under `hub/` (see `hub/README.md`), not root `npm run dev`.
 
@@ -42,3 +45,34 @@ Prefer **small, contract-aligned** changes; update **`_Engineering/`** when arch
 
 - `npm install` then `npm run dev` — API + web (loads `.env`)
 - `npx heylo` / `npm run dev:services` — choose services (`--help` for flags)
+
+---
+
+## Key backend coding rules
+
+These rules apply project-wide to `backend/` (and `inventory/`); full details in `_Engineering/Backend/Agent Work Guide.md`.
+
+**Database conventions**
+- Table names: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`).
+- Column names: PascalCase (`StatusId`, `CreatedOn`, `IsDeleted`).
+- `@Entity({ name: 'tablename' })` must match the lowercase table name exactly.
+- Timestamp columns (`CreatedOn`, `UpdatedOn`): set `insert: false, update: false` on the entity — never include `default: () => 'CURRENT_TIMESTAMP'` — the DB manages these.
+
+**Query style — prefer raw SQL**
+- Reads: use `repository.manager.query()`, not TypeORM `find`/`findAndCount`/`createQueryBuilder` with relations.
+- Pagination: two separate queries (`SELECT …` + `SELECT COUNT(*) AS total`). Avoid `COUNT(*) OVER()`.
+- `COUNT()` returns strings — always wrap with `parseInt()`.
+- No JS ternaries inside SQL template strings — build the `WHERE` clause imperatively.
+
+**Transactions**
+- Wrap any method touching multiple tables in `repository.manager.transaction(async (manager) => { … })` and use `manager` for all ops inside.
+
+**ORM cascade rules**
+- Never set `onDelete: 'CASCADE'`, `cascade: true`, or similar on relation decorators. Delete dependents explicitly in the transaction.
+
+**Mutation responses & frontend re-fetch**
+- Create/update endpoints return only `{ id: saved.id }`.
+- Frontend re-fetches full page data after a successful mutation — no optimistic store updates.
+
+**Enums over literals**
+- Always use enum or constant references instead of hardcoded string literals. Create one if it doesn't exist.

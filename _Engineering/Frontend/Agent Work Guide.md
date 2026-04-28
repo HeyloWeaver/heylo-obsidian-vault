@@ -52,7 +52,14 @@ Use [[Frontend/Domain Playbooks]] for subsystem-specific entry points.
 3. Update component props/render path.
 4. Verify empty/loading/error states still make sense.
 
-### Add a realtime interaction
+### After a create or update mutation
+
+After a successful create or update call:
+
+1. Expect the API to return only `{ id }` — not the full object.
+2. Re-fetch the full page data from the backend (call the existing list/get service method). Do **not** do optimistic or targeted Redux store updates. This keeps the UI in sync with computed/aggregated fields from the backend.
+
+### After a realtime interaction
 
 1. Confirm event name in `frontend/lib/models/common/event.ts`.
 2. Handle in `frontend/context/socket-context.tsx` and/or subscribe via `EventHub`.
@@ -148,5 +155,6 @@ Each feature domain that has its own state, enums, or repeated literals should h
 - No raw hex color values in components — use theme utilities (`foreground`, `muted`, `primary`, `destructive`, `card`, `border`, `ring`, …) from `globals.css`.
 - No inline string literals for discriminated values — use enums.
 - No inline route strings — use path constants.
+- After create/update mutations, re-fetch page data from the backend — no optimistic store updates.
 - Lint passes for touched files.
 - Update `_Engineering/Frontend/*` notes when behavior changes.

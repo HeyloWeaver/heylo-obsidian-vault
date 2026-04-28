@@ -7,7 +7,9 @@
     "go",
     "tablet",
     "hub",
-    "cli"
+    "cli",
+    "customer-onboarding",
+    "inventory"
   ],
   "bin": {
     "heylo": "./cli/dev-services.mjs"
@@ -19,6 +21,8 @@
     "dev:go": "dotenv -e .env.dev -e .env -- node cli/appsync-local-dev.mjs --watch",
     "dev:go:once": "dotenv -e .env.dev -e .env -- node cli/appsync-local-dev.mjs",
     "dev:tablet": "dotenv -e .env.dev -e .env -- bash -c 'cd tablet && npm run dev'",
+    "dev:onboarding": "dotenv -e .env.dev -e .env -- npm run dev -w customer-onboarding",
+    "dev:inventory": "dotenv -e .env.dev -e .env -- npm run dev -w inventory",
     "dev:services": "node cli/dev-services.mjs",
     "db:pull": "dotenv -e .env.dev -e .env -- bash -c 'docker compose exec -T mysql mysqldump -h $DB_HOST -u $DB_USER -p\"$DB_PASS\" --single-transaction --set-gtid-purged=OFF $DB_NAME | mysql -h 127.0.0.1 -u root $DB_NAME'",
     "db:migrate":"cross-env NODE_OPTIONS=--require=tsconfig-paths/register dotenv -e .env.local -e .env -- bash -c 'cd backend && npx typeorm-ts-node-commonjs migration:run -d data-source.ts'",
