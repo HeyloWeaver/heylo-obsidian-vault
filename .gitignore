@@ -5,3 +5,4 @@ node_modules/
 .env.local
 go/backend/appsync/.devgen/
 *.db-dump.sql
+image/

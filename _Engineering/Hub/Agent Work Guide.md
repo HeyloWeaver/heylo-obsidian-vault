@@ -121,6 +121,20 @@ See [[Hub/Domain - OTA]] for the full OTA workflow.
 
 ---
 
+## Claude skills and commands
+
+Hub skills and commands for debugging and operations — invoke inside Claude Code when working in `hub/`:
+
+| Type | Invoke with | Purpose |
+|---|---|---|
+| Skill | `hub-logs <agency_id> <hub_id> [hours]` | Fetch and analyze CloudWatch logs for a hub |
+| Command | `/hub-mqtt` | MQTT topic quick reference for CLI debugging |
+
+- See [[Hub/Skills/Skills]] for the full skills reference.
+- See [[Hub/Commands/Commands]] for the full commands reference.
+
+---
+
 ## Done checklist for Hub tasks
 
 - `DISTRO_VERSION` bumped in `meta-heylo/conf/distro/heylo-os.conf`.

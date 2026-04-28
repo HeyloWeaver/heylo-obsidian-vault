@@ -13,15 +13,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/04-27-26 - Notes.md",
+                "file": "_Notes/04-28-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-27-26 - Notes"
+              "title": "04-28-26 - Notes"
+            }
+          },
+          {
+            "id": "b1b8fdd01edd8024",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Engineering/Hub/High Level Overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "High Level Overview"
+            }
+          },
+          {
+            "id": "ff35c126893fd136",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Notes/04-28-26 - Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "04-28-26 - Notes"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -204,20 +233,33 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "3930f3f261ce4c94",
+  "active": "b1b8fdd01edd8024",
   "lastOpenFiles": [
+    "_Engineering/Hub/Commands/hub-mqtt.md",
+    "_Engineering/Hub/Commands/Commands.md",
+    "_Engineering/Hub/Commands",
+    "_Engineering/Backend/Commands/weekly-update.md",
+    "_Engineering/Backend/Commands/code-review.md",
+    "_Engineering/Backend/Commands/deploy-lambda.md",
+    "_Engineering/Backend/Commands/camera-registry.md",
+    "_Engineering/Backend/Commands/device-logs.md",
+    "_Engineering/Backend/Commands/smoke-events.md",
+    "_Engineering/Backend/Commands/Commands.md",
+    "_Engineering/Backend/Commands",
+    "_Engineering/Hub/Domain Playbooks.md",
+    "_Engineering/Hub/Domain - Services.md",
+    "_Engineering/Hub/Domain - Provisioning.md",
     "_Notes/04-28-26 - Notes.md",
+    "_Notes/04-28-26 - Setup Notes.md",
+    "image/heylo-os-raspberrypi5-0.23.0.20251126225117.wic",
+    "frontend/lib/models/caseload/v2",
+    "image/heylo.env",
+    "image/heylo-os-raspberrypi5-0.23.0.20251126225117.wic.bz2",
+    "image",
+    "heylo-image/heylo.env",
+    "heylo-image/heylo-os-raspberrypi5-0.23.0.20251126225117.wic.bz2",
+    "heylo-image",
     "_Notes/04-27-26 - Notes.md",
-    "backend/dist/tsconfig.build.tsbuildinfo",
-    "backend/dist/src/utils/password.util.d.ts",
-    "backend/dist/src/utils/password.util.js",
-    "backend/dist/src/utils/password.util.js.map",
-    "backend/dist/src/test/summary-emailer.integration.test.d.ts",
-    "backend/dist/src/test/summary-emailer.integration.test.js",
-    "backend/dist/src/test/summary-emailer.integration.test.js.map",
-    "backend/dist/src/test/site-common-area.integration.test.d.ts",
-    "backend/dist/src/test/site-common-area.integration.test.js",
-    "backend/dist/src/test/site-common-area.integration.test.js.map",
     "_Plans/Support Ticketing UX v2.md",
     "_Standups/Apr 27, 2026 Standup.md",
     "_Notes/04-24-26 - Notes.md",
@@ -229,18 +271,6 @@
     "_Notes/04-23-66 - HEY-352 - Fix device naming.md",
     "_Notes/04-23-26 - Tablet Setup.md",
     "node_modules/@apollo/client/skills/apollo-client/references/typescript-codegen.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/troubleshooting.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/suspense-hooks.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/state-management.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/queries.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/mutations.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/integration-tanstack-start.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/integration-react-router.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/integration-nextjs.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/integration-client.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/fragments.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/error-handling.md",
-    "node_modules/@apollo/client/skills/apollo-client/references/caching.md",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxxhdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-mdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/devRelease/packageDevReleaseResources/mipmap-xxhdpi-v4/ic_launcher.png",

@@ -72,6 +72,23 @@ Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 
 ---
 
+## Claude commands
+
+Backend slash commands for debugging and operations — invoke inside Claude Code when working in `backend/`:
+
+| Command | Purpose |
+|---|---|
+| `/smoke-events` | Query smoke / CO alarm events from CloudWatch |
+| `/device-logs` | Search device ingestion CloudWatch logs |
+| `/camera-registry` | Query camera registry events from CloudWatch |
+| `/deploy-lambda` | Deploy a lambda to dev or prod |
+| `/code-review` | Review a PR or branch for project-specific rules |
+| `/weekly-update` | Generate a weekly summary across all repos |
+
+See [[Backend/Commands/Commands]] for full reference.
+
+---
+
 ## Done checklist for backend tasks
 
 - Endpoint and DTOs validate as expected.
