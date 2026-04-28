@@ -3,6 +3,5 @@ node_modules/
 .env
 .env.dev
 .env.local
-.appsync-local-dev/
 *.db-dump.sql
 image/

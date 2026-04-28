@@ -25,8 +25,8 @@ High-level tree (not exhaustive):
 | `go/backend/appsync/` | Go Lambda AppSync resolvers (heavy reads, GraphQL) |
 | `tablet/` | Flutter Android kiosk app for resident tablets |
 | `hub/` | Yocto Hub OS for Raspberry Pi 5 (Mender OTA, kas, `meta-heylo`); not part of root npm dev |
-| `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `dev-services.mjs` |
-| `dev-services.mjs` | Local dev service picker (`npx heylo`) |
+| `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `cli/dev-services.mjs` |
+| `cli/` | `heylo` CLI — `dev-services.mjs` (service picker), `appsync-local-dev.mjs` (Go local runner), `README.md` |
 
 `frontend/`, `backend/`, `go/`, `tablet/`, and `hub/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
 

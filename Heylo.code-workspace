@@ -1,9 +1,11 @@
 {
   "folders": [
-    { "path": ".", "name": "Heylo (vault)" }
+    { "path": ".", "name": "Heylo (vault)" },
+    { "path": "cli", "name": "Heylo CLI" }
   ],
   "settings": {
     "git.autoRepositoryDetection": true,
-    "git.repositoryScanMaxDepth": 2
+    "git.repositoryScanMaxDepth": 3,
+    "git.openRepositoryInParentFolders": "always"
   }
 }

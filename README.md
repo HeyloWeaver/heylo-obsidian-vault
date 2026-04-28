@@ -29,7 +29,7 @@ vault root (= git workspace root)
 ├── tablet/                  ← Flutter Android kiosk app for resident tablets
 ├── hub/                     ← Yocto Hub OS for Raspberry Pi 5 + Mender OTA (real repo)
 ├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
-├── dev-services.mjs         ← `heylo` CLI (service picker)
+├── cli/                     ← `heylo` CLI (service picker, AppSync local runner, README)
 ```
 
 ## What each code repo does
@@ -63,7 +63,7 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run db:migrate:show` | Show local migration state |
 | `npm run db:revert` | Roll back last migration on local Docker MySQL |
 
-**`heylo` CLI** (`dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior.
+**`heylo` CLI** (`cli/dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior. See `cli/README.md` for full docs.
 
 | Command | What it does |
 |--------|----------------|
@@ -73,7 +73,7 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npx heylo --all` | Start every configured service |
 | `npx heylo --env local` | Use local Docker MySQL (`.env.local`) |
 | `npx heylo --env dev` | Use cloud RDS (`.env.dev`) |
-| `npm run dev:services` | Same as `node dev-services.mjs` (pass extra args after `--`) |
+| `npm run dev:services` | Same as `node cli/dev-services.mjs` (pass extra args after `--`) |
 
 Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass service ids and `--env` explicitly.
 
