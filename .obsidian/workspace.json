@@ -221,10 +221,11 @@
   },
   "active": "2dfaa504357bd053",
   "lastOpenFiles": [
-    "_Plans/Caseload Schedule Assignment.md",
-    "go/backend/appsync/role_ids.go",
-    "go/backend/appsync/assigncaseloadschedule_test.go",
-    "go/backend/appsync/assigncaseloadschedule.go",
+    "frontend/public/images/smart-button.png",
+    "frontend/public/images/heylo-hub.png",
+    "frontend/public/images/e1.png",
+    "frontend/public/images/door-sensor.png",
+    "frontend/public/images/argus-3e.png",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
     "backend/dist/lambdas/device-checker.js",
@@ -232,6 +233,10 @@
     "backend/dist/lambdas",
     "backend/dist/src/test/caseload.integration.test.d.ts",
     "backend/dist/src/test/alert-active-times.integration.test.d.ts",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "backend/dist/src/main.js.map",
+    "_Plans/Caseload Schedule Assignment.md",
     "_Engineering/Code Review Guide.md",
     "_Notes/April/04-28-26 - Notes (In Office Day).md",
     "_Notes/April/04-29-26 - Notes.md",
@@ -250,10 +255,6 @@
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-04.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-03.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-02.png",
-    "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-01.png",
-    "hub/sources/poky/meta/recipes-sato/rxvt-unicode/rxvt-unicode/rxvt.png",
-    "hub/sources/poky/meta/recipes-sato/pcmanfm/files/gnome-mime-text-plain.png",
-    "hub/sources/poky/meta/recipes-sato/pcmanfm/files/gnome-fs-regular.png",
     "hub/sources/poky/meta/recipes-devtools/perl-cross/files/README.md",
     "hub/sources/poky/meta/recipes-devtools/rust/README-rust.md",
     "hub/sources/poky/meta/lib/patchtest/README.md",
@@ -265,7 +266,6 @@
     "hub/sources/poky/SECURITY.md",
     "hub/sources/poky/README.qemu.md",
     "hub/sources/poky/README.OE-Core.md",
-    "hub/sources/poky/MAINTAINERS.md",
-    "hub/sources/meta-openembedded/meta-xfce/SECURITY.md"
+    "hub/sources/poky/MAINTAINERS.md"
   ]
 }
