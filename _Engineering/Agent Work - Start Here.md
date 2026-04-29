@@ -17,6 +17,8 @@ Use this page first, then jump to the repo-specific guide:
 - Tablet: [[Tablet/Agent Work Guide]]
 - Hub: [[Hub/Agent Work Guide]]
 
+Reviewing code (or self-reviewing before opening a PR): [[Code Review Guide]]
+
 Then use domain playbooks for targeted work:
 
 - Frontend domains: [[Frontend/Domain Playbooks]]
