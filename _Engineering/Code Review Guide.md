@@ -17,6 +17,8 @@ Use this in addition to the area-specific guides:
 - [[Tablet/Agent Work Guide]]
 - [[Hub/Agent Work Guide]]
 
+There is also a `/code-review` slash command (defined in `backend/.claude/commands/code-review.md`, mirrored at [[Backend/Commands/code-review]]) that runs an automated review of a branch or PR using the rules below.
+
 ---
 
 ## Mindset
@@ -66,8 +68,56 @@ Before adding a guard at the top of a service method, ask: *can a guard, middlew
 - "Does the user have role X?" → `@Roles()` + `RolesGuard`.
 - "Is this request authenticated?" → `AuthGuard`.
 - "Does the agency match the resource's tenancy?" → consider a tenancy helper rather than per-endpoint joins.
+- **Agency authorization specifically**: use `contextSvc.agencyId`. Do not look up the user and read `userRoles[0].agencyId` — the context service already has it.
 
 If you find yourself writing the same `if (!user) return [];` in three services, that's the smell — fix the layer, not the endpoint.
+
+### Use NestJS exceptions, not bare `throw new Error()`
+
+Inside backend services and controllers, throw the NestJS exception that maps to the HTTP status the frontend should see:
+
+- `BadRequestException` (400) — invalid input
+- `UnauthorizedException` (401) — not authenticated
+- `ForbiddenException` (403) — authenticated but not allowed
+- `NotFoundException` (404) — entity doesn't exist
+- `ConflictException` (409) — uniqueness/state violation
+
+Bare `throw new Error()` becomes a 500 and the frontend can't tell what went wrong.
+
+### No sensitive data in logs
+
+Log entity **IDs** only. Never log:
+
+- Physical device IDs (kept off camera/sensor identifiers)
+- Secrets, tokens, JWTs, Cognito attributes
+- Credentials, passwords, hashed or otherwise
+- PII beyond what's already in the entity row
+
+If you need to debug a foreign key, log the internal UUID, not the third-party identifier.
+
+### Performance — flag these in review
+
+- **N+1 queries**: a `for`/`map` over a list that calls a service method per row → fold into one joined query.
+- **Unbounded queries**: any `SELECT` without a `LIMIT` or tenancy `WHERE` clause when the table grows with usage (alerts, calls, events, messages).
+- **Missing indexes**: filtering or joining on a column without an index on a large table → flag, suggest a migration.
+- **Loading rows to count them**: `find(...).length` or `forEach`-then-`++` instead of SQL `COUNT()`/`GROUP BY`.
+
+### Security — flag these in review
+
+- **SQL injection**: any string interpolation into raw SQL that isn't a column/table name. Always use `?` placeholders and the params array.
+- **Auth bypass**: an endpoint missing `@UseGuards(AuthGuard)`/`@Roles(...)`, or a controller that uses `req.user` without a guard.
+- **Tenancy leak**: a query that filters on `id` but not `agencyId` when the entity is agency-scoped — one customer can read another's data.
+- **Open redirects / unvalidated user input** flowing into URLs, file paths, or shell commands.
+
+---
+
+## Domain-specific rules currently in flight
+
+These come from the `/code-review` command and reflect rules the team is actively enforcing right now. They're scoped (deprecations, in-progress migrations) and may change — keep this section in sync with `backend/.claude/commands/code-review.md`.
+
+- **No `deviceCapability`** — use `deviceType.name` with the `DeviceTypeName` enum. `deviceCapability` is deprecated and being removed.
+- **User role changes** are restricted to `admin` ↔ `supportProfessional`. Any other role transition requires deleting and recreating the user.
+- **User agency changes are not allowed** on update. Delete and recreate the user instead.
 
 ---
 
@@ -107,7 +157,7 @@ If an endpoint serves multiple "types" (ticket types, alert types, device types)
 
 ### Mutation responses are `{ id }`; frontend re-fetches
 
-This is in the Backend Agent Work Guide and Ritwik's CLAUDE.md both — call it out in review every time. The frontend re-fetches the full page after a successful create/update. No optimistic store patches, no returning the full row.
+Call this out in review every time. The frontend re-fetches the full page after a successful create/update. No optimistic store patches, no returning the full row.
 
 ### Long ternaries → multi-line or `if`
 
@@ -179,6 +229,14 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] Entity table name lowercase, columns PascalCase, timestamps `insert: false, update: false`.
 - [ ] Backend ships the data shape the frontend renders directly (`{ open, resolved }`, totals, etc.) — frontend isn't filtering/counting.
 - [ ] Validation that applies to *all* endpoints lives in `ContextService` / `AuthGuard` / `RolesGuard`, not duplicated in services.
+- [ ] Errors throw NestJS exceptions (`BadRequestException`, `ForbiddenException`, etc.), not bare `throw new Error(...)`.
+- [ ] Logs include entity IDs only — no physical device IDs, secrets, tokens, or PII.
+- [ ] Agency authorization uses `contextSvc.agencyId`, not `userRoles[0].agencyId`.
+- [ ] No `deviceCapability` references — uses `deviceType.name` + `DeviceTypeName` enum.
+- [ ] User updates don't change `agencyId`; role changes are limited to `admin` ↔ `supportProfessional`.
+- [ ] Queries on agency-scoped entities filter by `AgencyId` (no tenancy leaks).
+- [ ] No unbounded `SELECT` on growth-prone tables (alerts, calls, events, messages) — `LIMIT` or tenancy filter present.
+- [ ] No N+1 in service methods — joined queries instead of per-row lookups.
 
 ### Frontend-specific
 
@@ -194,6 +252,18 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] Enum values match across repos.
 - [ ] Realtime event emitters and consumers both updated.
 - [ ] Docs in `_Engineering/<area>/` updated when architecture or a contract changed.
+
+---
+
+## How to present findings
+
+When reporting a review (especially via `/code-review` or in a PR comment thread), group findings by severity so the author knows what to fix first:
+
+- **Blockers** — must fix before merge. Anything from "Hard rules" above, plus correctness bugs, security issues, tenancy leaks, and contract drift.
+- **Warnings** — should fix, but not a dealbreaker. Soft-rule violations, performance smells, missed boy-scout opportunities, drift from the surrounding file's style.
+- **Nits** — style/preference, optional. Naming, formatting the linter didn't catch, comment quality.
+
+Each finding should include the file path with line number (`backend/src/services/x.service.ts:142`), one sentence describing the issue, and one sentence on the fix. Don't restate the rule — link to the section of this guide.
 
 ---
 
