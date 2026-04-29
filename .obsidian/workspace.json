@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Code Review Guide.md",
+                "file": "_Notes/April/04-29-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Code Review Guide"
+              "title": "04-29-26 - Notes"
             }
           }
         ],
@@ -221,18 +221,20 @@
   },
   "active": "2dfaa504357bd053",
   "lastOpenFiles": [
-    "_Notes/April/04-28-26 - Notes (In Office Day).md",
+    "go/backend/appsync/main_local.go",
+    "go/backend/appsync/local_http_dev.go",
     "_Engineering/Code Review Guide.md",
-    "backend/src/domain/dto/intercom-my-tickets-response.dto.ts",
-    "backend/src/domain/enums/ticket-state.ts",
-    "frontend/lib/models/intercom/intercomSupportConstants.ts",
-    "frontend/components/heylo-support/ticket-wizard.tsx",
-    "frontend/components/heylo-support/ticket-success-modal.tsx",
-    "frontend/components/heylo-support/ticket-step-type.tsx",
-    "frontend/components/heylo-support/ticket-step-details.tsx",
-    "frontend/components/heylo-support/ticket-step-datetime.tsx",
-    "frontend/components/heylo-support/ticket-recency-cards.tsx",
-    "frontend/components/heylo-support/ticket-option-cards.tsx",
+    "_Notes/April/04-28-26 - Notes (In Office Day).md",
+    "_Notes/April/04-29-26 - Notes.md",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/test/alert-active-times.integration.test.d.ts",
+    "backend/dist/src/test/alert-active-times.integration.test.js",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
     "hub/sources/meta-raspberrypi/img/balena.png",
     "hub/sources/meta-raspberrypi/img/LF_17_02_Yocto-Badge-Update_Compatible_Final_Blank.png",
     "hub/sources/meta-raspberrypi/docs/layer-contents.md",
@@ -264,8 +266,6 @@
     "hub/sources/poky/README.qemu.md",
     "hub/sources/poky/README.OE-Core.md",
     "hub/sources/poky/MAINTAINERS.md",
-    "hub/sources/meta-openembedded/meta-xfce/SECURITY.md",
-    "hub/sources/meta-openembedded/meta-xfce/README.md",
-    "hub/sources/meta-openembedded/meta-webserver/SECURITY.md"
+    "hub/sources/meta-openembedded/meta-xfce/SECURITY.md"
   ]
 }
