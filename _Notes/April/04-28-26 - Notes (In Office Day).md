@@ -14,7 +14,14 @@ https://github.com/heylo-tech/hub/pull/33
 ---
 ### Caseloads
 Chris is going to provide a new "create" endpoint
-We can use our changes from old PR: [https://github.com/heylo-tech/frontend/pull/53](https://github.com/heylo-tech/frontend/compare/main...mw/caseloadd)
+We can use our changes from old PR: https://github.com/heylo-tech/frontend/pull/53
+
+#### Update: Requirements
+https://linear.app/heylo-tech/issue/HEY-366/caseload-creation-redesign
+Working branch: https://github.com/heylo-tech/frontend/compare/mw/caseloads-add?expand=1
+
+Need `isOvernight`
+WIP: Did some guessing on UI based on schema
 
 ### Ticketing
 https://linear.app/heylo-tech/issue/HEY-330/update-customer-support-ticketing-system-ui
