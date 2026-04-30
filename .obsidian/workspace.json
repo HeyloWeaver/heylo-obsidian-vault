@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "04-29-26 - Notes"
             }
+          },
+          {
+            "id": "58d9cbb8b5b57b48",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_Notes/April/04-30-26 - Notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "04-30-26 - Notes"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -219,7 +233,7 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "2dfaa504357bd053",
+  "active": "58d9cbb8b5b57b48",
   "lastOpenFiles": [
     "frontend/public/images/smart-button.png",
     "frontend/public/images/heylo-hub.png",
@@ -227,19 +241,21 @@
     "frontend/public/images/door-sensor.png",
     "frontend/public/images/argus-3e.png",
     "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/src/test/event-processor.integration.test.js",
     "backend/dist/lambdas/device-checker.js.map",
     "backend/dist/lambdas/device-checker.js",
     "backend/dist/lambdas/device-checker.d.ts",
     "backend/dist/lambdas",
     "backend/dist/src/test/caseload.integration.test.d.ts",
     "backend/dist/src/test/alert-active-times.integration.test.d.ts",
-    "backend/dist/src/main.d.ts",
-    "backend/dist/src/main.js",
-    "backend/dist/src/main.js.map",
+    "backend/dist/src/test/alert-active-times.integration.test.js",
+    "backend/dist/src/test/alert-active-times.integration.test.js.map",
+    "frontend/public/images/window-sensor.png",
+    "_Notes/April/04-29-26 - Notes.md",
+    "_Notes/April/04-30-26 - Notes.md",
     "_Plans/Caseload Schedule Assignment.md",
     "_Engineering/Code Review Guide.md",
     "_Notes/April/04-28-26 - Notes (In Office Day).md",
-    "_Notes/April/04-29-26 - Notes.md",
     "hub/sources/meta-raspberrypi/img/balena.png",
     "hub/sources/meta-raspberrypi/img/LF_17_02_Yocto-Badge-Update_Compatible_Final_Blank.png",
     "hub/sources/meta-raspberrypi/docs/layer-contents.md",
@@ -253,8 +269,6 @@
     "hub/sources/poky/scripts/contrib/oe-image-files-spdx/README.md",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-05.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-04.png",
-    "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-03.png",
-    "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-02.png",
     "hub/sources/poky/meta/recipes-devtools/perl-cross/files/README.md",
     "hub/sources/poky/meta/recipes-devtools/rust/README-rust.md",
     "hub/sources/poky/meta/lib/patchtest/README.md",
@@ -265,7 +279,6 @@
     "hub/sources/poky/bitbake/SECURITY.md",
     "hub/sources/poky/SECURITY.md",
     "hub/sources/poky/README.qemu.md",
-    "hub/sources/poky/README.OE-Core.md",
-    "hub/sources/poky/MAINTAINERS.md"
+    "hub/sources/poky/README.OE-Core.md"
   ]
 }
