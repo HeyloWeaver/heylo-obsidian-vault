@@ -8,49 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ff35c126893fd136",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/April/04-28-26 - Notes (In Office Day).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04-28-26 - Notes (In Office Day)"
-            }
-          },
-          {
-            "id": "2dfaa504357bd053",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/April/04-29-26 - Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04-29-26 - Notes"
-            }
-          },
-          {
             "id": "58d9cbb8b5b57b48",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/April/04-30-26 - Notes.md",
+                "file": "_Notes/May/05-01-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04-30-26 - Notes"
+              "title": "05-01-26 - Notes"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -235,26 +206,27 @@
   },
   "active": "58d9cbb8b5b57b48",
   "lastOpenFiles": [
+    "backend/dist/tsconfig.tsbuildinfo",
+    "backend/dist/tsconfig.build.tsbuildinfo",
+    "backend/dist/src/utils/password.util.d.ts",
+    "backend/dist/src/utils/password.util.js",
+    "backend/dist/src/utils/password.util.js.map",
+    "backend/dist/lambdas/device-checker.js.map",
+    "backend/dist/lambdas/device-checker.js",
+    "backend/dist/lambdas/device-checker.d.ts",
+    "backend/dist/lambdas",
+    "backend/dist/src/main.d.ts",
+    "backend/dist/src/main.js",
+    "_Notes/April/04-30-26 - Notes.md",
     "_Notes/May/05-01-26 - Notes.md",
-    "_Notes/May/05-01-26 - Notes",
-    "_Notes/May",
-    "frontend/components/caseload-management/v2/site-pill.tsx",
-    "frontend/components/caseload-management/v2/caseload-list.tsx",
-    "frontend/lib/models/caseload/assignCaseloadScheduleRequest.ts",
-    "frontend/components/caseload-management/v2/assign-caseload.tsx",
-    "backend/dist/src/domain/dto/set-brightness-request.dto.d.ts",
-    "backend/dist/src/domain/dto/set-brightness-request.dto.js",
-    "backend/dist/src/domain/dto/set-brightness-request.dto.js.map",
-    "backend/src/domain/dto/set-brightness-request.dto.ts",
-    "_Engineering/Backend/Wipe Agency Schedules From DB.md",
     "frontend/public/images/smart-button.png",
     "frontend/public/images/heylo-hub.png",
     "frontend/public/images/e1.png",
     "frontend/public/images/door-sensor.png",
     "frontend/public/images/argus-3e.png",
     "frontend/public/images/window-sensor.png",
+    "_Engineering/Backend/Wipe Agency Schedules From DB.md",
     "_Notes/April/04-29-26 - Notes.md",
-    "_Notes/April/04-30-26 - Notes.md",
     "_Plans/Caseload Schedule Assignment.md",
     "_Engineering/Code Review Guide.md",
     "_Notes/April/04-28-26 - Notes (In Office Day).md",
@@ -279,7 +251,6 @@
     "hub/sources/poky/documentation/standards.md",
     "hub/sources/poky/bitbake/lib/toaster/toastergui/static/jquery-treetable-license/README.md",
     "hub/sources/poky/bitbake/SECURITY.md",
-    "hub/sources/poky/SECURITY.md",
-    "hub/sources/poky/README.qemu.md"
+    "hub/sources/poky/SECURITY.md"
   ]
 }
