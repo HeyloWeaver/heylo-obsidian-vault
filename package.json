@@ -25,7 +25,7 @@
     "dev:inventory": "dotenv -e .env.dev -e .env -- npm run dev -w inventory",
     "dev:services": "node cli/dev-services.mjs",
     "db:pull": "dotenv -e .env.dev -e .env -- bash -c 'docker compose exec -T mysql mysqldump -h $DB_HOST -u $DB_USER -p\"$DB_PASS\" --single-transaction --set-gtid-purged=OFF $DB_NAME | mysql -h 127.0.0.1 -u root $DB_NAME'",
-    "db:migrate":"cross-env NODE_OPTIONS=--require=tsconfig-paths/register dotenv -e .env.local -e .env -- bash -c 'cd backend && npx typeorm-ts-node-commonjs migration:run -d data-source.ts'",
+    "db:migrate": "cross-env NODE_OPTIONS=--require=tsconfig-paths/register dotenv -e .env.local -e .env -- bash -c 'cd backend && npx typeorm-ts-node-commonjs migration:run -d data-source.ts'",
     "db:migrate:show": "cross-env NODE_OPTIONS=--require=tsconfig-paths/register dotenv -e .env.local -e .env -- bash -c 'cd backend && npx typeorm-ts-node-commonjs migration:show -d data-source.ts'",
     "db:revert": "cross-env NODE_OPTIONS=--require=tsconfig-paths/register dotenv -e .env.local -e .env -- bash -c 'cd backend && npx typeorm-ts-node-commonjs migration:revert -d data-source.ts'"
   },
