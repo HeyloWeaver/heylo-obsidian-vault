@@ -20,7 +20,7 @@
     "dev:web": "dotenv -e .env.dev -e .env -- npm run dev -w heylo-web",
     "dev:go": "dotenv -e .env.dev -e .env -- node cli/appsync-local-dev.mjs --watch",
     "dev:go:once": "dotenv -e .env.dev -e .env -- node cli/appsync-local-dev.mjs",
-    "dev:tablet": "dotenv -e .env.dev -e .env -- bash -c 'cd tablet && npm run dev'",
+    "dev:tablet": "dotenv -e .env.dev -e .env -- bash -c 'cd tablet && flutter run --flavor dev -t lib/main.dart'",
     "dev:onboarding": "dotenv -e .env.dev -e .env -- npm run dev -w customer-onboarding",
     "dev:inventory": "dotenv -e .env.dev -e .env -- npm run dev -w inventory",
     "dev:services": "node cli/dev-services.mjs",
