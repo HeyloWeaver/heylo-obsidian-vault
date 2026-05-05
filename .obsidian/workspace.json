@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/May/05-05-26 - Notes.md",
+                "file": "_Notes/May/05-06-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "05-05-26 - Notes"
+              "title": "05-06-26 - Notes"
             }
           }
         ]
@@ -206,6 +206,8 @@
   },
   "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "_Notes/May/05-05-26 - Notes.md",
+    "_Notes/May/05-06-26 - Notes.md",
     "backend/dist/tsconfig.tsbuildinfo",
     "backend/README.md",
     "frontend/components/demo/tour-overlay.tsx",
@@ -225,10 +227,8 @@
     "frontend/components/demo-guide",
     "_Engineering/Agent Operating Loop.md",
     "frontend/lib/demo-guide-copy.ts",
-    "_Engineering/CLI",
     "_Plans/Interactive Demo Agency.md",
     "_Notes/Notes.md",
-    "_Notes/May/05-05-26 - Notes.md",
     "_Notes/May/05-04-26 - Notes.md",
     "_Engineering/Dev Environment Setup.md",
     "_Notes/April/04-20-26 - Architecture Notes.md",
