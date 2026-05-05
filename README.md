@@ -72,6 +72,11 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run db:migrate:local` | Run pending migrations against local Docker MySQL |
 | `npm run db:migrate:show:local` | Show local migration state |
 | `npm run db:revert:local` | Roll back last migration on local Docker MySQL |
+| `npm run db:migrate:dev` | Run pending migrations against cloud dev RDS — shared environment |
+| `npm run db:migrate:show:dev` | Show cloud dev migration state — shared environment |
+| `npm run db:revert:dev` | Roll back last cloud dev migration — shared environment |
+
+Treat all `:dev` migration scripts as shared-environment operations. Use them only when that target is explicitly intended.
 
 **`heylo` CLI** (`cli/dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior. See `cli/README.md` for full docs.
 

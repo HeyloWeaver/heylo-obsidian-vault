@@ -24,7 +24,7 @@ Use with [[Agent Operating Loop]], [[Agent Verification Matrix]], and [[Backend/
 
 ## High-signal files to read first
 
-- `customer-onboarding/CLAUDE.md` - app-local conventions and guard rails.
+- `customer-onboarding/CLAUDE.md` - app-local conventions and guard rails. If it conflicts with this `_Engineering` guide, prefer this guide and update the app-local note later.
 - `customer-onboarding/src/App.tsx` - route definitions and top-level providers.
 - `customer-onboarding/src/main.tsx` - React entrypoint.
 - `customer-onboarding/src/theme.ts` - MUI theme source of truth.

@@ -67,7 +67,7 @@ Agent execution references:
    - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
    - onboarding/inventory: `npm run dev:onboarding` or `npm run dev:inventory`
 6. Use [[Agent Verification Matrix]] to choose checks before declaring the work complete.
-7. Optional deeper pass across core product architecture: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
+7. Optional historical architecture audit for extra context: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`). Treat it as supplementary context, not current policy.
 
 ---
 

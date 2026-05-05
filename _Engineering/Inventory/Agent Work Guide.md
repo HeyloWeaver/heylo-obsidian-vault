@@ -24,7 +24,7 @@ Use with [[Backend/Agent Work Guide]], [[Agent Operating Loop]], and [[Agent Ver
 
 ## High-signal files to read first
 
-- `inventory/CLAUDE.md` - app-local conventions and guard rails.
+- `inventory/CLAUDE.md` - app-local conventions and guard rails. If it conflicts with this `_Engineering` guide, prefer this guide and update the app-local note later.
 - `inventory/src/App.tsx` - route definitions and top-level providers.
 - `inventory/src/components/Layout.tsx` and `inventory/src/components/Sidebar.tsx` - shell and navigation.
 - `inventory/src/theme.ts` - MUI theme source of truth.

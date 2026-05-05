@@ -2,7 +2,7 @@
 type: overview
 tags: [tablet, reference]
 owner: Mike
-updated: 2026-04-22
+updated: 2026-05-05
 status: current
 ---
 # Tablet — High Level Overview
@@ -31,7 +31,7 @@ At a glance: `lib/main.dart` bootstraps the app with Firebase Crashlytics error 
 - **Kiosk / Android native:** `KioskManager.java` (Device Admin), `AppDeviceAdminReceiver.java`, `BootReceiver.java`, `KioskWatchdogService.java` — exposed to Flutter via a platform channel wrapped in `KioskService`.
 - **Assets / codegen:** `flutter_gen` for strongly-typed asset references; `build_runner` for JSON serialization (`json_serializable`).
 - **Responsive layout:** `flutter_screen_util` — initialized for 1280×800 landscape.
-- **Deploy:** flavor-based APK builds (`--flavor dev|prod`). Two update strategies documented in `UPDATE_STRATEGY.md` (self-hosted vs. Play Store). Build automation in `.claude/skills/release-build/`.
+- **Deploy:** flavor-based APK builds (`--flavor dev|local|prod`). Two update strategies documented in `UPDATE_STRATEGY.md` (self-hosted vs. Play Store). Build automation in `.claude/skills/release-build/`.
 
 ### Folder structure
 
@@ -137,7 +137,7 @@ tablet/
 3. **Cognito auth with secure storage.** `AuthService` handles `USER_PASSWORD_AUTH`, token refresh, and logout. Tokens (`idToken`, `accessToken`, `refreshToken`) are persisted in `FlutterSecureStorage`. On app start, `AuthController` attempts a silent token refresh before showing the home screen.
 4. **Kiosk = Android Device Admin.** `KioskService` (Dart) wraps a platform method channel to `KioskManager.java`. The Device Admin policy disables the back/home/recents gestures, hides the navigation bar, and pins the app. `KioskWatchdogService` is a foreground Android service that relaunches the app if it is killed. The escape hatch is a 5-tap gesture on the top-right corner followed by PIN `2650`.
 5. **Self-hosted APK updates.** `UpdateService` polls a backend endpoint for the current expected APK version. If the installed version is behind, it downloads the APK and triggers install via `ApkInstallReceiver`. This bypasses the Play Store and works in a managed-device context. See `UPDATE_STRATEGY.md` for trade-offs.
-6. **Flavor system.** `--flavor dev` vs `--flavor prod` controls the package name, API base URL, and Cognito pool/client IDs. Never hardcode env-specific values in Dart code — use `FlavorConfig`.
+6. **Flavor system.** `--flavor dev`, `--flavor local`, and `--flavor prod` control the package name, API base URL, and Cognito pool/client IDs. `local` is for emulator/device testing against a local backend; never hardcode env-specific values in Dart code — use `FlavorConfig`.
 
 ### Main entry points
 
@@ -333,6 +333,7 @@ flutter_gen_runner       # Asset codegen (dev dependency)
 ### Build / release
 
 - Dev: `flutter run --flavor dev -t lib/main.dart`
+- Local backend: `flutter run --flavor local -t lib/main.dart` (emulator/device testing against localhost API)
 - Prod APK: `.claude/skills/release-build/` skill automates the `flutter build apk --flavor prod --release` + signing + upload steps.
 - Version: `version: X.Y.Z+N` in `pubspec.yaml` — bump `N` (build number) for OTA update detection; bump `X.Y.Z` for semantic releases.
 - Signing: keystore config in `android/key.properties` (not committed — provided at build time).

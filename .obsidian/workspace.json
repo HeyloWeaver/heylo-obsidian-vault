@@ -206,6 +206,7 @@
   },
   "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "backend/README.md",
     "frontend/components/demo/tour-overlay.tsx",
     "frontend/components/demo/tour-context.tsx",
     "frontend/lib/demo-tour-steps.ts",
@@ -224,7 +225,6 @@
     "_Engineering/Agent Operating Loop.md",
     "frontend/lib/demo-guide-copy.ts",
     "_Engineering/CLI",
-    "_Engineering/Infra",
     "_Plans/Interactive Demo Agency.md",
     "_Notes/Notes.md",
     "_Notes/May/05-05-26 - Notes.md",
