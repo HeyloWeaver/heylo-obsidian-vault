@@ -9,8 +9,9 @@ This folder is the **Heylo engineering Obsidian vault**: Markdown notes (mostly 
 ## Agent work flow (short)
 
 1. Open **`_Engineering/Agent Work - Start Here.md`** and use its routing table to choose the region.
-2. Open only the **repo-specific Agent Work Guide** for code you will touch (`Frontend`, `Backend`, `Go`, `Tablet`, `Hub`; onboarding/inventory route through frontend/backend guidance for now).
-3. Use **Domain Playbooks** under `_Engineering/<area>/Domain Playbooks.md` when the task is subsystem-specific.
+2. Open only the **repo-specific Agent Work Guide** for code you will touch (`Frontend`, `Backend`, `Go`, `Tablet`, `Hub`, `Customer Onboarding`, `Inventory`, `Infra`, `CLI`).
+3. Use **`_Engineering/Agent Operating Loop.md`** for the orient/explore/plan/edit/verify/report workflow and **`_Engineering/Agent Verification Matrix.md`** for checks.
+4. Use **Domain Playbooks** under `_Engineering/<area>/Domain Playbooks.md` when the task is subsystem-specific.
 
 Wikilinks like `[[Frontend/Agent Work Guide]]` in those notes mean `_Engineering/Frontend/Agent Work Guide.md`.
 

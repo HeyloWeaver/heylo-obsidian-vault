@@ -28,6 +28,9 @@ vault root (= git workspace root)
 ├── go/                      ← Go services (currently: AppSync resolvers)
 ├── tablet/                  ← Flutter Android kiosk app for resident tablets
 ├── hub/                     ← Yocto Hub OS for Raspberry Pi 5 + Mender OTA (real repo)
+├── customer-onboarding/     ← Vite / React / MUI onboarding app
+├── inventory/               ← Vite / React / MUI inventory tracking app
+├── heylo-infra/             ← Terraform AWS infrastructure (when checked out)
 ├── package.json             ← npm workspaces + dev scripts
 ├── cli/                     ← `heylo` CLI (service picker, AppSync local runner, README)
 ```
@@ -39,6 +42,10 @@ vault root (= git workspace root)
 - **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets deployed at care sites. Handles video calls (Daily.co), chat, missed calls, weather, and device management. Runs in `dev` and `prod` flavors; uses the same NestJS backend over REST + WebSocket. Deep-dive: `_Engineering/Tablet/High Level Overview.md`.
 - **`hub/`** — Yocto Project 5.2 build for **Heylo Hub** field hardware: Raspberry Pi 5 images, Mender dual-partition OTA, kas-based reproducible builds, and the custom `meta-heylo` layer (systemd services, Home Assistant, Mosquitto, Heylo-specific recipes). Intended for WSL2 + Ubuntu 24.04 with Docker; not started by root `npm run dev`. Full build layout, scripts, and OTA workflow: `hub/README.md`.
+- **`customer-onboarding/`** — Vite + React 18 + MUI 7 app for customer onboarding intake forms. Agent guide: `_Engineering/Customer Onboarding/Agent Work Guide.md`.
+- **`inventory/`** — Vite + React 18 + MUI 7 app for internal hardware inventory workflows. Agent guide: `_Engineering/Inventory/Agent Work Guide.md`.
+- **`heylo-infra/`** — Terraform for AWS infrastructure when the infra repo is checked out in this vault. Agent guide: `_Engineering/Infra/Agent Work Guide.md`.
+- **`cli/`** — local development CLI exposed as `npx heylo`. Agent guide: `_Engineering/CLI/Agent Work Guide.md`.
 
 Hardware/device knowledge — hubs, firmware, provisioning, payload samples — lives under `_Engineering/Devices/` (conceptual docs); **`hub/`** is the repo where Hub **OS images** are produced.
 
@@ -62,9 +69,9 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run dev:tablet` | Flutter tablet app (`flutter run --flavor dev`) |
 | `npm run dev:onboarding` | Customer onboarding Vite app |
 | `npm run dev:inventory` | Inventory tracking Vite app |
-| `npm run db:migrate` | Run pending migrations against local Docker MySQL |
-| `npm run db:migrate:show` | Show local migration state |
-| `npm run db:revert` | Roll back last migration on local Docker MySQL |
+| `npm run db:migrate:local` | Run pending migrations against local Docker MySQL |
+| `npm run db:migrate:show:local` | Show local migration state |
+| `npm run db:revert:local` | Roll back last migration on local Docker MySQL |
 
 **`heylo` CLI** (`cli/dev-services.mjs`, exposed as the `heylo` npm bin in `package.json`) — pick which Node services to start without memorizing script names. It wraps the same `dev:api` / `dev:web` behavior. See `cli/README.md` for full docs.
 

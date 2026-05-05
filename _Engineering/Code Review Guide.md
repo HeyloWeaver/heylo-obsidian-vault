@@ -48,7 +48,7 @@ These are non-negotiable. If a change introduces any of them, push back before a
 
 ### No new libraries without explicit approval
 
-- Before reaching for a new dep, **search the workspace first**: `grep -r "from \"<keyword>\"" frontend/ backend/` and check `package.json`.
+- Before reaching for a new dep, **search the workspace first**: `rg "from ['\\\"]<keyword>['\\\"]" frontend backend` and check `package.json`.
 - Date formatting → `date-fns` (already used everywhere — see `frontend/components/caseload-management/`).
 - UI primitives → Radix + components in `components/ui/` (frontend) or MUI 7 (customer-onboarding, inventory).
 - State → Redux Toolkit (frontend), Zustand 5 (customer-onboarding, inventory).
@@ -209,7 +209,7 @@ Run this list before requesting human review. Most PR comments are caught here.
 
 ### Universal
 
-- [ ] No `any` introduced (search the diff: `grep -nE ':\s*any\b|\bas any\b' <files>`).
+- [ ] No `any` introduced (search the diff: `rg -n ':\s*any\b|\bas any\b' <files>`).
 - [ ] No new dependencies; if there is one, justification is explicit in the PR description.
 - [ ] All hardcoded enums-worthy strings reference an enum/constant.
 - [ ] Code style matches the surrounding file (indentation, naming, import order, error-handling pattern).
@@ -226,7 +226,7 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] Pagination uses two separate queries (`SELECT …` + `SELECT COUNT(*) AS total`); no `COUNT(*) OVER()`.
 - [ ] `COUNT()` results wrapped in `parseInt()`.
 - [ ] `WHERE` clauses built imperatively, not via JS ternaries inside SQL strings.
-- [ ] Entity table name lowercase, columns PascalCase, timestamps `insert: false, update: false`.
+- [ ] Entity table name lowercase, new columns camelCase, timestamps `insert: false, update: false`.
 - [ ] Backend ships the data shape the frontend renders directly (`{ open, resolved }`, totals, etc.) — frontend isn't filtering/counting.
 - [ ] Validation that applies to *all* endpoints lives in `ContextService` / `AuthGuard` / `RolesGuard`, not duplicated in services.
 - [ ] Errors throw NestJS exceptions (`BadRequestException`, `ForbiddenException`, etc.), not bare `throw new Error(...)`.

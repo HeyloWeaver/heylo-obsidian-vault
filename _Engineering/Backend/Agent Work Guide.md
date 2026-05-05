@@ -165,7 +165,7 @@ See [[Backend/Commands/Commands]] for full reference.
 - Auth/role behavior is explicit and tested for affected routes.
 - Realtime and side effects remain backward compatible.
 - Migration strategy is included when schema changes.
-- Entity table names are lowercase; column names are PascalCase; timestamp columns use `insert: false, update: false`.
+- Entity table names are lowercase; new column names are camelCase; timestamp columns use `insert: false, update: false`.
 - Service reads use raw SQL via `repository.manager.query()` — no `findAndCount`/`find` with relations/`createQueryBuilder` for joined reads.
 - Multi-table writes are wrapped in a `manager.transaction(...)` callback.
 - No `cascade: true` or `onDelete: 'CASCADE'` on relation decorators.

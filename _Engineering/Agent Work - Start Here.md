@@ -11,6 +11,8 @@ This is the routing page for agents working in Heylo. Use it to decide which rep
 
 The goal is focused context, not a giant preload. Read this page first, then open only the guides and source files for the region you are touching.
 
+Use [[Agent Operating Loop]] for the standard orient, explore, plan, edit, verify, report workflow. Use [[Agent Verification Matrix]] for repo-specific checks and [[Agent Tools]] for commands, skills, MCP, browser testing, and subagent guidance.
+
 ---
 
 ## Context Routing
@@ -22,10 +24,10 @@ The goal is focused context, not a giant preload. Read this page first, then ope
 | Data-heavy schedule/read paths exposed through AppSync | [[Go/Agent Work Guide]] | [[Go/Domain Playbooks]], `go/backend/appsync/schema.graphql`, resolver and `platformdb` code, matching frontend service |
 | Resident-facing tablet behavior | [[Tablet/Agent Work Guide]] | [[Tablet/Domain Playbooks]], Flutter routes/services, matching backend REST/WebSocket contracts |
 | Hub OS, provisioning, OTA, systemd services, MQTT/HA/Zigbee/Z-Wave | [[Hub/Agent Work Guide]] | [[Hub/Domain Playbooks]], `hub/README.md`, `_Engineering/Devices/**`, relevant `hub/meta-heylo/**` |
-| Customer onboarding app | [[Frontend/Agent Work Guide]] + [[Backend/Agent Work Guide]] | `customer-onboarding/**`, backend `CustomerOnboarding*` controller/service/entity paths |
-| Inventory tracking app | [[Backend/Agent Work Guide]] first, then frontend patterns as needed | `inventory/**`, backend inventory controllers/services/entities/migrations |
-| Dev scripts, local orchestration, workspace plumbing | `README.md` + this page | `package.json`, `cli/README.md`, `cli/**`, [[Dev Environment Setup]] |
-| Terraform / AWS infrastructure | `README.md` + relevant plan/spec | `heylo-infra/**`; confirm intent before applying infrastructure changes |
+| Customer onboarding app | [[Customer Onboarding/Agent Work Guide]] + [[Backend/Agent Work Guide]] if API changes | `customer-onboarding/**`, backend `CustomerOnboarding*` controller/service/entity paths |
+| Inventory tracking app | [[Inventory/Agent Work Guide]] + [[Backend/Agent Work Guide]] if API/DB changes | `inventory/**`, backend inventory controllers/services/entities/migrations |
+| Dev scripts, local orchestration, workspace plumbing | [[CLI/Agent Work Guide]] + `README.md` | `package.json`, `cli/README.md`, `cli/**`, [[Dev Environment Setup]] |
+| Terraform / AWS infrastructure | [[Infra/Agent Work Guide]] + relevant plan/spec | `heylo-infra/**`; confirm intent before applying infrastructure changes |
 
 Reviewing code (or self-reviewing before opening a PR): [[Code Review Guide]]
 
@@ -36,6 +38,13 @@ Use domain playbooks once you know the repo:
 - Go domains: [[Go/Domain Playbooks]]
 - Tablet domains: [[Tablet/Domain Playbooks]]
 - Hub domains: [[Hub/Domain Playbooks]]
+
+Agent execution references:
+
+- Operating loop: [[Agent Operating Loop]]
+- Verification commands: [[Agent Verification Matrix]]
+- Tools, commands, skills, MCP: [[Agent Tools]]
+- Review posture: [[Code Review Guide]]
 
 ---
 
@@ -56,7 +65,8 @@ Use domain playbooks once you know the repo:
    - Go/AppSync resolver is separate from the Nest API; use `npm run dev:go` for the local runner
    - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
    - onboarding/inventory: `npm run dev:onboarding` or `npm run dev:inventory`
-6. Optional deeper pass across core product architecture: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
+6. Use [[Agent Verification Matrix]] to choose checks before declaring the work complete.
+7. Optional deeper pass across core product architecture: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
 
 ---
 

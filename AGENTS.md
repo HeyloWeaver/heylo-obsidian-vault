@@ -61,13 +61,20 @@ Use this sequence before large or ambiguous tasks. Do not preload every guide; r
    - `_Engineering/Go/Agent Work Guide.md`
    - `_Engineering/Tablet/Agent Work Guide.md`
    - `_Engineering/Hub/Agent Work Guide.md`
-   - For `customer-onboarding/` and `inventory/`, use the routing table in Start Here plus the relevant frontend/backend guide until dedicated guides exist.
-3. **High-level overview** for depth when the task is broad:
+   - `_Engineering/Customer Onboarding/Agent Work Guide.md`
+   - `_Engineering/Inventory/Agent Work Guide.md`
+   - `_Engineering/Infra/Agent Work Guide.md`
+   - `_Engineering/CLI/Agent Work Guide.md`
+3. **Agent execution references**:
+   - `_Engineering/Agent Operating Loop.md`: orient, explore, plan, edit, verify, report
+   - `_Engineering/Agent Verification Matrix.md`: repo-specific checks and commands
+   - `_Engineering/Agent Tools.md`: commands, skills, MCP, browser testing, subagent guidance
+4. **High-level overview** for depth when the task is broad:
    - `_Engineering/Frontend/High Level Overview.md`
    - `_Engineering/Backend/High Level Overview.md`
    - `_Engineering/Tablet/High Level Overview.md`
    - `_Engineering/Hub/High Level Overview.md`
-4. **Domain playbooks** for subsystem entry points:
+5. **Domain playbooks** for subsystem entry points:
    - `_Engineering/Frontend/Domain Playbooks.md`
    - `_Engineering/Backend/Domain Playbooks.md`
    - `_Engineering/Go/Domain Playbooks.md`
