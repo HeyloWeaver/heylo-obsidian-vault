@@ -105,7 +105,8 @@ The root **`package.json`** (package name **`heylo`**) defines the workspace app
 
 - **Both services:** `npm run dev`
 - **Pick services:** `npm run dev:services` or `npx heylo` — `npx heylo --help` for flags.
-- **Other local targets:** `npm run dev:go`, `npm run dev:tablet`, `npm run dev:onboarding`, `npm run dev:inventory`
+- **Other local targets:** `npm run dev:go`, `npm run dev:onboarding`, `npm run dev:inventory`
+- **Tablet:** run Flutter directly from `tablet/` (`flutter run --flavor dev -t lib/main.dart` or `flutter run --flavor local -t lib/main.dart`)
 
 Ensure the relevant root env files exist (see `README.md` and `_Engineering/Dev Environment Setup.md`). AppSync/Go has a separate local runner and deploy path under `go/backend/appsync/`. The Hub Yocto tree under `hub/` uses kas/Docker and is not started by `npm run dev` (see `hub/README.md`).
 

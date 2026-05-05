@@ -64,7 +64,7 @@ Agent execution references:
    - frontend usually on `localhost:3000`
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API; use `npm run dev:go` for the local runner
-   - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
+   - tablet: run Flutter directly from `tablet/` (`flutter run --flavor dev -t lib/main.dart` or `flutter run --flavor local -t lib/main.dart`; requires Android device or emulator)
    - onboarding/inventory: `npm run dev:onboarding` or `npm run dev:inventory`
 6. Use [[Agent Verification Matrix]] to choose checks before declaring the work complete.
 7. Optional historical architecture audit for extra context: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`). Treat it as supplementary context, not current policy.

@@ -46,7 +46,8 @@ Prefer **small, contract-aligned** changes; update **`_Engineering/`** when arch
 
 - `npm install` then `npm run dev` — API + web (loads `.env.dev` + `.env`)
 - `npx heylo` / `npm run dev:services` — choose services (`--help` for flags)
-- Other targets: `npm run dev:go`, `npm run dev:tablet`, `npm run dev:onboarding`, `npm run dev:inventory`
+- Other targets: `npm run dev:go`, `npm run dev:onboarding`, `npm run dev:inventory`
+- Tablet runs directly from `tablet/`: `flutter run --flavor dev -t lib/main.dart` or `flutter run --flavor local -t lib/main.dart`
 
 ---
 

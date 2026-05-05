@@ -101,7 +101,8 @@ Run Flutter commands from `tablet/`.
 | Analyze | `flutter analyze` | Use after Dart changes |
 | Tests | `flutter test` | Use when tests exist for changed behavior |
 | Codegen | `flutter pub run build_runner build --delete-conflicting-outputs` | Required after `@JsonSerializable` model changes |
-| Dev run | `npm run dev:tablet` from root | Uses the dev flavor |
+| Dev run | `flutter run --flavor dev -t lib/main.dart` from `tablet/` | Uses cloud dev API |
+| Local backend run | `flutter run --flavor local -t lib/main.dart` from `tablet/` | Uses local backend target |
 
 Kiosk, native Android, install, and OTA behavior should be verified on a real device when possible.
 
