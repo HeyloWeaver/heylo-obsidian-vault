@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> Historical scratch note. This is not the canonical agent guide. For current agent instructions, use `AGENTS.md`, `_Engineering/Agent Work - Start Here.md`, and the relevant `_Engineering/*/Agent Work Guide.md`.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
@@ -127,9 +129,9 @@ Modules in `heylo-infra/terraform/`:
 ## Database Conventions
 
 - **Table names**: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`, `hardwaremodel`)
-- **Column names**: PascalCase (e.g. `StatusId`, `CreatedOn`, `IsDeleted`)
+- **Column names**: camelCase matching the entity property (e.g. `statusId`, `createdOn`, `isDeleted`). A few legacy columns are PascalCase; do not propagate that pattern.
 - **Entity `name` option**: must match the lowercase table name (e.g. `@Entity({ name: 'customeronboarding' })`)
-- **Timestamp columns** (`CreatedOn`, `UpdatedOn`): defaults are managed by the DB (`DEFAULT CURRENT_TIMESTAMP` / `ON UPDATE CURRENT_TIMESTAMP` in the migration). Entity columns must use `insert: false, update: false` and must NOT include `default: () => 'CURRENT_TIMESTAMP'` — the database is the source of truth, not TypeORM.
+- **Timestamp columns** (`createdOn`, `updatedOn`): defaults are managed by the DB (`DEFAULT CURRENT_TIMESTAMP` / `ON UPDATE CURRENT_TIMESTAMP` in the migration). Entity columns must use `insert: false, update: false` and must NOT include `default: () => 'CURRENT_TIMESTAMP'`; the database is the source of truth, not TypeORM.
 
 ## Code Style Preferences
 

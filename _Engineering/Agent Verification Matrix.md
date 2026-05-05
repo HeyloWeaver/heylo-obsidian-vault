@@ -35,6 +35,8 @@ The `:dev` migration scripts target cloud dev. Treat them as shared-environment 
 | Production build | `npm run build -w heylo-web` | Use for route, data contract, App Router, or shared provider changes |
 | Dev server | `npm run dev:web` | Use for manual browser checks at `localhost:3000` |
 
+If `next lint` is unavailable or broken for the installed Next.js version, report that clearly and use `npm run build -w heylo-web` plus IDE diagnostics as the fallback static check.
+
 For UI changes, inspect the actual page state in browser when possible. Check loading, empty, error, and role-gated states for affected routes.
 
 ---

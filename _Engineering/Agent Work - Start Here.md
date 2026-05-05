@@ -55,6 +55,7 @@ Agent execution references:
 3. If the task is broad or unfamiliar, read the repo-specific high-level overview:
    - [[Frontend/High Level Overview]]
    - [[Backend/High Level Overview]]
+   - [[Go/High Level Overview]]
    - [[Tablet/High Level Overview]]
    - [[Hub/High Level Overview]]
 4. Open the specific source files in the touched region. Prefer current code over old notes when they disagree.

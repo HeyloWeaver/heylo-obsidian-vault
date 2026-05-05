@@ -157,17 +157,17 @@ Frontend display/contract sanity checks:
 
 Local MySQL is up. The root package has local TypeORM wrappers:
 
-- `db:migrate:show`
-- `db:migrate`
-- `db:revert`
+- `db:migrate:show:local`
+- `db:migrate:local`
+- `db:revert:local`
 
 The root dev service picker also has DB profile support through `.env.local` and `.env.dev`, and accepts `--db local|dev`.
 
 ### Plan
 
 1. Verify the local scripts work against the current Docker MySQL:
-   - `npm run db:migrate:show`
-   - `npm run db:migrate`
+   - `npm run db:migrate:show:local`
+   - `npm run db:migrate:local`
 2. Keep `.env.local` and `.env.dev` untracked unless intentionally adding example templates.
 3. If backend workspace migration scripts are kept, align them with the working root scripts or document root scripts as canonical.
 4. Document the final commands in [[Dev Environment Setup]] after verifying them locally.

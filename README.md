@@ -39,7 +39,7 @@ vault root (= git workspace root)
 
 - **`frontend/`** — the operator-facing web console. Next.js 15 App Router, React 19, Tailwind v4, shadcn/ui. Renders caseload, alerts, analytics, video calls, and site/device management. Connects to the backend over HTTPS cookies and a single global WebSocket. Deep-dive: `_Engineering/Frontend/High Level Overview.md`.
 - **`backend/`** — the core API. NestJS 11 on Node 22 with TypeORM + MySQL. Serves the frontend, handles auth via AWS Cognito, drives real-time updates through API Gateway WebSockets, and orchestrates device/IoT events, video calls (Daily.co), email, and multi-tenant agency state. Deep-dive: `_Engineering/Backend/High Level Overview.md`.
-- **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL.
+- **`go/backend/appsync/`** — Go Lambdas behind AWS AppSync (GraphQL) for data-heavy reads like caseload schedule resolution. Separate from the NestJS API on purpose; talks to the same MySQL. Deep-dive: `_Engineering/Go/High Level Overview.md`.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets deployed at care sites. Handles video calls (Daily.co), chat, missed calls, weather, and device management. Runs in `dev` and `prod` flavors; uses the same NestJS backend over REST + WebSocket. Deep-dive: `_Engineering/Tablet/High Level Overview.md`.
 - **`hub/`** — Yocto Project 5.2 build for **Heylo Hub** field hardware: Raspberry Pi 5 images, Mender dual-partition OTA, kas-based reproducible builds, and the custom `meta-heylo` layer (systemd services, Home Assistant, Mosquitto, Heylo-specific recipes). Intended for WSL2 + Ubuntu 24.04 with Docker; not started by root `npm run dev`. Full build layout, scripts, and OTA workflow: `hub/README.md`.
 - **`customer-onboarding/`** — Vite + React 18 + MUI 7 app for customer onboarding intake forms. Agent guide: `_Engineering/Customer Onboarding/Agent Work Guide.md`.
@@ -108,6 +108,7 @@ Start with `_Onboarding/Heylo Onboarding.md` and `_Onboarding/Points of Contact.
 
 - `_Engineering/Frontend/High Level Overview.md`
 - `_Engineering/Backend/High Level Overview.md`
+- `_Engineering/Go/High Level Overview.md`
 - `_Engineering/Tablet/High Level Overview.md`
 - `hub/README.md` — if you work on Hub device OS builds (Yocto, Mender, `meta-heylo`)
 

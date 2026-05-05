@@ -11,7 +11,7 @@ This page indexes the tools, commands, and skills that agents can use while work
 
 ---
 
-## Built-in agent tools
+## Cursor tools
 
 - Use file read/edit tools for source and Markdown changes.
 - Use `rg` for exact search across code and docs.
@@ -21,6 +21,19 @@ This page indexes the tools, commands, and skills that agents can use while work
 - Use read-only subagents for broad codebase exploration when the scope is large.
 
 Before running a long-lived dev server, check whether it is already running. Do not start duplicate API/web/watch processes unless the user asked for an isolated run.
+
+---
+
+## Shell and local processes
+
+Use shell commands for:
+
+- package scripts from `package.json`
+- tests, builds, formatters, and code generators
+- Git status/diff/log operations
+- local dev service startup through `npm run dev:*` or `npx heylo`
+
+Avoid shell for reading, writing, or searching files when the agent environment provides dedicated file and search tools.
 
 ---
 
@@ -39,7 +52,7 @@ If a tool schema is required before calling an MCP tool, read it first.
 
 ---
 
-## Claude Code commands
+## Claude Code
 
 Backend command index: [[Backend/Commands/Commands]]
 
@@ -59,10 +72,6 @@ Hub command index: [[Hub/Commands/Commands]]
 | `/hub-mqtt` | MQTT topic quick reference for Hub debugging |
 
 Treat deploy, cloud, and production-adjacent commands as operations that need explicit user intent.
-
----
-
-## Claude Code skills
 
 Hub skills: [[Hub/Skills/Skills]]
 

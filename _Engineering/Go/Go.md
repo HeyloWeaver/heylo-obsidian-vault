@@ -8,6 +8,7 @@ status: current
 Index for all Go / AppSync documentation.
 
 - [[Go/Agent Work Guide]]
+- [[Go/High Level Overview]]
 - [[Go/Domain Playbooks]]
 - [[Go/Domain - Caseload]]
 - [[Go/Domain - Handoffs]]

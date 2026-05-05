@@ -15,5 +15,6 @@ Use these for targeted work in `go/backend/appsync/`:
 For broader architecture context, pair this with:
 
 - [[Go/Agent Work Guide]]
+- [[Go/High Level Overview]]
 - [[Backend/High Level Overview]] (for shared domain model context)
 

@@ -72,6 +72,7 @@ Use this sequence before large or ambiguous tasks. Do not preload every guide; r
 4. **High-level overview** for depth when the task is broad:
    - `_Engineering/Frontend/High Level Overview.md`
    - `_Engineering/Backend/High Level Overview.md`
+   - `_Engineering/Go/High Level Overview.md`
    - `_Engineering/Tablet/High Level Overview.md`
    - `_Engineering/Hub/High Level Overview.md`
 5. **Domain playbooks** for subsystem entry points:
