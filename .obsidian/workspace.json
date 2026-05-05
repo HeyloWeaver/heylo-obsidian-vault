@@ -206,6 +206,7 @@
   },
   "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "_Plans/Interactive Demo Agency.md",
     "_Notes/Notes.md",
     "_Notes/May/05-05-26 - Notes.md",
     "_Notes/May/05-04-26 - Notes.md",
@@ -247,7 +248,6 @@
     "frontend/public/images/door-sensor.png",
     "frontend/public/images/argus-3e.png",
     "frontend/public/images/window-sensor.png",
-    "_Engineering/Backend/Wipe Agency Schedules From DB.md",
     "hub/sources/meta-raspberrypi/img/balena.png",
     "hub/sources/meta-raspberrypi/img/LF_17_02_Yocto-Badge-Update_Compatible_Final_Blank.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-05.png",
