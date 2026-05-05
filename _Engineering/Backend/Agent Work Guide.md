@@ -2,7 +2,7 @@
 type: guide
 tags: [backend, agents]
 owner: Mike
-updated: 2026-04-21
+updated: 2026-05-05
 status: current
 ---
 # Backend - Agent Work Guide
@@ -64,7 +64,7 @@ Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 
 ## Database conventions
 
-These apply to all TypeORM entities and migrations in `backend/` and `inventory/`.
+These apply to all TypeORM entities and migrations in `backend/`, including backend inventory code. The top-level `inventory/` app is a Vite frontend and does not own TypeORM entities or migrations.
 
 - **Table names**: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`, `hardwaremodel`).
 - **Column names**: **camelCase** matching the entity property (`agencyId`, `siteId`, `createdOn`, `isDeleted`, `isMfaEnabled`). A handful of legacy columns are PascalCase (`DeviceAlertEmails`, `AlertTypeId`); do not propagate that pattern — new columns are camelCase.
@@ -85,12 +85,13 @@ TypeORM is not going to help with scale. Service reads should use `repository.ma
 - **Aggregates**: compute with `COUNT()`/`SUM()` + `GROUP BY` in SQL — never load rows and count in code.
 - **`COUNT()` returns strings**: always wrap with `parseInt()` before returning.
 - **No JS ternaries in SQL strings**: build optional `WHERE` clauses imperatively.
+- SQL must use the actual column names created by the migration. The example below uses the current camelCase convention; some legacy tables still have PascalCase columns.
 
   ```ts
-  let whereClause = 'WHERE a.IsDeleted = 0';
-  const params: any[] = [];
+  let whereClause = 'WHERE a.isDeleted = 0';
+  const params: Array<string | number | boolean | Date> = [];
   if (agencyId) {
-    whereClause += ' AND a.AgencyId = ?';
+    whereClause += ' AND a.agencyId = ?';
     params.push(agencyId);
   }
   ```
@@ -128,7 +129,7 @@ DB-level FK `ON DELETE CASCADE` in a migration is allowed as a schema integrity 
 ## Mutation responses
 
 - **Backend**: create and update endpoints return only the new/updated record's ID: `{ id: saved.id }`. Do not return the full object.
-- **Frontend**: after a successful create or update, re-fetch the full page data from the backend. Do not do optimistic or targeted Redux store updates. This keeps the UI in sync with computed/aggregated fields.
+- **Frontend**: after a successful create or update, re-fetch the full page data from the backend. Do not do optimistic or targeted client-state patches. This keeps the UI in sync with computed/aggregated fields.
 
 ---
 

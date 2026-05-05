@@ -2,14 +2,14 @@
 type: guide
 tags: [go, agents]
 owner: Mike
-updated: 2026-04-21
+updated: 2026-05-05
 status: current
 ---
 # Go - Agent Work Guide
 
 This guide is optimized for agents making changes in `go/backend/appsync/`.
 
-Use with root [[README]] and backend/frontend overviews for cross-repo context.
+Use with [[Go/High Level Overview]] for architecture context and root [[README]] for workspace setup.
 Use [[Go/Domain Playbooks]] for subsystem-specific entry points.
 
 ---

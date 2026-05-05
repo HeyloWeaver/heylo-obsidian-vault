@@ -11,7 +11,7 @@ Heylo is a multi-repository platform for residential/care facility monitoring an
 | Repository | Tech Stack | Purpose |
 |------------|------------|---------|
 | **backend** | NestJS, TypeORM, MySQL | REST API server |
-| **frontend** | Next.js 15, React 19, Redux, Tailwind | Staff dashboard |
+| **frontend** | Next.js 15, React 19, Zustand + Context, Tailwind | Staff dashboard |
 | **customer-onboarding** | Vite, React 18, MUI 7, Zustand 5 | Customer onboarding intake forms |
 | **heylo-tablet** | Flutter 3.7, Dart | Resident-facing kiosk app |
 | **hub** | Yocto 5.2, Raspberry Pi 5 | IoT hub hardware image |
@@ -73,7 +73,7 @@ dart run build_runner build                        # Generate code (flutter_gen)
 - **Private routes**: `app/(private)/` - authenticated pages
   - `/dashboard`, `/agencies`, `/sites`, `/users`, `/alerts`, `/analytics`, `/caseload-management`, `/communication`
 - **Public routes**: `app/(public)/` - login, etc.
-- **State**: Redux Toolkit with redux-persist
+- **State**: Zustand for new feature state; React Context/providers for legacy and app-wide concerns
 - **UI**: Radix UI primitives + custom components in `components/ui/`
 
 ### Tablet Structure (Flutter)

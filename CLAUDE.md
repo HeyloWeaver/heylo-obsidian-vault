@@ -21,7 +21,7 @@ Wikilinks like `[[Frontend/Agent Work Guide]]` in those notes mean `_Engineering
 
 | Area | Path | Stack |
 |------|------|--------|
-| Web console | `frontend/` | Next.js 15, React 19, Redux, Tailwind |
+| Web console | `frontend/` | Next.js 15, React 19, Zustand + Context, Tailwind |
 | Core API | `backend/` | NestJS, TypeORM, MySQL |
 | AppSync | `go/backend/appsync/` | Go Lambda, GraphQL |
 | Resident tablet | `tablet/` | Flutter (Android kiosk) |
@@ -52,7 +52,7 @@ Prefer **small, contract-aligned** changes; update **`_Engineering/`** when arch
 
 ## Key backend coding rules
 
-These rules apply project-wide to `backend/` (and `inventory/`); full details in `_Engineering/Backend/Agent Work Guide.md`.
+These rules apply project-wide to `backend/`, including backend inventory controllers/services/entities/migrations; full details in `_Engineering/Backend/Agent Work Guide.md`.
 
 **Database conventions**
 - Table names: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`).

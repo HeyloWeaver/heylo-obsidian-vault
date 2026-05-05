@@ -2,7 +2,7 @@
 type: guide
 tags: [engineering, agents, review]
 owner: Mike
-updated: 2026-04-29
+updated: 2026-05-05
 status: current
 ---
 # Code Review Guide
@@ -51,7 +51,7 @@ These are non-negotiable. If a change introduces any of them, push back before a
 - Before reaching for a new dep, **search the workspace first**: `rg "from ['\\\"]<keyword>['\\\"]" frontend backend` and check `package.json`.
 - Date formatting → `date-fns` (already used everywhere — see `frontend/components/caseload-management/`).
 - UI primitives → Radix + components in `components/ui/` (frontend) or MUI 7 (customer-onboarding, inventory).
-- State → Redux Toolkit (frontend), Zustand 5 (customer-onboarding, inventory).
+- State → Zustand 5 for new feature-level state in the main frontend; existing React Context/providers remain for legacy and app-wide concerns. Customer-onboarding and inventory also use Zustand 5.
 - HTTP → axios via `frontend/lib/api.ts` or NestJS `HttpService`.
 - If you genuinely need something new, raise it in standup or Slack first — don't sneak it in via a PR.
 
@@ -157,7 +157,7 @@ If an endpoint serves multiple "types" (ticket types, alert types, device types)
 
 ### Mutation responses are `{ id }`; frontend re-fetches
 
-Call this out in review every time. The frontend re-fetches the full page after a successful create/update. No optimistic store patches, no returning the full row.
+Call this out in review every time. The frontend re-fetches the full page after a successful create/update. No optimistic client-state patches, no returning the full row.
 
 ### Long ternaries → multi-line or `if`
 
@@ -172,10 +172,12 @@ Define helper functions above the function that uses them. Reading top-to-bottom
 Building optional `WHERE` clauses with `${condition ? 'AND x = ?' : ''}` makes the params array drift out of sync with the SQL. Always build imperatively:
 
 ```ts
-let where = 'WHERE a.IsDeleted = 0';
-const params: any[] = [];
-if (agencyId) { where += ' AND a.AgencyId = ?'; params.push(agencyId); }
+let where = 'WHERE a.isDeleted = 0';
+const params: Array<string | number | boolean | Date> = [];
+if (agencyId) { where += ' AND a.agencyId = ?'; params.push(agencyId); }
 ```
+
+Use the actual column names from the migration. New columns are camelCase; legacy tables may still contain PascalCase columns.
 
 ### No ORM cascade
 
@@ -196,8 +198,8 @@ Most bugs come from changes that look local but ripple. Walk through:
 3. **Auth/role changes**: middleware, guards, sidebar visibility, mobile/tablet screens — all aligned?
 4. **Realtime events**: if you changed the emitter, did you update the consumer in `frontend/context/socket-context.tsx` and tablet handlers?
 5. **DB schema**: migration written? Entity matches lowercase table name? Timestamp columns use `insert: false, update: false` with no JS-side default?
-6. **Response shape changes**: any other consumer of this endpoint? grep for the route.
-7. **Removed endpoint/field**: any caller still expecting it? grep before deleting.
+6. **Response shape changes**: any other consumer of this endpoint? Search for the route before changing it.
+7. **Removed endpoint/field**: any caller still expecting it? Search before deleting.
 
 If a change touches a shared layer (`ContextService`, `AuthGuard`, `socket-context`, `lib/api.ts`), assume blast radius is the whole repo until proven otherwise.
 
@@ -234,7 +236,7 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] Agency authorization uses `contextSvc.agencyId`, not `userRoles[0].agencyId`.
 - [ ] No `deviceCapability` references — uses `deviceType.name` + `DeviceTypeName` enum.
 - [ ] User updates don't change `agencyId`; role changes are limited to `admin` ↔ `supportProfessional`.
-- [ ] Queries on agency-scoped entities filter by `AgencyId` (no tenancy leaks).
+- [ ] Queries on agency-scoped entities filter by the actual agency column, usually `agencyId` in new tables (no tenancy leaks).
 - [ ] No unbounded `SELECT` on growth-prone tables (alerts, calls, events, messages) — `LIMIT` or tenancy filter present.
 - [ ] No N+1 in service methods — joined queries instead of per-row lookups.
 
@@ -242,7 +244,7 @@ Run this list before requesting human review. Most PR comments are caught here.
 
 - [ ] Existing libraries used for date math (`date-fns`), UI primitives (Radix or MUI as appropriate), HTTP (`lib/api.ts`).
 - [ ] No client-side filtering/grouping/counting that the backend should do.
-- [ ] After a mutation, the page re-fetches via the existing service — no Redux store patches.
+- [ ] After a mutation, the page re-fetches via the existing service — no optimistic client-state patches.
 - [ ] Generic endpoint consumers don't bake one ticket/alert/device "type" into the rendering.
 - [ ] Role gating in `middleware.ts` and sidebar visibility match.
 

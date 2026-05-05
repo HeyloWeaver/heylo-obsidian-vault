@@ -2,7 +2,7 @@
 type: guide
 tags: [frontend, agents]
 owner: Mike
-updated: 2026-04-21
+updated: 2026-05-05
 status: current
 ---
 # Frontend - Agent Work Guide
@@ -29,6 +29,7 @@ Use [[Frontend/Domain Playbooks]] for subsystem-specific entry points.
 - `frontend/middleware.ts` - auth redirects and role route gating.
 - `frontend/context/socket-context.tsx` - realtime behavior and event side effects.
 - `frontend/hooks/useUser.tsx` - user/config bootstrap and auth-dependent state.
+- `frontend/stores/` - Zustand stores for new feature-level client state.
 - `frontend/lib/api.ts` - shared axios configuration.
 - `frontend/lib/models/common/event.ts` - event and command enums.
 - `frontend/services/` - API-facing methods by domain.
@@ -57,7 +58,7 @@ Use [[Frontend/Domain Playbooks]] for subsystem-specific entry points.
 After a successful create or update call:
 
 1. Expect the API to return only `{ id }` — not the full object.
-2. Re-fetch the full page data from the backend (call the existing list/get service method). Do **not** do optimistic or targeted Redux store updates. This keeps the UI in sync with computed/aggregated fields from the backend.
+2. Re-fetch the full page data from the backend (call the existing list/get service method). Do **not** do optimistic or targeted client-state patches. This keeps the UI in sync with computed/aggregated fields from the backend.
 
 ### After a realtime interaction
 
@@ -69,6 +70,10 @@ After a successful create or update call:
 ---
 
 ## Coding standards
+
+### State — use Zustand for new feature state
+
+Legacy and app-wide concerns still use providers/Context (`UserProvider`, `SocketProvider`, `VideoCallProvider`). For new feature-level client state, use a Zustand store under `frontend/stores/`; `frontend/stores/useCaseloadScheduleStore.ts` is the reference pattern.
 
 ### Colors — always use Tailwind theme tokens, never raw hex
 

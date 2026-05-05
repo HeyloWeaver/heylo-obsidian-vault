@@ -216,7 +216,7 @@ Confirm the endpoint that hydrates `currentAgency` on the frontend (likely `/me`
 
 ### 1. Read `isDemoAgency` from current-agency state
 
-Plumb `isDemoAgency` through whatever Redux slice / context holds the current agency. Single boolean.
+Plumb `isDemoAgency` through the Zustand store or existing provider that holds the current agency. Single boolean.
 
 ### 2. "Test a live alert" button
 

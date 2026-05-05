@@ -19,7 +19,7 @@ At a glance: pages under `app/(private)/*` live behind a layout that wires up `U
 
 - **Framework:** Next.js 15 App Router, React 19, TypeScript, Turbopack dev server.
 - **Styling:** Tailwind CSS v4 + shadcn/ui primitives (see `components/ui/*`), lucide-react icons, sonner toasts.
-- **State:** React Context per concern (user, socket, video-call, caseload) plus local component state. No Redux / Zustand / React Query.
+- **State:** Zustand for new feature-level client state (see `frontend/stores/useCaseloadScheduleStore.ts`), React Context/providers for legacy and app-wide concerns (user, socket, video-call), plus local component state. No Redux / React Query.
 - **HTTP:** axios singleton with cookie credentials (`lib/api.ts`).
 - **Auth:** AWS Cognito (`@aws-sdk/client-cognito-identity-provider`), idToken/accessToken/refreshToken/roleId stored as HttpOnly cookies set by the backend.
 - **Realtime:** Raw WebSocket to `wss://{appConfig.webSocketApiEndpoint}?jwt={idToken}`, with an HTTP ping + watchdog reconnect scheme.
