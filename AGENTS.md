@@ -28,7 +28,7 @@ High-level tree (not exhaustive):
 | `customer-onboarding/` | Vite + React 18 + MUI 7 + Zustand 5 — customer onboarding intake forms (`onboard.heylo.tech`) |
 | `inventory/` | Vite + React 18 + MUI 7 + Zustand 5 — internal inventory tracking for hardware/shipments |
 | `heylo-infra/` | Terraform — AWS infrastructure (`platform/`, `iot/`, `relational_db/`, `modules/`) |
-| `package.json` (vault root) | npm workspaces `frontend` + `backend`; dev scripts; `heylo` bin → `cli/dev-services.mjs` |
+| `package.json` (vault root) | npm workspaces for the code repos/apps; dev scripts; `heylo` bin → `cli/dev-services.mjs` |
 | `cli/` | `heylo` CLI — `dev-services.mjs` (service picker), `appsync-local-dev.mjs` (Go local runner), `README.md` |
 
 `frontend/`, `backend/`, `go/`, `tablet/`, and `hub/` may each be their own Git checkout in addition to any parent vault remote—when in doubt, run Git commands from the directory you intend to ship.
@@ -50,17 +50,18 @@ Cross-cutting features often touch **two or three** of frontend, backend, Go, an
 
 ---
 
-## Agent work flow (what to read, in order)
+## Agent work flow (focused context)
 
-Use this sequence before large or ambiguous tasks:
+Use this sequence before large or ambiguous tasks. Do not preload every guide; route to the region being touched.
 
-1. **`_Engineering/Agent Work - Start Here.md`** — handoff hub, ground rules, common multi-repo recipes.
-2. **Repo-specific agent guide** (pick one or more by area):
+1. **`_Engineering/Agent Work - Start Here.md`** — context routing by product surface, repo ownership, ground rules, and common multi-repo recipes.
+2. **Repo-specific agent guide** — pick only the area(s) you will touch:
    - `_Engineering/Frontend/Agent Work Guide.md`
    - `_Engineering/Backend/Agent Work Guide.md`
    - `_Engineering/Go/Agent Work Guide.md`
    - `_Engineering/Tablet/Agent Work Guide.md`
    - `_Engineering/Hub/Agent Work Guide.md`
+   - For `customer-onboarding/` and `inventory/`, use the routing table in Start Here plus the relevant frontend/backend guide until dedicated guides exist.
 3. **High-level overview** for depth when the task is broad:
    - `_Engineering/Frontend/High Level Overview.md`
    - `_Engineering/Backend/High Level Overview.md`
@@ -73,7 +74,7 @@ Use this sequence before large or ambiguous tasks:
    - `_Engineering/Tablet/Domain Playbooks.md`
    - `_Engineering/Hub/Domain Playbooks.md`
 
-**Ground rules** (from the handoff doc): smallest change that solves the problem; align frontend/backend contracts; auth and realtime changes need explicit consumer/producer checks; document non-obvious architectural shifts in `_Engineering/`.
+**Ground rules** (from the handoff doc): smallest change that solves the problem; align frontend/backend/tablet/Go contracts; auth, realtime, and device changes need explicit consumer/producer checks; document non-obvious architectural shifts in `_Engineering/`.
 
 ---
 
@@ -92,12 +93,13 @@ After the task, if behavior changed in a durable way, **update the relevant `_En
 
 ## Local development (npm at vault root)
 
-The root **`package.json`** (package name **`heylo`**) workspaces **`frontend`** and **`backend`**. Run **`npm install`** and scripts from the vault root; local **`.env`** lives next to **`package.json`** (see **`.env.example`**) and scripts load it with `dotenv -e .env`.
+The root **`package.json`** (package name **`heylo`**) defines the workspace apps/repos and dev scripts. Run **`npm install`** and scripts from the vault root. Main dev scripts load **`.env.dev` + `.env`**; local DB migration scripts load **`.env.local` + `.env`**.
 
 - **Both services:** `npm run dev`
 - **Pick services:** `npm run dev:services` or `npx heylo` — `npx heylo --help` for flags.
+- **Other local targets:** `npm run dev:go`, `npm run dev:tablet`, `npm run dev:onboarding`, `npm run dev:inventory`
 
-Ensure **`.env`** exists (copy from **`.env.example`**). AppSync/Go has its own build and deploy path under `go/backend/appsync/`. The Hub Yocto tree under `hub/` uses kas/Docker and is not started by `npm run dev` (see `hub/README.md`).
+Ensure the relevant root env files exist (see `README.md` and `_Engineering/Dev Environment Setup.md`). AppSync/Go has a separate local runner and deploy path under `go/backend/appsync/`. The Hub Yocto tree under `hub/` uses kas/Docker and is not started by `npm run dev` (see `hub/README.md`).
 
 ---
 

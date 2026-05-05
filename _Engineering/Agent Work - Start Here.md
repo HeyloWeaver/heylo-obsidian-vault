@@ -1,25 +1,35 @@
 ---
 type: guide
-tags: [engineering, agents, backend, frontend, go, tablet, hub]
+tags: [engineering, agents, backend, frontend, go, tablet, hub, onboarding, inventory]
 owner: Mike
-updated: 2026-04-23
+updated: 2026-05-05
 status: current
 ---
 # Agent Work - Start Here
 
-This is the fast handoff page for future agents working in Heylo.
+This is the routing page for agents working in Heylo. Use it to decide which repo-specific context to read, which code areas are likely involved, and which cross-repo checks to make before shipping.
 
-Use this page first, then jump to the repo-specific guide:
+The goal is focused context, not a giant preload. Read this page first, then open only the guides and source files for the region you are touching.
 
-- Frontend: [[Frontend/Agent Work Guide]]
-- Backend: [[Backend/Agent Work Guide]]
-- Go: [[Go/Agent Work Guide]]
-- Tablet: [[Tablet/Agent Work Guide]]
-- Hub: [[Hub/Agent Work Guide]]
+---
+
+## Context Routing
+
+| If the work is about... | Start with | Then read / inspect |
+| --- | --- | --- |
+| Operator console UI, pages, components, frontend services | [[Frontend/Agent Work Guide]] | [[Frontend/Domain Playbooks]], relevant `frontend/app/**`, `frontend/components/**`, `frontend/services/**` |
+| API endpoints, auth, roles, realtime fanout, integrations, DB writes | [[Backend/Agent Work Guide]] | [[Backend/Domain Playbooks]], relevant `backend/src/**`, DTOs, entities, migrations |
+| Data-heavy schedule/read paths exposed through AppSync | [[Go/Agent Work Guide]] | [[Go/Domain Playbooks]], `go/backend/appsync/schema.graphql`, resolver and `platformdb` code, matching frontend service |
+| Resident-facing tablet behavior | [[Tablet/Agent Work Guide]] | [[Tablet/Domain Playbooks]], Flutter routes/services, matching backend REST/WebSocket contracts |
+| Hub OS, provisioning, OTA, systemd services, MQTT/HA/Zigbee/Z-Wave | [[Hub/Agent Work Guide]] | [[Hub/Domain Playbooks]], `hub/README.md`, `_Engineering/Devices/**`, relevant `hub/meta-heylo/**` |
+| Customer onboarding app | [[Frontend/Agent Work Guide]] + [[Backend/Agent Work Guide]] | `customer-onboarding/**`, backend `CustomerOnboarding*` controller/service/entity paths |
+| Inventory tracking app | [[Backend/Agent Work Guide]] first, then frontend patterns as needed | `inventory/**`, backend inventory controllers/services/entities/migrations |
+| Dev scripts, local orchestration, workspace plumbing | `README.md` + this page | `package.json`, `cli/README.md`, `cli/**`, [[Dev Environment Setup]] |
+| Terraform / AWS infrastructure | `README.md` + relevant plan/spec | `heylo-infra/**`; confirm intent before applying infrastructure changes |
 
 Reviewing code (or self-reviewing before opening a PR): [[Code Review Guide]]
 
-Then use domain playbooks for targeted work:
+Use domain playbooks once you know the repo:
 
 - Frontend domains: [[Frontend/Domain Playbooks]]
 - Backend domains: [[Backend/Domain Playbooks]]
@@ -31,29 +41,32 @@ Then use domain playbooks for targeted work:
 
 ## How to orient quickly
 
-1. Read [[README]] at vault root for the code + docs model.
-2. Read the repo-specific high-level overview:
+1. Identify the product surface and repo(s) from **Context Routing** above.
+2. Read the repo-specific agent guide for coding conventions, change recipes, and gotchas.
+3. If the task is broad or unfamiliar, read the repo-specific high-level overview:
    - [[Frontend/High Level Overview]]
    - [[Backend/High Level Overview]]
    - [[Tablet/High Level Overview]]
    - [[Hub/High Level Overview]]
-3. Read the repo-specific agent guide above for "change recipes" and gotchas.
-4. Confirm active local run targets before changing behavior:
+4. Open the specific source files in the touched region. Prefer current code over old notes when they disagree.
+5. Confirm active local run targets before changing behavior:
    - npm workspaces and dev scripts run from the **vault root** (`npm install`, `npm run dev`, or `npx heylo` — see `README.md` *Local development* or [[Dev Environment Setup]])
    - frontend usually on `localhost:3000`
    - backend usually on `localhost:4000`
-   - Go/AppSync resolver is separate from the Nest API
+   - Go/AppSync resolver is separate from the Nest API; use `npm run dev:go` for the local runner
    - tablet: `npm run dev:tablet` (Flutter Android — requires Android device or emulator)
-5. Optional deeper pass across all three repos: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
+   - onboarding/inventory: `npm run dev:onboarding` or `npm run dev:inventory`
+6. Optional deeper pass across core product architecture: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`).
 
 ---
 
 ## Ground rules for safer changes
 
 - Make the smallest change that fixes the request.
-- Keep frontend and backend contracts aligned (DTO fields, enum values, event names).
+- Keep contracts aligned across every consumer you touch (DTO fields, enum values, event names, GraphQL schema, device payloads).
 - If changing auth/roles/routes, update both behavior and docs.
 - If changing anything realtime, verify both emitters and consumers.
+- If changing persisted data, migrations, or query shape, verify local DB safety and backend conventions before running commands.
 - Add or update notes in `_Engineering/` when architectural behavior changes.
 
 ---
@@ -65,6 +78,7 @@ Then use domain playbooks for targeted work:
 - `go/backend/appsync/` is a focused GraphQL resolver Lambda path for heavier reads (currently caseload schedule).
 - `tablet/` is a Flutter Android kiosk app for residents — video calls, chat, device management. Talks to the same NestJS backend over REST + WebSocket.
 - `hub/` is a Yocto 5.2 embedded Linux build system for the Raspberry Pi 5 Hub device — MQTT, Home Assistant, Zigbee/Z-Wave bridges, camera streaming, AWS IoT/SSM/CloudWatch, Mender OTA.
+- `customer-onboarding/` and `inventory/` are separate Vite apps with backend counterparts in Nest.
 - The same product surface spans all repos, so changes often need at least a sanity check in two or more.
 
 ---
@@ -79,6 +93,14 @@ Then use domain playbooks for targeted work:
 4. Validate role gating in middleware/sidebar.
 5. Update docs in the relevant `_Engineering/*` note.
 
+### Change an API contract
+
+1. Find all consumers first: frontend services/components, tablet calls, Go/AppSync schema/resolvers, and any onboarding/inventory clients.
+2. Update DTO/model names consistently; prefer enum/constant references over literals.
+3. Keep mutation responses small (`{ id }`) unless the existing contract requires otherwise.
+4. Re-fetch affected frontend data after mutations instead of adding optimistic store updates.
+5. Run the narrowest useful typecheck/test on each touched consumer.
+
 ### Add or change a realtime event
 
 1. Backend: emit a clear event shape.
@@ -92,4 +114,19 @@ Then use domain playbooks for targeted work:
 2. Implement resolver/query in Go `platformdb` + handler switch.
 3. Replace fixture/REST usage in frontend service with the new path.
 4. Keep fallback behavior explicit while migrating.
+
+### Change database shape or migrations
+
+1. Read [[Backend/Agent Work Guide]] database conventions before editing entities or migrations.
+2. Use local DB settings for migration commands; do not run migrations/scripts against shared or live databases.
+3. Keep timestamp columns DB-managed and avoid ORM cascade behavior.
+4. For reads, prefer raw SQL through `repository.manager.query()` and parse `COUNT()` results.
+5. Check every code path that writes the changed columns inside the same transaction boundary.
+
+### Change device or hardware behavior
+
+1. Determine whether the behavior lives in backend cloud contracts, tablet app, Hub OS, or `_Engineering/Devices/` docs.
+2. Check provisioning/event payload contracts before editing device-facing code.
+3. Validate both producer and consumer for MQTT/WebSocket/REST payload changes.
+4. Update the relevant device, tablet, hub, backend, or frontend note when the durable contract changes.
 

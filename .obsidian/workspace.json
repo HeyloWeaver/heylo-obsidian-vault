@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Engineering/Dev Environment Setup.md",
+                "file": "_Notes/May/05-04-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dev Environment Setup"
+              "title": "05-04-26 - Notes"
             }
           }
         ]
@@ -206,17 +206,18 @@
   },
   "active": "0522c9e7beb4631a",
   "lastOpenFiles": [
-    "backend/dist/src/migrations/1777579879000-create-appsync-fn-db-user.d.ts",
-    "backend/dist/src/migrations/1777579879000-create-appsync-fn-db-user.js",
-    "backend/dist/src/migrations/1777579879000-create-appsync-fn-db-user.js.map",
-    "backend/src/migrations/1777579879000-create-appsync-fn-db-user.ts",
-    "backend/dist/src/migrations/1777600000000-create-provisioning-planning-tables.d.ts",
-    "backend/dist/src/migrations/1777600000000-create-provisioning-planning-tables.js",
-    "backend/dist/src/migrations/1777600000000-create-provisioning-planning-tables.js.map",
-    "backend/dist/src/domain/dto/site-common-area-update-request.dto.d.ts",
-    "backend/dist/src/domain/dto/site-common-area-update-request.dto.js",
-    "backend/dist/src/domain/dto/site-common-area-update-request.dto.js.map",
-    "backend/dist/src/domain/dto/site-common-area-create-request.dto.d.ts",
+    "frontend/components/caseload-management/v2/day-of-week-picker.tsx",
+    "frontend/components/caseload-management/v2/bulk-assign-caseload.tsx",
+    "frontend/services/intercomService.ts",
+    "frontend/components/heylo-support/ticket-form.tsx",
+    "frontend/stores/useTicketTypesStore.ts",
+    "frontend/stores/useMyTicketsStore.ts",
+    "frontend/lib/models/intercom/intercomSupportConstants.ts",
+    "frontend/components/heylo-support/ticket-wizard.tsx",
+    "frontend/components/heylo-support/ticket-success-modal.tsx",
+    "frontend/components/heylo-support/ticket-step-type.tsx",
+    "frontend/components/heylo-support/ticket-step-details.tsx",
+    "_Engineering/Dev Environment Setup.md",
     "_Notes/April/04-20-26 - Architecture Notes.md",
     "_Notes/April/04-27-26 - Notes.md",
     "_Notes/April/04-24-26 -> 04-27-26 - Notes.md",
@@ -247,7 +248,6 @@
     "frontend/public/images/window-sensor.png",
     "_Engineering/Backend/Wipe Agency Schedules From DB.md",
     "_Notes/April/04-29-26 - Notes.md",
-    "_Plans/Caseload Schedule Assignment.md",
     "hub/sources/meta-raspberrypi/img/balena.png",
     "hub/sources/meta-raspberrypi/img/LF_17_02_Yocto-Badge-Update_Compatible_Final_Blank.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-05.png",

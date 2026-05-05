@@ -1,6 +1,6 @@
 # Heylo Engineering Vault
 
-This repository is Heylo’s **Obsidian vault** — the single place where **code** and **context** live side by side. It is **also** the **git workspace** (multiple real repos and Markdown in one tree on disk) so **docs, AI coding agents, and code stay aligned**. Architecture notes, onboarding, standups, and device knowledge sit next to `frontend/`, `backend/`, and `go/` as first-class paths — agents and humans get **clear instructions, stable links, and direct visibility into the same files the repo uses**, not a parallel copy of the truth.
+This repository is Heylo’s **Obsidian vault** — the single place where **code** and **context** live side by side. It is **also** the **git workspace** (multiple real repos and Markdown in one tree on disk) so **docs, AI coding agents, and code stay aligned**. Architecture notes, onboarding, standups, and device knowledge sit next to code paths like `frontend/`, `backend/`, `go/`, `tablet/`, `hub/`, `customer-onboarding/`, and `inventory/` — agents and humans get **clear instructions, stable links, and direct visibility into the same files the repo uses**, not a parallel copy of the truth.
 
 **Obsidian** gives the vault search, `[[wikilinks]]`, and graphing on top of that layout; editors and agents use the **same paths**. The broader goal is **one vault/workspace where documentation and code evolve together**, with agent-facing entry points so tools always know where to look and what to run.
 
@@ -28,7 +28,7 @@ vault root (= git workspace root)
 ├── go/                      ← Go services (currently: AppSync resolvers)
 ├── tablet/                  ← Flutter Android kiosk app for resident tablets
 ├── hub/                     ← Yocto Hub OS for Raspberry Pi 5 + Mender OTA (real repo)
-├── package.json             ← npm workspaces (`frontend`, `backend`) + dev scripts
+├── package.json             ← npm workspaces + dev scripts
 ├── cli/                     ← `heylo` CLI (service picker, AppSync local runner, README)
 ```
 
@@ -44,7 +44,7 @@ Hardware/device knowledge — hubs, firmware, provisioning, payload samples — 
 
 ## Local development (terminal)
 
-npm workspaces and dev scripts live at the **vault root** — the same directory as the **git workspace root** (`package.json` lists `frontend` and `backend`). The **`heylo`** CLI there is the supported way to **orchestrate** which Node services to run without juggling one-off commands.
+npm workspaces and dev scripts live at the **vault root** — the same directory as the **git workspace root**. The **`heylo`** CLI there is the supported way to **orchestrate** which Node services to run without juggling one-off commands.
 
 1. Copy env files at the vault root:
    - **`.env.example`** → **`.env`** (base — AWS, service URLs, DB defaults)
@@ -58,7 +58,10 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run dev` | API and web together (loads `.env.dev` + `.env`) |
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
+| `npm run dev:go` | AppSync Go resolver local runner |
 | `npm run dev:tablet` | Flutter tablet app (`flutter run --flavor dev`) |
+| `npm run dev:onboarding` | Customer onboarding Vite app |
+| `npm run dev:inventory` | Inventory tracking Vite app |
 | `npm run db:migrate` | Run pending migrations against local Docker MySQL |
 | `npm run db:migrate:show` | Show local migration state |
 | `npm run db:revert` | Roll back last migration on local Docker MySQL |
@@ -77,7 +80,7 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 
 Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass service ids and `--env` explicitly.
 
-**Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow; it is not started by `npm run dev` or `heylo` today.
+**Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow. Use `npm run dev:go` for the local runner; deploys are separate.
 
 AWS profiles, backend `development.env`, and copy-paste frontend env for Cognito are documented in **`_Engineering/Dev Environment Setup.md`**.
 
