@@ -206,6 +206,7 @@
   },
   "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "backend/dist/tsconfig.tsbuildinfo",
     "backend/README.md",
     "frontend/components/demo/tour-overlay.tsx",
     "frontend/components/demo/tour-context.tsx",
@@ -241,7 +242,6 @@
     "_Notes/April/04-20-26 - First Day - Shivani.md",
     "_Notes/April/04-20-26 - First Day - Chris.md",
     "_Onboarding/Heylo Onboarding.md",
-    "_Onboarding/Onboarding.md",
     "frontend/public/images/smart-button.png",
     "frontend/public/images/heylo-hub.png",
     "frontend/public/images/e1.png",
