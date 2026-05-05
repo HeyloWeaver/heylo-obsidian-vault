@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/May/05-04-26 - Notes.md",
+                "file": "_Notes/May/05-05-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "05-04-26 - Notes"
+              "title": "05-05-26 - Notes"
             }
           }
         ]
@@ -204,8 +204,11 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "0522c9e7beb4631a",
+  "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "_Notes/Notes.md",
+    "_Notes/May/05-05-26 - Notes.md",
+    "_Notes/May/05-04-26 - Notes.md",
     "frontend/components/caseload-management/v2/day-of-week-picker.tsx",
     "frontend/components/caseload-management/v2/bulk-assign-caseload.tsx",
     "frontend/services/intercomService.ts",
@@ -216,7 +219,6 @@
     "frontend/components/heylo-support/ticket-wizard.tsx",
     "frontend/components/heylo-support/ticket-success-modal.tsx",
     "frontend/components/heylo-support/ticket-step-type.tsx",
-    "frontend/components/heylo-support/ticket-step-details.tsx",
     "_Engineering/Dev Environment Setup.md",
     "_Notes/April/04-20-26 - Architecture Notes.md",
     "_Notes/April/04-27-26 - Notes.md",
@@ -232,7 +234,6 @@
     "_Onboarding/Onboarding.md",
     "_Onboarding/Points of Contact.md",
     "_Onboarding/Pull Requests.md",
-    "_Notes/May/05-04-26 - Notes.md",
     "_Standups/May 11, 2026 Standup.md",
     "_Standups/May 4, 2026 Standup.md",
     "_Notes/May/05-01-26 - Notes.md",
@@ -247,7 +248,6 @@
     "frontend/public/images/argus-3e.png",
     "frontend/public/images/window-sensor.png",
     "_Engineering/Backend/Wipe Agency Schedules From DB.md",
-    "_Notes/April/04-29-26 - Notes.md",
     "hub/sources/meta-raspberrypi/img/balena.png",
     "hub/sources/meta-raspberrypi/img/LF_17_02_Yocto-Badge-Update_Compatible_Final_Blank.png",
     "hub/sources/poky/meta/recipes-connectivity/connman/connman-gnome/images/connman-signal-05.png",
