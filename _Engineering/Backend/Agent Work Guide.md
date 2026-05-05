@@ -67,9 +67,9 @@ Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 These apply to all TypeORM entities and migrations in `backend/` and `inventory/`.
 
 - **Table names**: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`, `hardwaremodel`).
-- **Column names**: PascalCase (`StatusId`, `CreatedOn`, `IsDeleted`).
-- **`@Entity({ name: '…' })`**: must match the lowercase table name exactly.
-- **Timestamp columns** (`CreatedOn`, `UpdatedOn`): use `insert: false, update: false` on the entity property; do **not** include `default: () => 'CURRENT_TIMESTAMP'`. The DB manages these via `DEFAULT CURRENT_TIMESTAMP` / `ON UPDATE CURRENT_TIMESTAMP` in the migration.
+- **Column names**: **camelCase** matching the entity property (`agencyId`, `siteId`, `createdOn`, `isDeleted`, `isMfaEnabled`). A handful of legacy columns are PascalCase (`DeviceAlertEmails`, `AlertTypeId`); do not propagate that pattern — new columns are camelCase.
+- **`@Entity({ name: '…' })`**: must match the lowercase table name exactly. `@Entity()` with no name is fine when the class name already lowercases to the right table.
+- **Timestamp columns** (`createdOn`, `updatedOn`): use `insert: false, update: false` on the entity property; do **not** include `default: () => 'CURRENT_TIMESTAMP'`. The DB manages these via `DEFAULT CURRENT_TIMESTAMP` / `ON UPDATE CURRENT_TIMESTAMP` in the migration.
 
 ---
 

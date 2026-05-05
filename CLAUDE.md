@@ -55,9 +55,9 @@ These rules apply project-wide to `backend/` (and `inventory/`); full details in
 
 **Database conventions**
 - Table names: all lowercase, no separators (e.g. `customeronboarding`, `devicealerttype`).
-- Column names: PascalCase (`StatusId`, `CreatedOn`, `IsDeleted`).
-- `@Entity({ name: 'tablename' })` must match the lowercase table name exactly.
-- Timestamp columns (`CreatedOn`, `UpdatedOn`): set `insert: false, update: false` on the entity — never include `default: () => 'CURRENT_TIMESTAMP'` — the DB manages these.
+- Column names: **camelCase** matching the entity property name (`agencyId`, `siteId`, `createdOn`, `isDeleted`, `isMfaEnabled`). A few legacy columns are PascalCase (`DeviceAlertEmails`, `AlertTypeId`) — do not propagate that pattern; new columns are camelCase.
+- `@Entity({ name: 'tablename' })` must match the lowercase table name exactly. `@Entity()` with no name is fine when the class name already lowercases to the right table (e.g. `Alert` → `alert`).
+- Timestamp columns (`createdOn`, `updatedOn`): set `insert: false, update: false` on the entity — never include `default: () => 'CURRENT_TIMESTAMP'` — the DB manages these.
 
 **Query style — prefer raw SQL**
 - Reads: use `repository.manager.query()`, not TypeORM `find`/`findAndCount`/`createQueryBuilder` with relations.
