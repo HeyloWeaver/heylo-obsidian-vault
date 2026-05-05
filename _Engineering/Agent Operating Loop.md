@@ -17,7 +17,7 @@ The goal is not to preload the whole vault. The goal is to gather just enough co
 
 1. Read `AGENTS.md` at the vault root.
 2. Read [[Agent Work - Start Here]].
-3. Read exactly one repo-specific guide unless the task clearly spans repos:
+3. Start with the repo-specific guide for the primary surface; read additional guides when the task spans repos or contracts:
    - [[Frontend/Agent Work Guide]]
    - [[Backend/Agent Work Guide]]
    - [[Go/Agent Work Guide]]

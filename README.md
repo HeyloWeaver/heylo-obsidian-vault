@@ -66,7 +66,7 @@ npm workspaces and dev scripts live at the **vault root** — the same directory
 | `npm run dev:api` | Nest API only (`heylo-api`) |
 | `npm run dev:web` | Next console only (`heylo-web`) |
 | `npm run dev:go` | AppSync Go resolver local runner |
-| `npm run dev:tablet` | Flutter tablet app (`flutter run --flavor dev`) |
+| `npm run dev:tablet` | Flutter tablet app against cloud dev API (`flutter run --flavor dev`) |
 | `npm run dev:onboarding` | Customer onboarding Vite app |
 | `npm run dev:inventory` | Inventory tracking Vite app |
 | `npm run db:migrate:local` | Run pending migrations against local Docker MySQL |
@@ -93,6 +93,8 @@ Treat all `:dev` migration scripts as shared-environment operations. Use them on
 Run **`npx heylo --help`** for the full flag list. In CI or other non-interactive shells, pass service ids and `--env` explicitly.
 
 **Note:** the Go AppSync resolver under `go/backend/appsync/` has its own build and deploy flow. Use `npm run dev:go` for the local runner; deploys are separate.
+
+**Tablet local backend testing:** use `flutter run --flavor local -t lib/main.dart` from `tablet/` when the tablet should hit a locally running API instead of cloud dev.
 
 AWS profiles, backend `development.env`, and copy-paste frontend env for Cognito are documented in **`_Engineering/Dev Environment Setup.md`**.
 
