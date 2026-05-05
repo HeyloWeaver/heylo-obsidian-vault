@@ -2,7 +2,7 @@
 type: overview
 tags: [backend, reference]
 owner: Mike
-updated: 2026-04-21
+updated: 2026-05-05
 status: current
 ---
 # Backend — High Level Overview
@@ -93,7 +93,7 @@ backend/
 - **HTTP:** `src/main.ts` → NestFactory → listens on `PORT` (3000 prod container, 4000 local).
 - **WebSocket lifecycle (proxied from API Gateway):** `POST /connection/ws/on/connect`, `POST /connection/ws/on/disconnect` (`connection.controller.ts`).
 - **Device telemetry ingress:** `POST /device-events/:hubPhysicalDeviceId/:devicePhysicalDeviceId`, `POST /hub-events/:hubPhysicalDeviceId/status`, `POST /hub-events/:hubPhysicalDeviceId/ssm`, `POST /camera-status/:hubPhysicalDeviceId`, `POST /device-status/:hubPhysicalDeviceId` — all guarded by `XApiKeyGuard`, hit by `lambda/eventProcessor.mjs`.
-- **Migrations:** `npm run typeorm:migrate:dev|show` against `data-source.ts`.
+- **Migrations:** use the vault-root scripts for normal agent work: `npm run db:migrate:show:local`, `npm run db:migrate:local`, and `npm run db:revert:local` for local Docker MySQL. The backend package still has lower-level TypeORM scripts against `data-source.ts`, but prefer the root wrappers so env layering is explicit.
 - **Lambdas:** each has a `scripts/deploy-*.sh|.js`.
 
 ### Data flow (typical scenarios)
@@ -276,7 +276,7 @@ Other: `customer-onboarding`.
 
 ### `src/migrations/`
 
-Run with `npm run typeorm:migrate:dev` against `data-source.ts`. The initial bulk set is 2025-07-23 timestamped; everything since is one migration per schema change with a descriptive suffix. Recent work: inventory tables, device-alert severity/type split, device `isActive`/`isCharging`/`lifecycle`/`lastSeen`/`metadata`, MFA columns on agency+user, customer-onboarding table, agency camera permissions, device-type additions (camera-hub, zigbee-extender, video-doorbell, hub, camera), common-area rework, Cognito migration (removed `password` from user, added SSM column to agency).
+Run migrations through the vault-root wrappers: `npm run db:migrate:show:local`, `npm run db:migrate:local`, and `npm run db:revert:local` for local Docker MySQL. The `:dev` variants target cloud dev and should be treated as shared-environment operations. The initial bulk set is 2025-07-23 timestamped; everything since is one migration per schema change with a descriptive suffix. Recent work: inventory tables, device-alert severity/type split, device `isActive`/`isCharging`/`lifecycle`/`lastSeen`/`metadata`, MFA columns on agency+user, customer-onboarding table, agency camera permissions, device-type additions (camera-hub, zigbee-extender, video-doorbell, hub, camera), common-area rework, Cognito migration (removed `password` from user, added SSM column to agency).
 
 ### `src/utils/`
 

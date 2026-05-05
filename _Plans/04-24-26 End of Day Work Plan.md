@@ -127,9 +127,9 @@ Frontend display/contract sanity checks:
 
 6. Validate locally against Docker MySQL.
    - Show migration state:
-     - `npm run typeorm:migrate:show:local -w heylo-api`
+     - `npm run db:migrate:show:local`
    - Run migrations:
-     - `npm run typeorm:migrate:local -w heylo-api`
+     - `npm run db:migrate:local`
    - Run focused tests:
      - `npm run test:device-auto-creation -w heylo-api`
      - Add the new helper/service test command once the test file exists.

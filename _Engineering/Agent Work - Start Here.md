@@ -109,7 +109,7 @@ Agent execution references:
 1. Find all consumers first: frontend services/components, tablet calls, Go/AppSync schema/resolvers, and any onboarding/inventory clients.
 2. Update DTO/model names consistently; prefer enum/constant references over literals.
 3. Keep mutation responses small (`{ id }`) unless the existing contract requires otherwise.
-4. Re-fetch affected frontend data after mutations instead of adding optimistic store updates.
+4. Re-fetch affected frontend data after mutations instead of adding optimistic client-state patches.
 5. Run the narrowest useful typecheck/test on each touched consumer.
 
 ### Add or change a realtime event

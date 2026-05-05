@@ -74,7 +74,7 @@ These rules apply project-wide to `backend/`, including backend inventory contro
 
 **Mutation responses & frontend re-fetch**
 - Create/update endpoints return only `{ id: saved.id }`.
-- Frontend re-fetches full page data after a successful mutation — no optimistic store updates.
+- Frontend re-fetches full page data after a successful mutation — no optimistic client-state patches.
 
 **Enums over literals**
 - Always use enum or constant references instead of hardcoded string literals. Create one if it doesn't exist.

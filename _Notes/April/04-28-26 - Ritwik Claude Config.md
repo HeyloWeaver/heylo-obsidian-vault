@@ -29,8 +29,8 @@ npm run test               # Jest unit tests
 npm run test:e2e           # End-to-end tests
 
 # Database
-npm run typeorm:migrate:dev    # Run migrations
-npm run typeorm:revert:dev     # Revert last migration
+npm run db:migrate:local       # Run local Docker MySQL migrations from vault root
+npm run db:revert:local        # Revert last local Docker MySQL migration from vault root
 npm run db:reset               # Reset DB and create superuser
 ```
 

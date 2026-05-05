@@ -75,6 +75,8 @@ After a successful create or update call:
 
 Legacy and app-wide concerns still use providers/Context (`UserProvider`, `SocketProvider`, `VideoCallProvider`). For new feature-level client state, use a Zustand store under `frontend/stores/`; `frontend/stores/useCaseloadScheduleStore.ts` is the reference pattern.
 
+Redux, React Redux, Redux Persist, and Jotai may still appear in `frontend/package.json` as legacy dependencies. Do not treat them as active patterns for new code unless current source usage proves otherwise.
+
 ### Colors — always use Tailwind theme tokens, never raw hex
 
 Semantic colors live in `frontend/app/globals.css`: `:root` and `.dark` define CSS variables (`--foreground`, `--muted`, `--primary`, `--destructive`, …). The `@theme inline { … }` block maps those to Tailwind color utilities (`text-foreground`, `bg-muted`, `border-destructive`, …). Use those utilities only. Never write `text-[#6F6C76]`, `bg-[#262428]`, etc. inline in components.
@@ -147,7 +149,7 @@ Each feature domain that has its own state, enums, or repeated literals should h
 
 - Route access logic exists in multiple places (middleware + nav filtering).
 - Caseload beta has active migration work (fixtures and GraphQL transition context).
-- Some state/tooling dependencies may be legacy; verify usage before adding more.
+- Some state/tooling dependencies are legacy (notably Redux/Jotai packages in `package.json`); verify current source usage before adding or copying patterns.
 - Middleware currently carries both routing and analytics concerns.
 
 ---
@@ -160,6 +162,6 @@ Each feature domain that has its own state, enums, or repeated literals should h
 - No raw hex color values in components — use theme utilities (`foreground`, `muted`, `primary`, `destructive`, `card`, `border`, `ring`, …) from `globals.css`.
 - No inline string literals for discriminated values — use enums.
 - No inline route strings — use path constants.
-- After create/update mutations, re-fetch page data from the backend — no optimistic store updates.
+- After create/update mutations, re-fetch page data from the backend — no optimistic client-state patches.
 - Lint passes for touched files.
 - Update `_Engineering/Frontend/*` notes when behavior changes.

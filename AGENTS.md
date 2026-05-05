@@ -37,7 +37,7 @@ High-level tree (not exhaustive):
 
 ## Sub-repos and responsibilities
 
-- **`frontend/`** — Next.js App Router, React, Tailwind, operator UI. Cookie-auth HTTP to the API, global WebSocket client. Typical local URL: `http://localhost:3000`.
+- **`frontend/`** — Next.js App Router, React, Tailwind, operator UI. Zustand for new feature-level state; providers/Context for legacy and app-wide concerns. Cookie-auth HTTP to the API, global WebSocket client. Typical local URL: `http://localhost:3000`.
 - **`backend/`** — NestJS + TypeORM + MySQL: core API, auth/session, WebSocket fanout, integrations. Typical local URL: `http://localhost:4000`.
 - **`go/backend/appsync/`** — AppSync GraphQL resolvers in Go (e.g. caseload schedule). Separate deploy path from Nest; shares MySQL domain data.
 - **`tablet/`** — Flutter (Dart) Android kiosk app for resident-facing tablets. Talks to the same NestJS backend over REST + WebSocket. Runs in two flavors: `dev` (hits `dev-api.heylo.tech`) and `prod`. Local dev: `flutter run --flavor dev -t lib/main.dart`.

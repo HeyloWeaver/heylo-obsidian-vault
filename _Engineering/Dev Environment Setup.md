@@ -2,7 +2,7 @@
 type: setup
 tags: [engineering, backend, frontend, tablet]
 owner: Mike
-updated: 2026-04-22
+updated: 2026-05-05
 status: current
 ---
 ## AWS
@@ -15,7 +15,7 @@ Log in and add [govalo-dev]
 - **`.env.example`** → **`.env`** (base — AWS, service URLs, DB defaults)
 - **`.env.dev.example`** → **`.env.dev`** (cloud RDS creds) for dev, or **`.env.local.example`** → **`.env.local`** (local Docker DB) for local
 
-See vault `README.md` (Local development) for `npm run dev`, `npx heylo --env local|dev`, and the `db:migrate` scripts.
+See vault `README.md` (Local development) and [[Agent Verification Matrix]] for `npm run dev`, `npx heylo --env local|dev`, and migration scripts. Use `npm run db:migrate:show:local`, `npm run db:migrate:local`, and `npm run db:revert:local` for local Docker MySQL. The `:dev` migration variants target cloud dev and should be treated as shared-environment operations.
 
 ## Backend
 
@@ -35,8 +35,11 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:4000 npm run dev -w heylo-web
 ## Go
 
 ```
-cd go/backend/appsync && go run -tags local .
+npm run dev:go      # watch mode through cli/appsync-local-dev.mjs
+npm run dev:go:once # one-shot local runner
 ```
+
+The direct Go command is useful for debugging inside `go/backend/appsync/`, but agents should prefer the root scripts because they load the same env overlays as the rest of the workspace.
 
 ## Tablet
 
