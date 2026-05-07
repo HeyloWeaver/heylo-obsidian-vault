@@ -43,7 +43,15 @@ status: current
 - `POST /device/status` — tablet POSTs battery level, connectivity state, and screen brightness on a polling interval.
 - APK version check — `UpdateService` polls a backend endpoint (check `update.service.dart` for the exact path) for the expected current build number.
 - CloudWatch — direct HTTPS to CloudWatch Logs; no backend intermediary.
-- Backend lambdas `lambdas/tablet-checker-2/` and `lambda/tabletChecker2.mjs` monitor device-last-seen timestamps and send alerts if a tablet goes offline.
+- Backend lambda `backend/lambda/tabletChecker2.mjs` monitors device-last-seen timestamps and sends alerts if a tablet goes offline. Deployed via `backend/lambdas/tablet-checker-2/buildspec.yml` (CodeBuild → `aws lambda update-function-code`). The non-`2` siblings are legacy and not deployed.
+
+## Related references
+
+- [[Tablet/Kiosk Service Reference]] — Dart ↔ native Java platform-channel surface.
+- [[Tablet/Bootstrap & Module Wiring]] §3 — startup order of kiosk operations.
+- [[Tablet/Onboarding Walkthrough]] §6 (Device Status Service) — WiFi tier classification and 15s reporting cadence.
+- [[Tablet/Admin Commands]] — remote `restart` / `reboot` / `update-*` command surface.
+- [[Tablet/Update Strategy]] — APK update strategy trade-offs.
 
 ## Common change patterns
 
@@ -61,7 +69,7 @@ status: current
 - **`BootReceiver` requires `RECEIVE_BOOT_COMPLETED` permission in `AndroidManifest.xml`** and must be declared as a receiver. Removing or renaming it breaks auto-start after reboot.
 - **Build number (not semantic version) drives OTA.** `UpdateService` compares the integer after `+` in `pubspec.yaml`. Forgetting to increment means deployed tablets never pick up the update.
 - **Silent APK install requires `REQUEST_INSTALL_PACKAGES` permission** and the Device Owner grant. Test on a real device; emulators may not enforce this the same way.
-- **Two backend lambda paths for tablet health** — `lambda/tabletChecker.mjs` (legacy) and `lambdas/tablet-checker-2/` (newer). Confirm which is active before changing server-side tablet monitoring logic.
+- **Tablet-health lambda confusion** — three sibling paths exist (`backend/lambda/tabletChecker.mjs`, `backend/lambda/tabletChecker2.mjs`, `backend/lambdas/tablet-checker-2/`). The active one is `tabletChecker2.mjs` deployed via `lambdas/tablet-checker-2/buildspec.yml`'s CodeBuild pipeline. The non-`2` versions are legacy. When changing tablet-health logic, edit only `tabletChecker2.mjs`.
 - **CloudWatch credentials** — `CloudwatchService` uses a pre-configured IAM mechanism (check the service for the exact approach). Rotating credentials requires updating both the app and the IAM policy.
 - **Kiosk exit PIN is `2650`** — do not commit PIN changes without also updating `KIOSK_MODE_SETUP.md` and notifying ops.
 

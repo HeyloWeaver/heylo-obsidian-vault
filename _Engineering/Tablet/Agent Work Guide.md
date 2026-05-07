@@ -104,14 +104,14 @@ status: current
 
 ## Gotchas and drift risks
 
-- **`events.enum.dart` must mirror `websocket-event.ts`** — any mismatch means the tablet silently drops WS events. Always update both when adding a new event type.
+- **`events.enum.dart` must mirror the wire strings produced by `domain/models/common/event.ts`'s `AppEvent` enum on the backend** — any mismatch means the tablet silently drops WS events. Backend emits via `AppEvent[AppEvent.X]` (numeric → string reverse-mapping); tablet matches on the string `value`. **Note:** `backend/src/domain/enums/websocket-event.ts` is a *different* enum (`WebSocketEvent`, has only `DeviceAlertsChanged`) used by the operator console — do not confuse the two. See [[Tablet/WS Contract]] for the full contract surface.
 - **Landscape only** — `FlutterScreenUtil` is initialized for `1280×800` landscape. Never add portrait breakpoints or assume a portrait aspect ratio.
 - **`GetIt` registration order matters** — services that depend on other services must be registered after their dependencies in `main.dart`. A circular dependency will crash at startup.
 - **`json_serializable` codegen must be re-run** — adding a field to a `@JsonSerializable` model without running `build_runner` will compile but silently fail to deserialize the new field.
 - **Kiosk escape PIN is `2650`** — document changes to this in both `KioskManager.java` and `KIOSK_MODE_SETUP.md` if you ever rotate it.
 - **Build number, not semantic version, drives OTA** — `UpdateService` compares integers. Forgetting to bump the build number means deployed tablets won't update even after a release.
 - **Self-signed APK installs require `REQUEST_INSTALL_PACKAGES`** — if `AndroidManifest.xml` permission is removed, the install step silently fails.
-- **Two lambda paths exist in the backend for tablet checking** — `lambda/tabletChecker.mjs` (legacy) and `lambdas/tablet-checker-2/` (newer). If changing server-side tablet health logic, confirm which is active.
+- **Active tablet-health lambda** is `backend/lambda/tabletChecker2.mjs` — deployed via the CodeBuild pipeline defined in `backend/lambdas/tablet-checker-2/buildspec.yml`, which runs `backend/scripts/deploy-tablet-checker-2.js`. The non-`2` siblings (`backend/lambda/tabletChecker.mjs`, `backend/scripts/deploy-tablet-checker.js`) are **legacy** and not currently deployed; do not edit them when changing tablet-health logic.
 - **Token storage is `FlutterSecureStorage` with `encryptedSharedPreferences: true`** — avoid reading tokens from `SharedPreferences` directly; always go through `AuthService`.
 - **`reactStrictMode`-equivalent note:** the Flutter `debug` build mode hot-reloads stateful widgets; always test kiosk locking behavior on a real device in `--release`, not the emulator.
 

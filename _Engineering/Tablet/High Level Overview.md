@@ -7,6 +7,8 @@ status: current
 ---
 # Tablet — High Level Overview
 
+> **For ramp-up:** if you're a JS/TS/React engineer new to this codebase, start with [[Tablet/Onboarding Walkthrough]] before this doc. That guide explains the architecture in JS-familiar mental models and traces a feature end-to-end. This doc is a comprehensive file-tree-level reference. Cross-cutting patterns: [[Tablet/Stream Patterns Cookbook]], [[Tablet/DataState Pattern]], [[Tablet/WS Contract]].
+
 The Heylo tablet app is a Flutter (Dart) Android application designed to run in kiosk mode on resident-facing tablets deployed at care sites. It is the primary touchpoint for residents — allowing them to receive and place video calls, exchange chat messages with staff, check the time and weather, and receive missed-call and unread-message notifications. The app is locked into landscape orientation, disables all system UI navigation, and auto-restarts on boot. Remote management (device status, CloudWatch logging, self-hosted APK auto-updates) is built in so that a deployed tablet requires zero physical intervention for routine updates. Three build flavors exist: `dev` (cloud dev API), `local` (local backend testing), and `prod`.
 
 At a glance: `lib/main.dart` bootstraps the app with Firebase Crashlytics error wiring, initializes `FlutterScreenUtil` for landscape scaling, and registers all controllers via `GetIt` DI. Controllers are long-lived singletons that own reactive state via `RxDart`/`BehaviorSubject`; views (`.view.dart`) observe those streams, and view-models (`.view_model.dart`) encapsulate interaction logic. HTTP is done via Dio; real-time updates come through a WebSocket managed by `RealtimeService`; auth is AWS Cognito with JWT refresh. The `KioskService` wraps the native `KioskManager.java` Android Device Admin to lock/unlock the kiosk shell.
@@ -254,22 +256,53 @@ Two strategies are documented in `UPDATE_STRATEGY.md`:
 
 ## 3. Exhaustive reference
 
-### `lib/controllers/` (8 files)
+### `lib/controllers/` (8 files) — **HTTP API clients**
 
-- `app_config.controller.dart` — fetches `GET /app/config` after login; exposes WS endpoint URL and AWS region to `RealtimeService`. Streams `AppConfig` model.
-- `auth.controller.dart` — orchestrates login/logout, token refresh, unauthenticated redirect. Streams `AuthState (loading | authenticated | unauthenticated)`.
-- `call.controller.dart` — owns the call state machine: `idle → incoming → connecting → active → ended`. Listens for WS `CallCreated`; delegates Daily SDK lifecycle to `CallService`. Streams `CallState`.
-- `conversation.controller.dart` — maintains a sorted list of conversations and per-conversation message pages. Handles `ConversationMessageCreated` WS events to update lists in real time. Streams `List<Conversation>` and `List<ChatMessage>`.
-- `device_status.controller.dart` — wraps `DeviceStatusService`; streams battery/connectivity/brightness; triggers backend POSTs on change.
-- `read_receipt.controller.dart` — tracks unread message counts per conversation. Updated by WS events and by marking messages read via `ReadReceiptService`. Streams `Map<conversationId, int>`.
-- `user.controller.dart` — fetches and caches the resident's `UserProfile`. Streams `UserProfile?`.
-- `weather.controller.dart` — fetches weather on startup and refreshes hourly. Streams `WeatherData?`.
+> **Naming wart**: in this codebase, `controllers/*.dart` are NOT NestJS-style controllers. They are **client-side HTTP wrappers** that call into the backend's NestJS controllers. Mentally rebrand them as `*ApiClient`. Every method returns `Future<DataState<T>>` (Result/Either pattern — see [[Tablet/DataState Pattern]]). No state, no streams, no business logic.
 
-### `lib/services/` (~25 files)
+- `app_config.controller.dart` — wraps `GET /app/config`. Returns `DataState<AppConfig>`.
+- `auth.controller.dart` — wraps auth-related HTTP endpoints (e.g., device registration). The actual auth state machine lives in `services/auth.service.dart` + `services/cognito.service.dart`.
+- `call.controller.dart` — wraps `/call/*` endpoints: `getCall`, `generateCallToken`, `createCall`, `connectCall`, `missCall`, `rejectCall`, `endCall`, `pingCall`, `searchCalls`. The call state machine lives in `services/call.service.dart`.
+- `conversation.controller.dart` — wraps `/conversation/*` endpoints: `getConversation`, `searchConversations`, `sendMessage`, `getConversationWithSupportProfessional`. The `onMessageReceived` stream lives in `services/conversation.service.dart`.
+- `device_status.controller.dart` — wraps `POST /device/status`. The 3s/15s polling loops live in `services/device_status.service.dart`.
+- `read_receipt.controller.dart` — wraps `POST /read-receipt`. The unread count map lives in `services/read_receipt.service.dart`.
+- `user.controller.dart` — wraps `GET /user/my`. Caching lives in `services/user.service.dart`.
+- `weather.controller.dart` — wraps weather endpoint. The hourly refresh timer lives in `services/weather.service.dart`.
 
-HTTP services (Dio): `auth.service`, `call.service`, `conversation.service`, `read_receipt.service`, `user.service`, `weather.service`, `device_status.service`.
+### `lib/services/` (~25 files) — **state, streams, lifecycle**
 
-Platform/integration services: `kiosk.service` (platform channel), `update.service` (APK), `voice_command.service` (STT/TTS), `cloudwatch.service` (logging), `system_update_policy.service` (Android enterprise update policy).
+This is where the actual business logic lives. Services are module singletons (`factory ServiceName() => _instance`). They own state (`BehaviorSubject<T>` fields), expose reactive streams, and call into `controllers/` for HTTP work.
+
+**Stateful orchestration services** (each owns lifecycle + reactive state):
+
+- `call.service.dart` — call lifecycle. Owns `_activeCall`, `_callClient`, `_hasJoined`, `_isCleaningUp` mutex; `_callPingTimer`; the `onIncomingCall`/`onCallEnded`/etc. stream pipelines (rxdart filters off `RealtimeService`).
+- `conversation.service.dart` — `onMessageReceived` filtered stream; sets `_lastErrorType` for view-model error UX; has its own 401/403 retry-with-re-auth path.
+- `read_receipt.service.dart` — unread counts.
+- `device_status.service.dart` — 3s WiFi tier classification, 15s status reporting, low-battery auto-restart.
+- `realtime.service.dart` — single WebSocket connection, 4-state machine, watchdog, broadcast `_dataStream$`.
+- `auth.service.dart` — facade for `cognito.service.dart`; owns `deviceId`, app config cache, IAM credentials.
+- `cognito.service.dart` — Cognito user pool, session, refresh timer, first-login dance, self-healing on bad password.
+- `user.service.dart`, `weather.service.dart`, `app_lifecycle_state.service.dart`.
+
+**Infrastructure / cross-cutting services** (not state-heavy):
+
+- `http.service.dart` — Dio singleton + 4 interceptors (bootstrap-wait, JWT-attach, 401-refresh-retry, internet-status logger).
+- `internet_status.service.dart` — global online/offline stream.
+- `config.service.dart` — flavor config (API base URL, Cognito pool/client IDs, AWS region) — populated from `dart-define` or `.env` per flavor.
+- `storage.service.dart` — SharedPreferences wrapper (cloud-backed; *not* secure storage).
+- `router.service.dart` — Navigator wrapper (push/pop/popUntil from outside widgets).
+- `modal.service.dart` — imperative modal API (used for "Connection lost", incoming call, error dialogs).
+- `toast_notification.service.dart` — top-of-screen toast.
+- `screen_dim.service.dart` — idle dimmer state.
+- `waypoint.service.dart` — structured event log → forwarded to CloudWatch.
+- `cloudwatch.service.dart` — direct HTTPS to CloudWatch Logs (uses IAM creds from `auth.service`).
+
+**Platform / native bridges** (Dart → Java via `MethodChannel`):
+
+- `kiosk.service.dart` — `KioskManager.java` wrapper: `withTouchDisabledTimeoutVoid`, `getWifiInfo`, `getHardwareId`, `restartApp`, `rebootDevice`, `installApkFromUrl`, `getAudioDiagnostics`. See [[Tablet/Kiosk Service Reference]] for the full surface.
+- `update.service.dart` — APK polling, download, install trigger.
+- `voice_command.service.dart` — STT/TTS state machine.
+- `system_update_policy.service.dart` — Android enterprise update policy control.
 
 Representative endpoints:
 - `call.service`: `GET /call/:id`, `GET /call/:id/token`, `GET /call/my/with/resident/:id`, `PATCH /call/:id/{connected|missed|rejected|ended}`.

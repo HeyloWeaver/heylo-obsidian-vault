@@ -11,14 +11,10 @@
             "id": "88503d85a67ab0d5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Notes/May/05-06-26 - Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "05-06-26 - Notes"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -206,6 +202,21 @@
   },
   "active": "88503d85a67ab0d5",
   "lastOpenFiles": [
+    "_Engineering/Tablet/Logging Stack.md",
+    "_Engineering/Tablet/Voice Commands.md",
+    "_Engineering/Tablet/Chat Pipeline.md",
+    "_Engineering/Tablet/Kiosk Service Reference.md",
+    "_Engineering/Tablet/Bootstrap & Module Wiring.md",
+    "Untitled 1.canvas",
+    "_Onboarding/Onboarding.md",
+    "Untitled.canvas",
+    "_Engineering/Tablet/WS Contract.md",
+    "_Notes/May/05-07-26 - Notes.md",
+    "_Engineering/Tablet/DataState Pattern.md",
+    "_Engineering/Tablet/Stream Patterns Cookbook.md",
+    "_Engineering/Tablet/Onboarding Walkthrough.md",
+    "_Notes/May/05-06-26 - Notes.md",
+    "frontend/lib/models/caseload/filterEntries.ts",
     "backend/dist/tsconfig.build.tsbuildinfo",
     "backend/dist/lambdas/device-checker.js.map",
     "backend/dist/lambdas/device-checker.js",
@@ -215,10 +226,7 @@
     "backend/dist/src/main.js",
     "backend/dist/src/main.js.map",
     "backend/dist/src/app.module.d.ts",
-    "backend/dist/src/app.module.js",
-    "backend/dist/src/app.module.js.map",
     "_Notes/May/05-05-26 - Notes.md",
-    "_Notes/May/05-06-26 - Notes.md",
     "backend/README.md",
     "_Engineering/Go/High Level Overview.md",
     "_Engineering/CLI/Agent Work Guide.md",
@@ -232,16 +240,6 @@
     "_Notes/Notes.md",
     "_Notes/May/05-04-26 - Notes.md",
     "_Engineering/Dev Environment Setup.md",
-    "_Notes/April/04-20-26 - Architecture Notes.md",
-    "_Notes/April/04-27-26 - Notes.md",
-    "_Notes/April/04-24-26 -> 04-27-26 - Notes.md",
-    "_Notes/April/04-23-66 - HEY-352 - Fix device naming.md",
-    "_Notes/April/04-23-26 - Tablet Setup.md",
-    "_Notes/April/04-23-26 - Customer Support.md",
-    "_Notes/April/04-21-26 - HEY-366 - Caseloads Review.md",
-    "_Notes/April/04-21-26 - Codebase Audit – Full Stack Architecture Review.md",
-    "_Notes/April/04-20-26 - First Day - Shivani.md",
-    "_Notes/April/04-20-26 - First Day - Chris.md",
     "frontend/public/images/smart-button.png",
     "frontend/public/images/heylo-hub.png",
     "frontend/public/images/e1.png",
