@@ -155,8 +155,7 @@ Flow inside `installApkFromUrl`:
 
 Used by:
 
-- `admin_command: update-sideload` (in `realtime.service.dart`) — emergency hotfix path.
-- `update.service.dart` (the polling-based normal-OTA path).
+- `admin_command: update-sideload` (in `realtime.service.dart`) — emergency hotfix path. **Only caller as of 2026-05-07.** The standard OTA path (`update.service.dart`) uses Google Play In-App Updates instead, not this method. See [[Tablet/Update Service]].
 
 ---
 

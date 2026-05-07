@@ -2,7 +2,7 @@
 type: index
 tags: [tablet]
 owner: Mike
-updated: 2026-05-06
+updated: 2026-05-07
 status: current
 ---
 Index for all Tablet documentation.
@@ -19,20 +19,23 @@ Index for all Tablet documentation.
 - [[Tablet/DataState Pattern]] — Result/Either pattern for HTTP wrappers.
 - [[Tablet/WS Contract]] — backend ↔ tablet WebSocket event contract.
 - [[Tablet/Kiosk Service Reference]] — Dart ↔ native Java platform-channel surface.
+- [[Tablet/Native Layer]] — Java side reference (KioskManager, Watchdog, receivers).
 - [[Tablet/Logging Stack]] — CloudWatch + Waypoint logging paths.
+- [[Tablet/Update Service]] — Play Store + self-hosted sideload OTA mechanisms.
 
-## Feature pipelines
-- [[Tablet/Domain - Calls]] + [[Tablet/Onboarding Walkthrough]] §5 (call trace).
+## Feature pipelines + UI
+- [[Tablet/Domain - Calls]] + [[Tablet/Onboarding Walkthrough]] §5 (call trace) + [[Tablet/Video Call View]] (UI).
 - [[Tablet/Domain - Chat]] + [[Tablet/Chat Pipeline]] (chat trace).
-- [[Tablet/Domain - Kiosk]] + [[Tablet/Kiosk Service Reference]].
+- [[Tablet/Domain - Kiosk]] + [[Tablet/Kiosk Service Reference]] + [[Tablet/Native Layer]].
 - [[Tablet/Voice Commands]] — wake-word + STT/TTS state machine.
 - [[Tablet/Skills/Skills]] — `tablet-logs`, `release-build`.
 
-## Ops & Setup
-- [[Tablet/Kiosk Mode Setup]]
-- [[Tablet/Kiosk Quick Start]]
-- [[Tablet/Update Strategy]]
-- [[Tablet/Admin Commands]]
+## Operations
+- [[Tablet/Diagnostic Runbook]] — symptom → cause → fix lookup.
+- [[Tablet/Admin Commands]] — remote management via WS commands.
+- [[Tablet/Update Strategy]] — broader update strategy context.
+- [[Tablet/Kiosk Mode Setup]] — full provisioning guide.
+- [[Tablet/Kiosk Quick Start]] — short provisioning recipe.
 
 ---
 **Up:** [[Engineering]]
