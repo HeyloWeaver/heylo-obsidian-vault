@@ -27,7 +27,7 @@ Wikilinks like `[[Frontend/Agent Work Guide]]` in those notes mean `_Engineering
 | Resident tablet | `tablet/` | Flutter (Android kiosk) |
 | Hub device OS | `hub/` | Yocto, Mender OTA, Raspberry Pi 5 |
 | Customer onboarding | `customer-onboarding/` | Vite, React 18, MUI 7, Zustand 5 |
-| Customer support (boilerplate) | `customer-support/` | Vite, React 18, MUI 7, Zustand 5 |
+| Customer support console | `customer-support/` | Vite 8, React 19, MUI 7, Zustand 5 |
 | Inventory tracking | `inventory/` | Vite, React 18, MUI 7, Zustand 5 |
 | AWS infrastructure | `heylo-infra/` | Terraform |
 
