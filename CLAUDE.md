@@ -1,6 +1,6 @@
 # Heylo — Claude / Claude Code
 
-This folder is the **Heylo engineering Obsidian vault**: Markdown notes (mostly `_…/` folders) and application code (`frontend/`, `backend/`, `go/`, `tablet/`, `hub/`, `customer-onboarding/`, `inventory/`) live together. Obsidian config is under `.obsidian/`.
+This folder is the **Heylo engineering Obsidian vault**: Markdown notes (mostly `_…/` folders) and application code (`frontend/`, `backend/`, `go/`, `tablet/`, `hub/`, `customer-onboarding/`, `customer-support/`, `inventory/`) live together. Obsidian config is under `.obsidian/`.
 
 **Canonical, detailed guide for any coding agent:** read **`AGENTS.md`** in this same directory (vault layout, Obsidian rules, sub-repo map, how to attach context, local dev).
 
@@ -9,7 +9,7 @@ This folder is the **Heylo engineering Obsidian vault**: Markdown notes (mostly 
 ## Agent work flow (short)
 
 1. Open **`_Engineering/Agent Work - Start Here.md`** and use its routing table to choose the region.
-2. Open only the **repo-specific Agent Work Guide** for code you will touch (`Frontend`, `Backend`, `Go`, `Tablet`, `Hub`, `Customer Onboarding`, `Inventory`, `Infra`, `CLI`).
+2. Open only the **repo-specific Agent Work Guide** for code you will touch (`Frontend`, `Backend`, `Go`, `Tablet`, `Hub`, `Customer Onboarding`, `Customer Support`, `Inventory`, `Infra`, `CLI`).
 3. Use **`_Engineering/Agent Operating Loop.md`** for the orient/explore/plan/edit/verify/report workflow and **`_Engineering/Agent Verification Matrix.md`** for checks.
 4. Use **Domain Playbooks** under `_Engineering/<area>/Domain Playbooks.md` when the task is subsystem-specific.
 
@@ -27,6 +27,7 @@ Wikilinks like `[[Frontend/Agent Work Guide]]` in those notes mean `_Engineering
 | Resident tablet | `tablet/` | Flutter (Android kiosk) |
 | Hub device OS | `hub/` | Yocto, Mender OTA, Raspberry Pi 5 |
 | Customer onboarding | `customer-onboarding/` | Vite, React 18, MUI 7, Zustand 5 |
+| Customer support (boilerplate) | `customer-support/` | Vite, React 18, MUI 7, Zustand 5 |
 | Inventory tracking | `inventory/` | Vite, React 18, MUI 7, Zustand 5 |
 | AWS infrastructure | `heylo-infra/` | Terraform |
 

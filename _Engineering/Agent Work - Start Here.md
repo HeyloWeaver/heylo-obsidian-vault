@@ -1,8 +1,8 @@
 ---
 type: guide
-tags: [engineering, agents, backend, frontend, go, tablet, hub, onboarding, inventory]
+tags: [engineering, agents, backend, frontend, go, tablet, hub, onboarding, inventory, customer-support]
 owner: Mike
-updated: 2026-05-05
+updated: 2026-05-07
 status: current
 ---
 # Agent Work - Start Here
@@ -26,6 +26,7 @@ Use [[Agent Operating Loop]] for the standard orient, explore, plan, edit, verif
 | Hub OS, provisioning, OTA, systemd services, MQTT/HA/Zigbee/Z-Wave | [[Hub/Agent Work Guide]] | [[Hub/Domain Playbooks]], `hub/README.md`, `_Engineering/Devices/**`, relevant `hub/meta-heylo/**` |
 | Customer onboarding app | [[Customer Onboarding/Agent Work Guide]] + [[Backend/Agent Work Guide]] if API changes | `customer-onboarding/**`, backend `CustomerOnboarding*` controller/service/entity paths |
 | Inventory tracking app | [[Inventory/Agent Work Guide]] + [[Backend/Agent Work Guide]] if API/DB changes | `inventory/**`, backend inventory controllers/services/entities/migrations |
+| Customer support app (boilerplate, scope TBD) | [[Customer Support/Agent Work Guide]] | `customer-support/**` |
 | Dev scripts, local orchestration, workspace plumbing | [[CLI/Agent Work Guide]] + `README.md` | `package.json`, `cli/README.md`, `cli/**`, [[Dev Environment Setup]] |
 | Terraform / AWS infrastructure | [[Infra/Agent Work Guide]] + relevant plan/spec | `heylo-infra/**`; confirm intent before applying infrastructure changes |
 
@@ -65,7 +66,7 @@ Agent execution references:
    - backend usually on `localhost:4000`
    - Go/AppSync resolver is separate from the Nest API; use `npm run dev:go` for the local runner
    - tablet: run Flutter directly from `tablet/` (`flutter run --flavor dev -t lib/main.dart` or `flutter run --flavor local -t lib/main.dart`; requires Android device or emulator)
-   - onboarding/inventory: `npm run dev:onboarding` or `npm run dev:inventory`
+   - onboarding/inventory/support: `npm run dev:onboarding`, `npm run dev:inventory`, or `npm run dev:support`
 6. Use [[Agent Verification Matrix]] to choose checks before declaring the work complete.
 7. Optional historical architecture audit for extra context: [[04-21-26 - Codebase Audit – Full Stack Architecture Review]] (`_Notes/April/`). Treat it as supplementary context, not current policy.
 
@@ -90,6 +91,7 @@ Agent execution references:
 - `tablet/` is a Flutter Android kiosk app for residents — video calls, chat, device management. Talks to the same NestJS backend over REST + WebSocket.
 - `hub/` is a Yocto 5.2 embedded Linux build system for the Raspberry Pi 5 Hub device — MQTT, Home Assistant, Zigbee/Z-Wave bridges, camera streaming, AWS IoT/SSM/CloudWatch, Mender OTA.
 - `customer-onboarding/` and `inventory/` are separate Vite apps with backend counterparts in Nest.
+- `customer-support/` is a new Vite app (boilerplate; scope, contracts, and workspace wiring still TBD).
 - The same product surface spans all repos, so changes often need at least a sanity check in two or more.
 
 ---

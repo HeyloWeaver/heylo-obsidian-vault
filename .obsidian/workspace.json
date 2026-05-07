@@ -206,6 +206,9 @@
   },
   "active": "2cc5ceb5236f4ba0",
   "lastOpenFiles": [
+    "customer-support/CLAUDE.md",
+    "_Engineering/Customer Support/Agent Work Guide.md",
+    "_Engineering/Customer Support",
     "customer-support/vite.config.ts",
     "customer-support/tsconfig.node.json",
     "customer-support/tsconfig.json",
@@ -215,8 +218,6 @@
     "customer-support/src/types/message.ts",
     "customer-support/src/types/deviceNotification.ts",
     "customer-support/src/types/common.ts",
-    "customer-support/src/types/call.ts",
-    "customer-support/src/fixtures/calls.ts",
     "customer-support/README.md",
     "tablet/build/app/intermediates/packaged_res/localDebug/packageLocalDebugResources/mipmap-xxxhdpi-v4/ic_launcher.png",
     "tablet/build/app/intermediates/packaged_res/localDebug/packageLocalDebugResources/mipmap-xxhdpi-v4/ic_launcher.png",
@@ -252,7 +253,6 @@
     "_Engineering/Go/High Level Overview.md",
     "_Engineering/CLI/Agent Work Guide.md",
     "_Engineering/Infra/Agent Work Guide.md",
-    "_Engineering/Inventory/Agent Work Guide.md",
-    "_Engineering/Customer Onboarding/Agent Work Guide.md"
+    "_Engineering/Inventory/Agent Work Guide.md"
   ]
 }
