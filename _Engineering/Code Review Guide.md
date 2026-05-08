@@ -169,7 +169,38 @@ Call this out in review every time. The frontend re-fetches the full page after 
 
 ### Don't pre-decide values the caller should own
 
-When a new typed field (status, category, type, role assignment) lands on an entity that admins/sales configure, expose it on the **create** DTO — don't hardcode a "safe" default like `'Live'` to make the field easy to roll out. Hardcoding forces a create-then-update flow, hides the contract, and leaves dead lookup branches in the service. If callers genuinely have no opinion, keep the field required and have the FE picker default to the desired value. Reviewers consistently flag "let the user set this at create time."
+When a new typed field (status, category, type, role assignment) lands on an entity that admins/sales configure, expose it on the **create** DTO — don't omit it and hardcode a "safe" default in the service to make the field easy to roll out. Omitting forces a create-then-update flow, hides the contract from API consumers, and leaves dead lookup branches.
+
+The field should always appear on the DTO. Whether it's *required* or *optional with a server-side fallback* is a separate decision driven by the deploy-skew rule below. "Optional with default" is fine; "absent from the DTO entirely" is not.
+
+### Backwards-compatible contract changes (deploy skew)
+
+Heylo doesn't atomically deploy frontend and backend. Between a backend merge and the matching frontend rollout completing, the new contract is broken for any client still running the old code.
+
+For **customer-facing endpoints**, default to backwards-compatible additions:
+
+- New DTO properties land **optional** with a server-side default, not required. The field still appears on the DTO so new callers can set it; old callers omitting it get the default and don't 400.
+- Don't rename or repurpose existing fields — add a new one and deprecate the old.
+- Don't remove enum values that old clients may still send.
+- When a removal is genuinely needed, ship it across two deploy cycles: cycle 1 stops sending/depending on the value; cycle 2 deletes the field.
+
+For **super-user / internal-only endpoints with low traffic** (agency creation, infra knobs), requiring a new field is acceptable — but call out the deploy-skew window in the PR description so reviewers can decide whether to coordinate the deploy.
+
+This rule resolves the tension with "Don't pre-decide values the caller should own": the field belongs on the DTO either way; deploy-skew controls whether it's required or optional. A server-side default that exists *only* because the field is absent from the DTO is a smell. A server-side default that exists because the field is optional-for-compat is correct.
+
+### No `eager: true` on entity relations except for tiny lookup tables
+
+Avoid `eager: true` on `@ManyToOne` / `@OneToMany` / `@OneToOne` decorators. ORM auto-loading hides queries from the call site, makes it easy to pull more than the caller needs, and chains recursively when loaded entities have their own eager relations.
+
+The only acceptable use is small, static reference tables — status, type, severity, role-name lookups with a fixed handful of rows that never grow. Even then, prefer requesting the relation explicitly (`relations: ['status']` at the call site, or hand-rolled SQL) so the load is visible in review.
+
+For everything else, fetch the relation explicitly where you need it.
+
+### List-endpoint ordering should be useful to humans
+
+When a list endpoint feeds a UI control (dropdown, picker, sortable table default), `ORDER BY` the human-meaningful column — usually `name ASC` — not by `id` or row-insertion order.
+
+`id` reflects the order rows were inserted in the seed migration; that's not a sort anyone wants in a UI. Exceptions: lists with an intrinsic ordering (priority, severity, time-based) should use that column.
 
 ### Validate AND assign — don't half-apply a DTO field
 
@@ -184,6 +215,49 @@ Pair this with the existence check in the same method — validate, then assign.
 ### Document new eager relations in the PR description
 
 When you add a relation to an existing entity load — especially on `/users/my`, the auth bootstrap, or anything called on every page render — say *why* in the PR description. One sentence is enough: "FE needs `agency.status` to gate demo-mode UI." Reviewers should not have to open the matching FE PR to find out.
+
+### No silent async failures — surface load errors to the user
+
+Frontend async work (data loads, dropdown population, lookups) must not fail silently. Two related rules, both flagged repeatedly in review:
+
+- **Use `async/await` + `try/catch`, not `.then(setX).catch(console.error)`.** The promise-chain form is hard to reason about in `useEffect`, makes it easy to drop the failure on the floor, and reads inconsistently with the rest of the codebase.
+- **Tell the user when a load fails.** A `console.error` is not user-feedback — it's a guarantee the support team will be pinged in Slack instead. Render an inline error message near the affected control (e.g. under the field whose options failed to load) and disable the control while the data is missing. Reset the error state when the dialog/page reopens.
+
+```tsx
+// ❌ Silent failure — user sees an empty dropdown and assumes it's broken
+useEffect(() => {
+  if (!open) return;
+  agencyService.getStatuses()
+    .then(setStatuses)
+    .catch((err) => console.error('Failed to load agency statuses', err));
+}, [open]);
+
+// ✅ try/catch + visible error
+useEffect(() => {
+  if (!open) return;
+  const load = async () => {
+    try {
+      setStatuses(await agencyService.getStatuses());
+      setStatusesError('');
+    } catch (err) {
+      console.error('Failed to load agency statuses', err);
+      setStatusesError('Failed to load agency statuses. Please try again.');
+    }
+  };
+  load();
+}, [open]);
+```
+
+The same applies to any in-component `fetch`/`api.get`/service call where the user would otherwise stare at an empty list, an empty Select, or a stuck spinner with no idea why.
+
+### Don't duplicate role gating in the UI when the screen is already role-gated
+
+If only superadmins can reach a screen, don't gate individual fields on that screen with a second `isSuperAdmin` check — it's redundant, drifts out of sync between sibling components (e.g. `create-modal` vs. `update-modal`), and forces the next reader to figure out which layer is actually load-bearing. Either:
+
+- Trust the route/sidebar gate and render fields unconditionally, or
+- If a field genuinely needs a *different* role than the screen, gate it — and document why in a one-line comment.
+
+If you find yourself adding the same `isSuperAdmin` (or other role) check to one of two paired modals but not the other, that's the smell. Pick one approach for the pair.
 
 ### Long ternaries → multi-line or `if`
 
@@ -267,7 +341,10 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] No N+1 in service methods — joined queries instead of per-row lookups.
 - [ ] Migration seed/lookup SQL imports the matching enum and uses parameter bindings — no inline string literals.
 - [ ] Every DTO field validated in a service method is also assigned to the entity (with `?? existing.x` fallback when optional on update).
-- [ ] New typed/configurable fields (status, category, type) are exposed on the **create** DTO — not hardcoded to a default.
+- [ ] New typed/configurable fields (status, category, type) are exposed on the **create** DTO — not omitted in favor of a hardcoded default.
+- [ ] New required fields on customer-facing DTOs are landed as **optional with a server-side default**; required-only is reserved for super-user/internal endpoints, and the deploy-skew window is called out in the PR.
+- [ ] No `eager: true` on relation decorators — exception is small static reference tables (status/type/severity), and even those prefer explicit `relations: [...]` at call time.
+- [ ] List endpoints feeding UI controls `ORDER BY` the human-meaningful column (usually `name ASC`) — not `id` or insertion order.
 - [ ] New eager relations on existing entity loads (`/me`, auth bootstrap, list endpoints) are explained in the PR description.
 
 ### Frontend-specific
@@ -277,6 +354,8 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] After a mutation, the page re-fetches via the existing service — no optimistic client-state patches.
 - [ ] Generic endpoint consumers don't bake one ticket/alert/device "type" into the rendering.
 - [ ] Role gating in `middleware.ts` and sidebar visibility match.
+- [ ] Async loads in components use `async/await` + `try/catch` (not `.then().catch()`); failures set a user-visible error state and the dependent control is disabled while data is missing.
+- [ ] Sibling create/update modals (and other paired flows) handle role gating the same way — no `isSuperAdmin` in one but not the other.
 
 ### Cross-repo
 

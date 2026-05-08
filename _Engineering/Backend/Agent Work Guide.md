@@ -126,6 +126,31 @@ DB-level FK `ON DELETE CASCADE` in a migration is allowed as a schema integrity 
 
 ---
 
+## ORM eager loading
+
+Never set `eager: true` on relation decorators except for **small static reference tables** (status, type, severity, role-name lookups with a fixed handful of rows that never grow). ORM auto-loading hides queries from the call site, makes it easy to pull more than the caller needs, and chains recursively when loaded entities have their own eager relations.
+
+Even on those tiny lookup tables, prefer requesting the relation explicitly (`relations: ['status']` at the call site, or hand-rolled SQL) so the load is visible in review. See [[Code Review Guide]] §"No `eager: true` on entity relations except for tiny lookup tables".
+
+---
+
+## Contract changes and deploy skew
+
+Heylo doesn't atomically deploy backend and frontend. A new required DTO field 400s the old frontend during the rollout window.
+
+- **Customer-facing endpoints**: new DTO properties land **optional with a server-side default**. The field still appears on the DTO (so new callers can set it); old callers omitting it get the default. Don't rename or repurpose existing fields; don't remove enum values old clients may still send.
+- **Super-user / internal-only endpoints**: required is acceptable, but call out the deploy-skew window in the PR description.
+
+This refines "expose new typed fields on the create DTO" — the field always belongs on the DTO; required-vs-optional is the deploy-skew decision. See [[Code Review Guide]] §"Backwards-compatible contract changes (deploy skew)".
+
+---
+
+## List-endpoint ordering
+
+`ORDER BY` the human-meaningful column when the list feeds a UI control — usually `name ASC`, not `id` or insertion order. `id` reflects the seed-migration row order, which isn't a sort anyone wants in a UI. Exceptions: lists with an intrinsic ordering (priority, severity, time) use that column.
+
+---
+
 ## Mutation responses
 
 - **Backend**: create and update endpoints return only the new/updated record's ID: `{ id: saved.id }`. Do not return the full object.
@@ -170,6 +195,9 @@ See [[Backend/Commands/Commands]] for full reference.
 - Service reads use raw SQL via `repository.manager.query()` — no `findAndCount`/`find` with relations/`createQueryBuilder` for joined reads.
 - Multi-table writes are wrapped in a `manager.transaction(...)` callback.
 - No `cascade: true` or `onDelete: 'CASCADE'` on relation decorators.
+- No `eager: true` on relation decorators (exception: small static reference tables).
+- New required fields on customer-facing DTOs land as **optional with a server-side default**; required-only is reserved for super-user endpoints, and the deploy-skew window is noted in the PR.
+- List endpoints feeding UI controls `ORDER BY` the human-meaningful column (usually `name ASC`).
 - Create/update endpoints return `{ id }` only; frontend re-fetches page data.
 - No hardcoded string literals where an enum exists — including migration seed/lookup SQL (use parameter bindings).
 - Every DTO field validated in a service method is also assigned to the entity.
