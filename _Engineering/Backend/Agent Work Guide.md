@@ -2,7 +2,7 @@
 type: guide
 tags: [backend, agents]
 owner: Mike
-updated: 2026-05-05
+updated: 2026-05-08
 status: current
 ---
 # Backend - Agent Work Guide
@@ -50,8 +50,8 @@ Use [[Backend/Domain Playbooks]] for subsystem-specific entry points.
 
 1. Add entity in `backend/src/entities/`.
 2. Register in `app.module.ts` and the feature module `TypeOrmModule.forFeature`.
-3. Add migration under `backend/src/migrations/`.
-4. Add service/controller integration as needed.
+3. Add migration under `backend/src/migrations/`. **Seed inserts and lookup `WHERE` clauses must import the matching enum and bind via `?` placeholders** — no inline `'Live'`/`'Demo'` literals in migration SQL. See [[Code Review Guide]] §"No hardcoded literals where an enum exists".
+4. Add service/controller integration as needed. When you validate a DTO field in a service method, **also assign it** to the entity (with `?? existing.x` fallback for optional-on-update fields). Validating without assigning is a recurring review flag.
 
 ### Add/change realtime events
 
@@ -171,6 +171,9 @@ See [[Backend/Commands/Commands]] for full reference.
 - Multi-table writes are wrapped in a `manager.transaction(...)` callback.
 - No `cascade: true` or `onDelete: 'CASCADE'` on relation decorators.
 - Create/update endpoints return `{ id }` only; frontend re-fetches page data.
-- No hardcoded string literals where an enum exists.
+- No hardcoded string literals where an enum exists — including migration seed/lookup SQL (use parameter bindings).
+- Every DTO field validated in a service method is also assigned to the entity.
+- New typed/configurable fields are exposed on the create DTO, not hardcoded to a default.
+- New eager relations on existing entity loads are explained in the PR description.
 - Update `_Engineering/Backend/*` notes when architecture or contracts change.
 

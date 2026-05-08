@@ -2,7 +2,7 @@
 type: guide
 tags: [engineering, agents, review]
 owner: Mike
-updated: 2026-05-05
+updated: 2026-05-08
 status: current
 ---
 # Code Review Guide
@@ -59,6 +59,14 @@ These are non-negotiable. If a change introduces any of them, push back before a
 
 - Strings like `'open'`, `'resolved'`, role names, status codes — always reference the enum.
 - If the enum doesn't exist yet, **create it** in `backend/src/domain/enums/` or `frontend/lib/models/.../enums`. This is a project rule, not a preference.
+- **This applies to migrations.** Seed inserts and lookup `WHERE name = 'Live'` patterns must import the matching enum and use parameter bindings — no inline string literals in migration SQL:
+  ```ts
+  import { AgencyStatusName } from '../domain/enums/agency-status-name';
+  await queryRunner.query(
+    `INSERT INTO agencystatus (Name) VALUES (?), (?);`,
+    [AgencyStatusName.Live, AgencyStatusName.Demo],
+  );
+  ```
 
 ### Validation belongs in the right layer
 
@@ -159,6 +167,24 @@ If an endpoint serves multiple "types" (ticket types, alert types, device types)
 
 Call this out in review every time. The frontend re-fetches the full page after a successful create/update. No optimistic client-state patches, no returning the full row.
 
+### Don't pre-decide values the caller should own
+
+When a new typed field (status, category, type, role assignment) lands on an entity that admins/sales configure, expose it on the **create** DTO — don't hardcode a "safe" default like `'Live'` to make the field easy to roll out. Hardcoding forces a create-then-update flow, hides the contract, and leaves dead lookup branches in the service. If callers genuinely have no opinion, keep the field required and have the FE picker default to the desired value. Reviewers consistently flag "let the user set this at create time."
+
+### Validate AND assign — don't half-apply a DTO field
+
+Validating that a DTO value is acceptable is only half the work. If you don't also assign it to the entity, it never gets persisted. AutoMapper carries required `@AutoMap()` fields cleanly, but optional fields can drop silently or overwrite to `undefined` on update. After `mapper.map(dto, …, Entity)`, explicitly assign anything that's optional on update:
+
+```ts
+agency.statusId = dto.statusId ?? existing.statusId;
+```
+
+Pair this with the existence check in the same method — validate, then assign. A pattern of "validate but never assign" is one of the most common review flags on update endpoints.
+
+### Document new eager relations in the PR description
+
+When you add a relation to an existing entity load — especially on `/users/my`, the auth bootstrap, or anything called on every page render — say *why* in the PR description. One sentence is enough: "FE needs `agency.status` to gate demo-mode UI." Reviewers should not have to open the matching FE PR to find out.
+
 ### Long ternaries → multi-line or `if`
 
 If a `?:` wraps to two lines and you need to count parens to read it, refactor to an `if`. Same for ternaries embedded in JSX.
@@ -239,6 +265,10 @@ Run this list before requesting human review. Most PR comments are caught here.
 - [ ] Queries on agency-scoped entities filter by the actual agency column, usually `agencyId` in new tables (no tenancy leaks).
 - [ ] No unbounded `SELECT` on growth-prone tables (alerts, calls, events, messages) — `LIMIT` or tenancy filter present.
 - [ ] No N+1 in service methods — joined queries instead of per-row lookups.
+- [ ] Migration seed/lookup SQL imports the matching enum and uses parameter bindings — no inline string literals.
+- [ ] Every DTO field validated in a service method is also assigned to the entity (with `?? existing.x` fallback when optional on update).
+- [ ] New typed/configurable fields (status, category, type) are exposed on the **create** DTO — not hardcoded to a default.
+- [ ] New eager relations on existing entity loads (`/me`, auth bootstrap, list endpoints) are explained in the PR description.
 
 ### Frontend-specific
 
