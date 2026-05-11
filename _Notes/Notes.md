@@ -2,7 +2,7 @@
 type: index
 tags: [notes]
 owner: Mike
-updated: 2026-05-05
+updated: 2026-05-11
 status: current
 ---
 # Notes
@@ -15,6 +15,10 @@ Index of scratch notes and daily working notes. Links include their month subfol
 
 ## May 2026
 
+- [[May/05-11-26 - Notes]]
+- [[May/05-08-26 - Notes]]
+- [[May/05-07-26 - Notes]]
+- [[May/05-06-26 - Notes]]
 - [[May/05-05-26 - Notes]]
 - [[May/05-04-26 - Notes]]
 - [[May/05-01-26 - Notes]]

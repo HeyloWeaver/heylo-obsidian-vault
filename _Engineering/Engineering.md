@@ -2,7 +2,7 @@
 type: index
 tags: [engineering]
 owner: Mike
-updated: 2026-04-23
+updated: 2026-05-11
 status: current
 ---
 Central index for all Heylo engineering documentation.
@@ -11,6 +11,13 @@ Central index for all Heylo engineering documentation.
 - [[Agent Work - Start Here]]
 - [[Heylo Prod & Eng]]
 - [[Dev Environment Setup]]
+- [[How to Deploy to QA (Staging)]]
+
+## Agent execution references
+- [[Agent Operating Loop]]
+- [[Agent Verification Matrix]]
+- [[Agent Tools]]
+- [[Code Review Guide]]
 
 ## Repos
 - [[Backend/Backend]]
@@ -18,6 +25,11 @@ Central index for all Heylo engineering documentation.
 - [[Go/Go]]
 - [[Tablet/Tablet]]
 - [[Hub/Hub]]
+- [[Customer Onboarding/Agent Work Guide]]
+- [[Customer Support/Agent Work Guide]]
+- [[Inventory/Agent Work Guide]]
+- [[CLI/Agent Work Guide]]
+- [[Infra/Agent Work Guide]]
 
 ## Hardware & Devices
 - [[Devices/Devices]]
