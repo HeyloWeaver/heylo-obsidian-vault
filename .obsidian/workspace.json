@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Notes/May/05-11-26 - Notes.md",
+                "file": "_Notes/May/05-12-26 - Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "05-11-26 - Notes"
+              "title": "05-12-26 - Notes"
             }
           }
         ]
@@ -200,14 +200,13 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "obsidian-importer:Open Importer": false
+      "bases:Create new base": false
     }
   },
   "active": "2cc5ceb5236f4ba0",
   "lastOpenFiles": [
-    "_Engineering/How to Deploy to QA (Staging).md",
     "_Notes/May/05-11-26 - Notes.md",
+    "_Engineering/How to Deploy to QA (Staging).md",
     "_Notes/May/05-12-26 - Notes.md",
     "frontend/lib/models/caseload/filterEntries.ts",
     "frontend/components/site/update-modal-admin.tsx",
