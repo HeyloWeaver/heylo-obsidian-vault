@@ -2,7 +2,7 @@
 **Backend**
 
 ```
-./bin/deploy.sh
+sudo ./bin/deploy.sh
 ```
 
 **Frontend**

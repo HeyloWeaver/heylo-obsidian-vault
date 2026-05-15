@@ -1,4 +1,31 @@
 {
   "git.autoRepositoryDetection": true,
-  "git.repositoryScanMaxDepth": 2
+  "git.repositoryScanMaxDepth": 2,
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Only format files that live under a folder with its own .prettierrc.
+  // Keeps Obsidian markdown notes (no config) untouched while the code
+  // subfolders (backend/, frontend/, playwright/, etc.) format-on-save.
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false
 }
